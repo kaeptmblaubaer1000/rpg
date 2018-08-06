@@ -1,5 +1,7 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.entities.BaseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 

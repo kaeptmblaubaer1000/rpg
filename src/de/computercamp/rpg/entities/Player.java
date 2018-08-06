@@ -1,4 +1,6 @@
-package de.computercamp.rpg;
+package de.computercamp.rpg.entities;
+
+import de.computercamp.rpg.Vector2D;
 
 import java.util.ArrayList;
 import java.util.Collections;
