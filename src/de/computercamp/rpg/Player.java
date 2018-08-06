@@ -49,12 +49,12 @@ public class Player extends BaseObject {
     }
 
     public void collectItem(Item item) {
-        getMap().remove(item);
+        getMap().removeObject(item);
         inventory.add(item);
     }
 
     /**
-     * @param item the item to remove
+     * @param item the item to removeObject
      * @return Returns true if the inventory contained the specified item.
      */
     public boolean removeItem(Item item) {
