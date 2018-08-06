@@ -3,7 +3,7 @@ package de.computercamp.rpg;
 
 public class Item extends BaseObject{
 	
-	public static enum Type {HEALING_POTION, SWORD};
+	public static enum Type {HEALING_POTION, SWORD, KEY};
 	private Type type;
 	private char symbol;
 	private String displayName;
@@ -11,12 +11,15 @@ public class Item extends BaseObject{
 		super(pos);
 		this.type = type;
 		if (type == Type.HEALING_POTION) {
-			symbol = 'ṑ';
+			symbol = '\u1e50';
 			displayName = "Healing potion";
 		} else if (type == Type.SWORD) {
-			symbol = 'ḷ';
+			symbol = '\u1e36';
 			displayName = "Sword";
-		} else {
+		} else if (type == Type.KEY) {
+			symbol = '\ua720';
+			displayName = "Key";
+		}else {
 			symbol = 'E';
 			displayName = "!UNKNOWN!";
 		}
