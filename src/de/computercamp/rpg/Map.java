@@ -15,8 +15,13 @@ public class Map {
     private List<List<BaseObject>> mapContents = new ArrayList<>();
 
     public boolean remove(BaseObject base) {
-        // TODO: implement
-        return false;
+        boolean returnValue = false;
+        for (List<BaseObject> list : mapContents) {
+            returnValue = returnValue || list.removeIf((object) -> {
+                return base == object;
+            });
+        }
+        return returnValue;
     }
 
 }
