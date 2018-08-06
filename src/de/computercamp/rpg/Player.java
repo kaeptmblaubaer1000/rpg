@@ -44,6 +44,7 @@ public class Player extends BaseObject {
     }
 
     public void collectItem(Item item) {
+        getMap().remove(item);
         inventory.add(item);
     }
 
