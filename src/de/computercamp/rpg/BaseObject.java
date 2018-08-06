@@ -1,7 +1,7 @@
 package de.computercamp.rpg;
 
 public class BaseObject {
-    private Vector2D position;
+    protected Vector2D position;
 
     public BaseObject(Vector2D position) {
         this.position = position;
