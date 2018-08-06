@@ -21,8 +21,8 @@ public class NPC extends BaseObject{
 	@Override
 	public void onPlayerMove(Player player) {
 		Vector2D ppos = player.getPosition();
-		if ((Math.abs(ppos.x-getPosition().x) == 1 && ppos.y == getPosition().y) || 
-				(Math.abs(ppos.y-getPosition().y) == 1 && ppos.x == getPosition().x)){
+        if ((Math.abs(ppos.x - position.x) == 1 && ppos.y == position.y) ||
+                (Math.abs(ppos.y - position.y) == 1 && ppos.x == position.x)) {
 			player.sendMessage(message);
 			if (type == NPCType.GIVING_ITEM) {
 				player.collectItem(toGive);
@@ -31,7 +31,6 @@ public class NPC extends BaseObject{
 	}
 	@Override
 	public char render() {
-		// TODO Auto-generated method stub
 		return '\u2638';
 	}
 }
