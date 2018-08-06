@@ -18,4 +18,11 @@ public class Map {
     public boolean removeObject(BaseObject base) {
         return mapContents.removeIf((object) -> base == object);
     }
+
+    public void addObject(BaseObject object) {
+        object.setMap(this);
+        if(!mapContents.contains(object)) {
+            mapContents.add(object);
+        }
+    }
 }
