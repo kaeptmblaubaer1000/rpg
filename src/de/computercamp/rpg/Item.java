@@ -6,19 +6,19 @@ public class Item extends BaseObject{
 	public static enum Type {HEALING_POTION, SWORD};
 	private Type type;
 	private String symbol = "";
-	private String displayname = "";
+	private String displayName = "";
 	public Item(Vector2D pos, Type type) {
 		super(pos);
 		this.type = type;
 		if (type == Type.HEALING_POTION) {
 			symbol = "o";
-			displayname = "Healing potion";
+			displayName = "Healing potion";
 		} else if (type == Type.SWORD) {
 			symbol = "/";
-			displayname = "Sword";
+			displayName = "Sword";
 		} else {
 			symbol = "?";
-			displayname = "!UNKNOWN!";
+			displayName = "!UNKNOWN!";
 		}
 	}
 	
@@ -26,14 +26,11 @@ public class Item extends BaseObject{
 	public Type getType() {
 		return type;
 	}
-	public void setType(Type type) {
-		this.type = type;
-	}
 	public String getSymbol() {
 		return symbol;
 	}
-	public String getDisplayname() {
-		return displayname;
+	public String getDisplayName() {
+		return displayName;
 	}
 	
 
