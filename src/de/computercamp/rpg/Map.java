@@ -1,6 +1,7 @@
 package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,12 @@ public class Map {
         object.setMap(this);
         if(!mapContents.contains(object)) {
             mapContents.add(object);
+        }
+    }
+
+    public void onPlayerMove(Player player) {
+        for(BaseObject object: mapContents) {
+            object.onPlayerMove(player);
         }
     }
 }

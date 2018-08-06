@@ -28,4 +28,6 @@ public abstract class BaseObject {
     }
 
     abstract public char render();
+
+    public void onPlayerMove(Player player) {}
 }
