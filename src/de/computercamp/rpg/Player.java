@@ -1,15 +1,12 @@
 package de.computercamp.rpg;
 
-public class Player {
+/**
+ * Simple player class with position and up, down, right and left method
+ */
+public class Player extends BaseObject {
 
-    private Vector2D position;
-
-    public Vector2D getPosition() {
-        return position;
-    }
-
-    public void setPosition(Vector2D position) {
-        this.position = position;
+    public Player(Vector2D position) {
+        super(position);
     }
 
     /**
