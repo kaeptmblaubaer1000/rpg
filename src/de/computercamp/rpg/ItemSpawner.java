@@ -4,8 +4,10 @@ public class ItemSpawner {
 	public Item getRandomItem(Vector2D minPos, Vector2D maxPos) {
 		Item.Type type;
 		double rand = Math.random();
-		if (rand < 0.5) {
+		if (rand < (1/3)) {
 			type = Item.Type.HEALING_POTION;
+		} else if (rand < (2/3)) {
+			type = Item.Type.KEY;
 		} else {
 			type = Item.Type.SWORD;
 		}

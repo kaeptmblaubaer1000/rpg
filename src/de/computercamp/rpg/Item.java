@@ -17,7 +17,7 @@ public class Item extends BaseObject{
 			symbol = '\u1e36';
 			displayName = "Sword";
 		} else if (type == Type.KEY) {
-			symbol = '\u017a';
+			symbol = '\ua720';
 			displayName = "Key";
 		}else {
 			symbol = 'E';
