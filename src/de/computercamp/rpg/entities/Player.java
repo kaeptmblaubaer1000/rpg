@@ -2,16 +2,14 @@ package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Vector2D;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Simple player class with position and up, down, right and left method
  */
 public class Player extends BaseObject {
 
-    private static final int MAX_HEALTH = 20;
+    public static final int MAX_HEALTH = 20;
     private static final int INVENTORY_SIZE = 10;
 
     private int health = MAX_HEALTH;
@@ -19,6 +17,13 @@ public class Player extends BaseObject {
 
     public Player(Vector2D position) {
         super(position);
+        Timer healthTimer = new Timer(true);
+        healthTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                health++;
+            }
+        }, 0, 2000);
     }
 
     @Override
