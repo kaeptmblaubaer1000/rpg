@@ -1,6 +1,6 @@
 package de.computercamp.rpg;
 
-public class BaseObject {
+public abstract class BaseObject {
     protected Vector2D position;
     protected Map map;
 
@@ -23,4 +23,6 @@ public class BaseObject {
     public void setMap(Map map) {
         this.map = map;
     }
+
+    abstract public char render();
 }
