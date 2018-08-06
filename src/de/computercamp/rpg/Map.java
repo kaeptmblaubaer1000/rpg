@@ -13,11 +13,9 @@ public class Map {
     public static final char RIGHT_LOWER_EDGE = '┘';
 
 
-    private List<List<BaseObject>> mapContents = new ArrayList<>();
+    private List<BaseObject> mapContents = new ArrayList<>();
 
-    public void remove(BaseObject base) {
-        for (List<BaseObject> list : mapContents) {
-            list.replaceAll((object) -> base == object ? null : object);
-        }
+    public boolean remove(BaseObject base) {
+        return mapContents.removeIf((object) -> base == object);
     }
 }
