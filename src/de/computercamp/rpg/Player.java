@@ -49,7 +49,10 @@ public class Player extends BaseObject {
     }
 
     public void collectItem(Item item) {
-        getMap().removeObject(item);
+        if (map == null) {
+            throw new NullPointerException("Player removed from map");
+        }
+        map.removeObject(item);
         inventory.add(item);
     }
 
