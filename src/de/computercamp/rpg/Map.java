@@ -12,6 +12,7 @@ public class Map {
     public static final char LEFT_LOWER_EDGE = '└';
     public static final char RIGHT_LOWER_EDGE = '┘';
 
+
     private List<List<BaseObject>> mapContents = new ArrayList<>();
 
     public void remove(BaseObject base) {
@@ -19,6 +20,4 @@ public class Map {
             list.replaceAll((object) -> base == object ? null : object);
         }
     }
-
-
 }

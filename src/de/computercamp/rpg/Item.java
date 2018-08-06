@@ -36,7 +36,6 @@ public class Item extends BaseObject{
 
 	@Override
 	public char render() {
-		// TODO Auto-generated method stub
 		return symbol;
 	}
 	

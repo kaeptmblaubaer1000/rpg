@@ -18,4 +18,23 @@ public class WallTile extends BaseObject {
         super(position);
         this.type = type;
     }
+
+    public char render() {
+        switch (type) {
+            case VERTICAL:
+                return Map.VERTICAL_LINE;
+            case HORIZONTAL:
+                return Map.HORIZONTAL_LINE;
+            case LEFT_LOWER_EDGE:
+                return Map.LEFT_LOWER_EDGE;
+            case RIGHT_LOWER_EDGE:
+                return Map.RIGHT_LOWER_EDGE;
+            case LEFT_UPPER_EDGE:
+                return Map.LEFT_UPPER_EDGE;
+            case RIGHT_UPPER_EDGE:
+                return Map.RIGHT_UPPER_EDGE;
+            default:
+                return 'E';
+        }
+    }
 }
