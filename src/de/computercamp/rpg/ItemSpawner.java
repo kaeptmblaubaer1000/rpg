@@ -1,7 +1,7 @@
 package de.computercamp.rpg;
 
 public class ItemSpawner {
-	public Item getRandomItem(Vector2D minPos, Vector2D maxPos) {
+	public Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
 		Item.Type type;
 		double rand = Math.random();
 		if (rand < (1/3)) {
@@ -13,6 +13,8 @@ public class ItemSpawner {
 		}
 		int posX = (int) Math.round((Math.random()*maxPos.x)-minPos.x);
 		int posY = (int) Math.round((Math.random()*maxPos.y)-minPos.y);
-		return new Item(new Vector2D(posX, posY), type);
+		Item item = new Item(new Vector2D(posX, posY), type);
+		map.addObject(item);
+		return item;
 	}
 }
