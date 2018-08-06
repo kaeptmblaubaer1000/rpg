@@ -1,14 +1,14 @@
 package de.computercamp.rpg;
 
 
-public class Item {
-	private Vector2D pos;
+public class Item extends BaseObject{
+	
 	public static enum Type {HEALING_POTION, SWORD};
 	private Type type;
 	private String symbol = "";
 	private String displayname = "";
 	public Item(Vector2D pos, Type type) {
-		this.pos = pos;
+		super(pos);
 		this.type = type;
 		if (type == Type.HEALING_POTION) {
 			symbol = "o";
@@ -21,12 +21,7 @@ public class Item {
 			displayname = "!UNKNOWN!";
 		}
 	}
-	public Vector2D getPos() {
-		return pos;
-	}
-	public void setPos(Vector2D pos) {
-		this.pos = pos;
-	}
+	
 	
 	public Type getType() {
 		return type;
