@@ -14,14 +14,11 @@ public class Map {
 
     private List<List<BaseObject>> mapContents = new ArrayList<>();
 
-    public boolean remove(BaseObject base) {
-        boolean returnValue = false;
+    public void remove(BaseObject base) {
         for (List<BaseObject> list : mapContents) {
-            returnValue = returnValue || list.removeIf((object) -> {
-                return base == object;
-            });
+            list.replaceAll((object) -> base == object ? null : object);
         }
-        return returnValue;
     }
+
 
 }
