@@ -35,7 +35,7 @@ public class Player extends BaseObject {
      * Moves this player upwards.
      */
     public void up() {
-        position.y++;
+        position.y--;
         map.onPlayerMove(this);
     }
 
@@ -43,7 +43,7 @@ public class Player extends BaseObject {
      * Moves the player downwards.
      */
     public void down() {
-        position.y--;
+        position.y++;
         map.onPlayerMove(this);
     }
 
