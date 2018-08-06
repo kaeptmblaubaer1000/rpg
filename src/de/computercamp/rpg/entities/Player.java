@@ -85,4 +85,8 @@ public class Player extends BaseObject {
             System.out.println(i + ". " + item.getSymbol() + " (" + item.getDisplayName() + ")");
         }
     }
+
+    public void sendMessage(String message) {
+        System.out.println("Message to player: " + message);
+    }
 }
