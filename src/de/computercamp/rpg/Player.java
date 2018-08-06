@@ -15,6 +15,11 @@ public class Player extends BaseObject {
         super(position);
     }
 
+    @Override
+    public char render() {
+        return 'X';
+    }
+
     /**
      * Moves this player upwards.
      */
