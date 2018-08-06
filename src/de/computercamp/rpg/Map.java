@@ -16,6 +16,8 @@ public class Map {
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public boolean removeObject(BaseObject base) {
+        if(base.map == this)
+            base.map = null;
         return mapContents.removeIf((object) -> base == object);
     }
 
