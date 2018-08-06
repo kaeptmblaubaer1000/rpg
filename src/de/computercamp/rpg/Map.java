@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
-    public static final String VERTICAL_LINE = "|";
-    public static final String HORIZONTAL_LINE = "-";
+    public static final char VERTICAL_LINE = '|';
+    public static final char HORIZONTAL_LINE = '-';
 
-    public static final String LEFT_UPPER_EDGE = "+";
-    public static final String RIGHT_UPPER_EDGE = "+";
-    public static final String LEFT_LOWER_EDGE = "+";
-    public static final String RIGHT_LOWER_EDGE = "+";
+    public static final char LEFT_UPPER_EDGE = '+';
+    public static final char RIGHT_UPPER_EDGE = '+';
+    public static final char LEFT_LOWER_EDGE = '+';
+    public static final char RIGHT_LOWER_EDGE = '+';
 
     private List<List<BaseObject>> mapContents = new ArrayList<>();
 
@@ -19,6 +19,4 @@ public class Map {
             list.replaceAll((object) -> base == object ? null : object);
         }
     }
-
-
 }
