@@ -4,7 +4,7 @@ import de.computercamp.rpg.Vector2D;
 
 public class NPC extends BaseObject{
 	public enum NPCType {TALKING};
-	String message;
+	private String message;
 	public NPC(Vector2D position, String message) {
 		super(position);
 		this.message = message;
@@ -14,7 +14,7 @@ public class NPC extends BaseObject{
 		Vector2D ppos = player.getPosition();
 		if ((Math.abs(ppos.x-getPosition().x) == 1 && ppos.y == getPosition().y) || 
 				(Math.abs(ppos.y-getPosition().y) == 1 && ppos.x == getPosition().x)){
-			System.out.println(message);
+			player.sendMessage(message);
 		}
 	}
 	@Override
