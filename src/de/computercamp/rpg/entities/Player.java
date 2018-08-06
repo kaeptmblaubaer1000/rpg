@@ -29,9 +29,7 @@ public class Player extends BaseObject {
      */
     public void up() {
         position.y++;
-        for (BaseObject object : map.getMapContents()) {
-            object.onPlayerMove();
-        }
+        map.onPlayerMove(this);
     }
 
     /**
@@ -39,6 +37,7 @@ public class Player extends BaseObject {
      */
     public void down() {
         position.y--;
+        map.onPlayerMove(this);
     }
 
     /**
@@ -46,6 +45,7 @@ public class Player extends BaseObject {
      */
     public void right() {
         position.x++;
+        map.onPlayerMove(this);
     }
 
     /**
@@ -53,9 +53,8 @@ public class Player extends BaseObject {
      */
     public void left() {
         position.x--;
+        map.onPlayerMove(this);
     }
-
-    private void
 
     public void collectItem(Item item) {
         if (map == null) {
