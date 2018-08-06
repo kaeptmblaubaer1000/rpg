@@ -1,5 +1,7 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.entities.Item;
+
 public class ItemSpawner {
 	public Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
 		Item.Type type;

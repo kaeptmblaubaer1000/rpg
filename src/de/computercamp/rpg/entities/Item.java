@@ -1,9 +1,12 @@
-package de.computercamp.rpg;
+package de.computercamp.rpg.entities;
 
+
+import de.computercamp.rpg.Vector2D;
 
 public class Item extends BaseObject{
-	
-	public static enum Type {HEALING_POTION, SWORD, KEY};
+
+	public enum Type {HEALING_POTION, SWORD, KEY}
+
 	private Type type;
 	private char symbol;
 	private String displayName;

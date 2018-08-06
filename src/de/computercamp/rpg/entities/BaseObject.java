@@ -1,4 +1,7 @@
-package de.computercamp.rpg;
+package de.computercamp.rpg.entities;
+
+import de.computercamp.rpg.Map;
+import de.computercamp.rpg.Vector2D;
 
 public abstract class BaseObject {
     protected Vector2D position;
