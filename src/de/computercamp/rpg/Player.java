@@ -12,18 +12,30 @@ public class Player {
         this.position = position;
     }
 
+    /**
+     * Moves this player upwards.
+     */
     public void up() {
         position.y++;
     }
 
+    /**
+     * Moves the player downwards.
+     */
     public void down() {
         position.y--;
     }
 
+    /**
+     * Moves this player to the right.
+     */
     public void right() {
         position.x++;
     }
 
+    /**
+     * Moves this player to the left.
+     */
     public void left() {
         position.x--;
     }
