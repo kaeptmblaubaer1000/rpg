@@ -64,4 +64,12 @@ public class Player extends BaseObject {
     public List<Item> getInventory() {
         return Collections.unmodifiableList(inventory);
     }
+
+    public void showInventory() {
+        System.out.println("Inventory: ");
+        for (int i = 0; i < inventory.size(); i++) {
+            Item item = inventory.get(i);
+            System.out.println(i + ". " + item.getSymbol() + " (" + item.getDisplayName() + ")");
+        }
+    }
 }
