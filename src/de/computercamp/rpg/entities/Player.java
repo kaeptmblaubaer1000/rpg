@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class Player extends BaseObject {
 
+    private static final int MAX_HEALTH = 20;
     private static final int INVENTORY_SIZE = 10;
 
+    private int health = MAX_HEALTH;
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
 
     public Player(Vector2D position) {
@@ -54,6 +56,18 @@ public class Player extends BaseObject {
     public void left() {
         position.x--;
         map.onPlayerMove(this);
+    }
+
+    public void increaseHealth(int health) {
+        this.health = this.health + health;
+    }
+
+    public void decreaseHealth(int health) {
+        this.health = this.health - health;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     public void collectItem(Item item) {
