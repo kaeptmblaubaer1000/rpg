@@ -11,7 +11,9 @@ import java.util.List;
  */
 public class Player extends BaseObject {
 
-    private List<Item> inventory = new ArrayList<>();
+    private static final int INVENTORY_SIZE = 10;
+
+    private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
 
     public Player(Vector2D position) {
         super(position);
@@ -27,6 +29,9 @@ public class Player extends BaseObject {
      */
     public void up() {
         position.y++;
+        for (BaseObject object : map.getMapContents()) {
+            object.onPlayerMove();
+        }
     }
 
     /**
@@ -50,12 +55,16 @@ public class Player extends BaseObject {
         position.x--;
     }
 
+    private void
+
     public void collectItem(Item item) {
         if (map == null) {
             throw new NullPointerException("Player removed from map");
         }
-        map.removeObject(item);
-        inventory.add(item);
+        if (inventory.size() < INVENTORY_SIZE) {
+            map.removeObject(item);
+            inventory.add(item);
+        }
     }
 
     /**

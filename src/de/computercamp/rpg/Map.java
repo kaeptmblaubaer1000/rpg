@@ -4,6 +4,7 @@ import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Map {
@@ -29,6 +30,10 @@ public class Map {
         if(!mapContents.contains(object)) {
             mapContents.add(object);
         }
+    }
+
+    public List<BaseObject> getMapContents() {
+        return Collections.unmodifiableList(mapContents);
     }
 
     public void onPlayerMove(Player player) {
