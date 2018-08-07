@@ -81,6 +81,20 @@ public class Player extends BaseObject {
         this.health = this.health - health;
     }
 
+    /**
+     * Sets the health to MAX_HEALTH
+     */
+    public void heal() {
+        health = MAX_HEALTH;
+    }
+
+    /**
+     * Sets the health to 0
+     */
+    public void kill() {
+        health = 0;
+    }
+
     public int getHealth() {
         return health;
     }
