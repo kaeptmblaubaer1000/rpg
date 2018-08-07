@@ -42,6 +42,7 @@ public class Main {
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
+		closeButton.setText(GetLanguageText("closeProgram"));
 		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
@@ -145,12 +146,14 @@ public class Main {
 			switch ((String) comboBox.getSelectedItem()) {
 			case "Deutsch":
 				language = new Locale("de", "DE");
+				System.out.println("Sucessfully set language to german!");
 				break;
 			default:
 				language = Locale.ENGLISH;
+				System.out.println("Sucessfully set language to english!");
 			}
 			closeButton.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
-					.getString("closeButton"));
+					.getString("closeProgram"));
 		}
 
 	}
