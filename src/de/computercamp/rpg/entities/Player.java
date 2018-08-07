@@ -21,7 +21,9 @@ public class Player extends BaseObject {
         healthTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                health++;
+                if (health < MAX_HEALTH) {
+                    health++;
+                }
             }
         }, 0, 2000);
     }
@@ -97,7 +99,7 @@ public class Player extends BaseObject {
         return Collections.unmodifiableList(inventory);
     }
 
-    public void showInventory() {
+    public void printInventory() {
         System.out.println("Inventory: ");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
