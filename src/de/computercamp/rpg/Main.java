@@ -44,7 +44,7 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false); 
-		closeButton = new JButton(ResourceBundle.getBundle("resources.MessageBundle", new Locale("de", "DE")).getString("closeButton"));
+		closeButton = new JButton(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", new Locale("de", "DE")).getString("closeButton"));
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
@@ -78,7 +78,7 @@ public class Main {
 		ConsoleWrite(text);
 	}
 	public static void ConsoleWriteInLanguage(String key) {
-		ta.setText(ResourceBundle.getBundle("resources.MessageBundle", new Locale("de", "DE")).getString(key));
+		ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", new Locale("de", "DE")).getString(key));
 	}
 	public static void ConsoleWriteInLanguageAndClear(String key) {
 		ClearConsole();
