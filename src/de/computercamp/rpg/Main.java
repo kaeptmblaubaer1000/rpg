@@ -27,6 +27,8 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);
+		ta.setAutoscrolls(false);
+		ta.setFocusable(true);
 		closeButton = new JButton(Messages.closeProgram);
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
