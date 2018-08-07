@@ -37,8 +37,9 @@ public class Player extends BaseObject {
      * Moves this player upwards.
      */
     public void up() {
-        if (map.onPlayerMove(this)) {
-            position.y--;
+        position.y--;
+        if (!map.onPlayerMove(this)) {
+            position.y++;
         }
     }
 
@@ -46,8 +47,9 @@ public class Player extends BaseObject {
      * Moves the player downwards.
      */
     public void down() {
-        if (map.onPlayerMove(this)) {
-            position.y++;
+        position.y++;
+        if (!map.onPlayerMove(this)) {
+            position.y--;
         }
     }
 
@@ -55,8 +57,9 @@ public class Player extends BaseObject {
      * Moves this player to the right.
      */
     public void right() {
-        if (map.onPlayerMove(this)) {
-            position.x++;
+        position.x++;
+        if (!map.onPlayerMove(this)) {
+            position.x--;
         }
     }
 
@@ -64,8 +67,9 @@ public class Player extends BaseObject {
      * Moves this player to the left.
      */
     public void left() {
-        if (map.onPlayerMove(this)) {
-            position.x--;
+        position.x--;
+        if (!map.onPlayerMove(this)) {
+            position.x++;
         }
     }
 
