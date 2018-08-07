@@ -53,7 +53,7 @@ public class Player extends BaseObject {
      */
     public void up() {
         position.y--;
-        if (!map.onPlayerMove(this)) {
+        if (position.y < 0 || !map.onPlayerMove(this)) {
             position.y++;
         }
     }
@@ -83,7 +83,7 @@ public class Player extends BaseObject {
      */
     public void left() {
         position.x--;
-        if (!map.onPlayerMove(this)) {
+        if (position.x < 0 || !map.onPlayerMove(this)) {
             position.x++;
         }
     }

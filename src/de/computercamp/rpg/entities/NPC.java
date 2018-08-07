@@ -16,24 +16,25 @@ public class NPC extends BaseObject {
     private int maxHealthChange;
     private long nextUse;
     private Item requiredItem = null;
+    private int npcMessageID;
 
-    public NPC(Vector2D position, String message) {
+    public NPC(Vector2D position, int message) {
         super(position);
-        this.message = message;
+        npcMessageID = message;
         type = NPCType.TALKING;
     }
 
-    public NPC(Vector2D position, String message, Item toGive, int delay) {
+    public NPC(Vector2D position, int message, Item toGive, int delay) {
         super(position);
-        this.message = message;
+        npcMessageID = message;
         type = NPCType.GIVING_ITEM;
         this.toGive = toGive;
         nextUse = System.currentTimeMillis() + delay;
     }
 
-    public NPC(Vector2D position, String message, int minHealthChange, int maxHealthChange, int delay) {
+    public NPC(Vector2D position, int message, int minHealthChange, int maxHealthChange, int delay) {
         super(position);
-        this.message = message;
+        npcMessageID = message;
         type = NPCType.HEALTH_CHANGING;
         this.minHealthChange = minHealthChange;
         this.maxHealthChange = maxHealthChange;
@@ -47,6 +48,18 @@ public class NPC extends BaseObject {
     @Override
     public boolean onPlayerMove(Player player) {
         Vector2D ppos = player.getPosition();
+        String message;
+        if (npcMessageID == 0) {
+        	message = Messages.npcWelcome;
+        } else if (npcMessageID == 1) {
+        	message = Messages.npcMagician;
+        } else if (npcMessageID == 2) {
+        	message = Messages.npcBadMagician;
+        } else if (npcMessageID == 3) {
+        	message = Messages.npcWeaponsmith;
+        } else {
+        	message = "Error: Message not found.";
+        }
         if ((player.getPosition().x == ppos.x) && (player.getPosition().y == ppos.y)) {
             return false;
         }
