@@ -3,25 +3,13 @@ package de.computercamp.rpg;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.resources.Messages;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Locale;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.UIManager;
 
 public class Main {
 	private static JButton closeButton;
@@ -29,13 +17,14 @@ public class Main {
 	private static JTextArea ta;
 	private static JComboBox<Locale> selectLanguageComboBox;
 	public static Player player = new Player(new Vector2D(0, 0));
-	public static Map map = MapBuilder.getMap1(player);
+	
+	public static Map map = MapBuilder.GetMap1(player);
 	public static void main(String[] args) {
 		jf = new JFrame("");
-		jf.addKeyListener(new KeyHandler());
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
+		ta.addKeyListener(new KeyHandler());
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);
@@ -73,21 +62,20 @@ public class Main {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 		player.setMap(map);
-		consoleClearAndWrite(map.render());
-		new Background(closepanel, 1);
+		ConsoleClearAndWrite(map.render());
 	}
 
-	public static void clearConsole() {
+	public static void ClearConsole() {
 		ta.setText("");
 	}
 
-	public static void consoleWrite(String text) {
+	public static void ConsoleWrite(String text) {
 		ta.setText(ta.getText() + text + "\n");
 	}
 
-	public static void consoleClearAndWrite(String text) {
-		clearConsole();
-		consoleWrite(text);
+	public static void ConsoleClearAndWrite(String text) {
+		ClearConsole();
+		ConsoleWrite(text);
 	}
 
 	static class KeyHandler implements KeyListener {
@@ -101,22 +89,22 @@ public class Main {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
 				player.up();
-				consoleClearAndWrite(map.render());
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_A:
 				player.left();
-				consoleClearAndWrite(map.render());
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S:
 				player.down();
-				consoleClearAndWrite(map.render());
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_D:
 				player.right();
-				consoleClearAndWrite(map.render());
+				ConsoleClearAndWrite(map.render());
 				break;
 			}
 		}
