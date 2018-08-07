@@ -5,7 +5,7 @@ import de.computercamp.rpg.entities.NPC;
 import de.computercamp.rpg.resources.Messages;
 
 public class NPCSpawner {
-	public void spawnRandomNPCs(Map map, Vector2D minPos, Vector2D maxPos) {
+	public static void spawnRandomNPCs(Map map, Vector2D minPos, Vector2D maxPos) {
 		NPC welcomeNPC = new NPC(getRandomLocation(minPos, maxPos), 0);
 		NPC magician = new NPC(getRandomLocation(minPos, maxPos), 1, new Item(getRandomLocation(minPos, maxPos), Item.Type.HEALING_POTION), 999999999);
 		NPC badmagician = new NPC(getRandomLocation(minPos, maxPos), 2, -10, 10, 30000);
@@ -15,7 +15,7 @@ public class NPCSpawner {
 		map.addObject(badmagician);
 		map.addObject(weaponsmith);
 	}
-	private Vector2D getRandomLocation(Vector2D minPos, Vector2D maxPos) {
+	private static Vector2D getRandomLocation(Vector2D minPos, Vector2D maxPos) {
 		int posX = (int) Math.round((Math.random()*maxPos.x)-minPos.x);
 		int posY = (int) Math.round((Math.random()*maxPos.y)-minPos.y);
 		return new Vector2D(posX, posY);

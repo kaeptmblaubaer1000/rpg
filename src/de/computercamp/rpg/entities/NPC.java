@@ -60,7 +60,7 @@ public class NPC extends BaseObject {
         } else {
         	message = "Error: Message not found.";
         }
-        if ((player.getPosition().x == ppos.x) && (player.getPosition().y == ppos.y)) {
+        if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
             return false;
         }
         if ((Math.abs(ppos.x - position.x) == 1 && ppos.y == position.y) ||
@@ -107,6 +107,6 @@ public class NPC extends BaseObject {
 
     @Override
     public char render() {
-        return '\u2638';
+        return '\u263a';
     }
 }

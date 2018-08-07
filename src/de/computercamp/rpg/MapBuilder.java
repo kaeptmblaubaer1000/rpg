@@ -21,6 +21,8 @@ public class MapBuilder {
         for (WallTile wallTile : wall) {
             map.addObject(wallTile);
         }
+
+        NPCSpawner.spawnRandomNPCs(map, new Vector2D(0,0), new Vector2D(5,20));
     }
 
     public Map getMap() {
