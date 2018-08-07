@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class Messages {{
     private static ResourceBundle bundle;
-    private static Locale locale;
+    public static Locale locale;
 
 {fragment1}
 
