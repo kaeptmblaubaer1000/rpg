@@ -44,7 +44,7 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false); 
-		closeButton = new JButton(ResourceBundle.getBundle("MessageBundle", new Locale("de_DE")).getString("closeButton"));
+		closeButton = new JButton(ResourceBundle.getBundle("resources.MessageBundle", new Locale("de", "DE")).getString("closeButton"));
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
@@ -76,6 +76,13 @@ public class Main {
 	public static void ConsoleClearAndWrite(String text) {
 		ClearConsole();
 		ConsoleWrite(text);
+	}
+	public static void ConsoleWriteInLanguage(String key) {
+		ta.setText(ResourceBundle.getBundle("resources.MessageBundle", new Locale("de", "DE")).getString(key));
+	}
+	public static void ConsoleWriteInLanguageAndClear(String key) {
+		ClearConsole();
+		ConsoleWriteInLanguage(key);
 	}
 	static class KeyHandler implements KeyListener{
 		@Override
