@@ -29,7 +29,7 @@ public class Main {
 	private static JTextArea ta;
 	private static JComboBox<Locale> selectLanguageComboBox;
 	public static Player player = new Player(new Vector2D(0, 0));
-	public static Map map = MapBuilder.GetMap1(player);
+	public static Map map = MapBuilder.getMap1(player);
 	public static void main(String[] args) {
 		jf = new JFrame("");
 		jf.addKeyListener(new KeyHandler());
@@ -73,21 +73,21 @@ public class Main {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 		player.setMap(map);
-		ConsoleClearAndWrite(map.render());
+		consoleClearAndWrite(map.render());
 		new Background(closepanel, 1);
 	}
 
-	public static void ClearConsole() {
+	public static void clearConsole() {
 		ta.setText("");
 	}
 
-	public static void ConsoleWrite(String text) {
+	public static void consoleWrite(String text) {
 		ta.setText(ta.getText() + text + "\n");
 	}
 
-	public static void ConsoleClearAndWrite(String text) {
-		ClearConsole();
-		ConsoleWrite(text);
+	public static void consoleClearAndWrite(String text) {
+		clearConsole();
+		consoleWrite(text);
 	}
 
 	static class KeyHandler implements KeyListener {
@@ -101,22 +101,22 @@ public class Main {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
 				player.up();
-				ConsoleClearAndWrite(map.render());
+				consoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_A:
 				player.left();
-				ConsoleClearAndWrite(map.render());
+				consoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S:
 				player.down();
-				ConsoleClearAndWrite(map.render());
+				consoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_D:
 				player.right();
-				ConsoleClearAndWrite(map.render());
+				consoleClearAndWrite(map.render());
 				break;
 			}
 		}
