@@ -1,5 +1,6 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
