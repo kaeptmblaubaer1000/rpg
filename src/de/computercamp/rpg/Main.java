@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
 
-public class Main implements KeyListener {
+public class Main {
 	private static JButton closeButton;
 	private static JFrame jf;
 	private static JTextArea ta;
@@ -36,10 +36,14 @@ public class Main implements KeyListener {
 		// frame.pack();
 		// frame.setVisible(true);
 		jf = new JFrame("Demo");
+		jf.addKeyListener(new KeyHandler());
+        jf.setFocusTraversalKeysEnabled(false);
+        jf.setFocusable(true);
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
 		ta.setBackground(Color.black);
+		ta.setForeground(Color.white);
 		ta.setEditable(false); 
 		closeButton = new JButton("Schlieﬂen");
 		closeButton.setBackground(Color.red);
@@ -59,43 +63,10 @@ public class Main implements KeyListener {
 		jf.getContentPane().add(BorderLayout.CENTER, panel);
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height);
-		jf.setUndecorated(true);
+//		jf.setUndecorated(true);
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
-		EventQueue.invokeLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Main.closeButton.setVisible(true);
-			}
-		});
-	}
-
-	static class CloseHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			jf.dispose();
-		}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode()== KeyEvent.VK_RIGHT)
-        	ta.setText("lolol");
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	public static void ClearConsole() {
 		ta.setText("");
@@ -106,5 +77,29 @@ public class Main implements KeyListener {
 	public static void ConsoleClearAndWrite(String text) {
 		ClearConsole();
 		ConsoleWrite(text);
+	}
+	static class KeyHandler implements KeyListener{
+		@Override
+		public void keyPressed(KeyEvent e) {
+			System.out.println("KEY PRESSED: "+e.getKeyCode());
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			System.out.println("KEY RELEASED: "+e.getKeyCode());
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			System.out.println("KEY TYPED: "+e.getKeyCode());
+		}
+	}
+
+	static class CloseHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			jf.dispose();
+		}
 	}
 }
