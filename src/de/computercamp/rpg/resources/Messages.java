@@ -22,7 +22,7 @@ public class Messages {
     }
 
     private static void reloadStrings() {
-        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale)
+        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale);
         npcWelcome = bundle.getString("npcWelcome");
         npcMagician = bundle.getString("npcMagician");
         npcBadMagician = bundle.getString("npcBadMagician");
