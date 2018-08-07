@@ -32,10 +32,10 @@ public class Main {
 	public static Map map = MapBuilder.GetMap1(player);
 	public static void main(String[] args) {
 		jf = new JFrame("");
+		jf.addKeyListener(new KeyHandler());
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
-		ta.addKeyListener(new KeyHandler());
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);

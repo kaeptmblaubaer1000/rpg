@@ -9,7 +9,7 @@ public class TestMain {
         Map map = new Map();
         map.addObject(new WallTile(new Vector2D(10, 20), WallTile.Type.HORIZONTAL));
         map.addObject(new Player(new Vector2D(0, 0)));
-        map.addObject(new NPC(new Vector2D(0, 1), ""));
+        map.addObject(new NPC(new Vector2D(0, 1), 0));
         System.out.println(map.render());
     }
 }
