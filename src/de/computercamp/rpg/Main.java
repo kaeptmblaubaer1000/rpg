@@ -34,8 +34,6 @@ public class Main {
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
 		closeButton.setText(Messages.closeProgram);
-		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
 		Locale[] languageList = { Locale.GERMAN, Locale.ENGLISH };
 		JComboBox<Locale> selectLanguageComboBox = new JComboBox<Locale>(languageList);
@@ -51,7 +49,7 @@ public class Main {
 		panel.setOpaque(true);
 		JPanel closepanel = new JPanel();
 		closepanel.setLayout(new FlowLayout());
-		panel.add(scroll);
+		panel.add(ta);
 		closepanel.add(closeButton);
 		closepanel.add(selectLanguageComboBox);
 		panel.add(closepanel);
@@ -81,10 +79,6 @@ public class Main {
 	static class KeyHandler implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
