@@ -2,13 +2,36 @@ package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.WallTile;
-import de.computercamp.rpg.entities.WallTile.Type;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MapBuilder {
-	public static Map getMap1(Player player) {
-		Map map = new Map();
-		map.addObject(new WallTile(new Vector2D(1, 1), Type.LEFT_LOWER_EDGE));
-		map.addObject(player);
-		return map;
-	}
+
+    private Map map;
+    private Player player;
+    private List<WallTile> wall = new ArrayList<>();
+
+    public MapBuilder() {
+        map = new Map();
+        player = new Player(new Vector2D(0, 0));
+        wall.add(new WallTile(new Vector2D(0, 1), WallTile.Type.HORIZONTAL));
+        map.addObject(player);
+        for (WallTile wallTile : wall) {
+            map.addObject(wallTile);
+        }
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public List<WallTile> getWall() {
+        return Collections.unmodifiableList(wall);
+    }
 }
