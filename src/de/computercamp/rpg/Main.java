@@ -28,6 +28,7 @@ public class Main {
 	private static JFrame jf;
 	private static JTextArea ta;
 	private static Locale language = Locale.getDefault();
+	private static ResourceBundle bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
 
 	public static void main(String[] args) {
 		jf = new JFrame("");
@@ -84,12 +85,11 @@ public class Main {
 	}
 	
 	public static String GetLanguageText(String key) {
-		return ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
-		.getString(key);
+		return bundle.getString(key);
 	}
 
 	public static void ConsoleWriteInLanguage(String key) {
-		ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language).getString(key));
+		ta.setText(bundle.getString(key));
 	}
 
 	public static void ConsoleWriteInLanguageAndClear(String key) {
@@ -152,8 +152,8 @@ public class Main {
 				language = Locale.ENGLISH;
 				System.out.println("Sucessfully set language to english!");
 			}
-			closeButton.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
-					.getString("closeProgram"));
+			bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
+			closeButton.setText(GetLanguageText("closeProgram"));
 		}
 
 	}
