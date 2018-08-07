@@ -65,8 +65,8 @@ public class Main {
 		jf.getContentPane().add(BorderLayout.CENTER, panel);
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height);
-		jf.setUndecorated(true);
-		jf.setResizable(false);
+//		jf.setUndecorated(true);
+//		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 	}
@@ -128,6 +128,9 @@ public class Main {
 		public void keyTyped(KeyEvent e) {
 		}
 	}
+	public static Locale getLanguage() {
+		return language;
+	}
 
 	static class CloseHandler implements ActionListener {
 
@@ -153,7 +156,9 @@ public class Main {
 				System.out.println("Sucessfully set language to english!");
 			}
 			bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
-			closeButton.setText(GetLanguageText("closeProgram"));
+			System.out.println(GetLanguageText("closeProgram"));
+			closeButton.setText(Mess);
+			jf.setVisible(true);
 		}
 
 	}
