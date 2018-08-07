@@ -17,11 +17,12 @@ public class NPC extends BaseObject{
 		this.message = message;
 		type = NPCType.TALKING;
 	}
-	public NPC(Vector2D position, String message, Item toGive) {
+	public NPC(Vector2D position, String message, Item toGive, int delay) {
 		super(position);
 		this.message = message;
 		type = NPCType.GIVING_ITEM;
 		this.toGive = toGive;
+		nextUse = System.currentTimeMillis() + delay;
 	}
 	public NPC(Vector2D position, String message, int minHealthChange, int maxHealthChange, int delay) {
 		super(position);
@@ -42,8 +43,12 @@ public class NPC extends BaseObject{
 			if (type == NPCType.TALKING) {
 				player.sendMessage(message);
 			} else if (type == NPCType.GIVING_ITEM) {
-				player.collectItem(toGive);
-				player.sendMessage(message);
+				if (System.currentTimeMillis() >= nextUse) {
+					player.collectItem(toGive);
+					player.sendMessage(message);
+				} else {
+					player.sendMessage("You have to wait another " + Math.round((nextUse-System.currentTimeMillis())/1000) + " seconds to get an item again!");
+				}
 			} else if (type == NPCType.HEALTH_CHANGING) {
 				if (System.currentTimeMillis() >= nextUse) {
 					int healthChange = (int) Math.round((Math.random()*(maxHealthChange-minHealthChange)) + minHealthChange);
