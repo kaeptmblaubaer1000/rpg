@@ -50,10 +50,10 @@ public class Map {
         int maxY = mapContents.stream().mapToInt((object) -> object.getPosition().y).max().orElse(-1) + 1;
 
         StringBuilder whole = new StringBuilder();
-        List<StringBuilder> strings = new ArrayList<>();
+        List<StringBuilder> strings = new ArrayList<>(maxY);
 
         for (int y = 0; y < maxY; y++) {
-            StringBuilder row = new StringBuilder();
+            StringBuilder row = new StringBuilder(maxX);
             for (int x = 0; x < maxX; x++) {
                 row.append(" ");
             }
