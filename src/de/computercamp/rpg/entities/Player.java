@@ -130,6 +130,6 @@ public class Player extends BaseObject {
     }
 
     public void sendMessage(String message) {
-        System.out.println("Message to player: " + message);
+        System.out.println(message);
     }
 }
