@@ -6,6 +6,7 @@ import de.computercamp.rpg.entities.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Map {
     public static final char VERTICAL_LINE = '─';
@@ -61,6 +62,13 @@ public class Map {
             strings.add(row);
         }
 
+        for (BaseObject object : mapContents.stream().filter((object) -> !(object instanceof Player)).collect(Collectors.toList())) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        }
+
+        for (BaseObject object : mapContents.stream().filter((object) -> object instanceof Player).collect(Collectors.toList())) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        }
 
         for (StringBuilder builder : strings) {
             whole.append(builder);
