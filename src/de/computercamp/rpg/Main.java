@@ -157,7 +157,7 @@ public class Main {
 			}
 			bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
 			System.out.println(GetLanguageText("closeProgram"));
-			closeButton.setText(Mess);
+			closeButton.setText(Messages.closeProgram);
 			jf.setVisible(true);
 		}
 
