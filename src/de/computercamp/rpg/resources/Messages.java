@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 public class Messages {
     private static ResourceBundle bundle;
-    private static Locale locale;
+    public static Locale locale;
 
     public static String npcWelcome;
     public static String npcMagician;
@@ -13,6 +13,7 @@ public class Messages {
     public static String npcWeaponsmith;
     public static String closeProgram;
     public static String healing_potion;
+    public static String itemRequired;
     public static String inventory;
     public static String key;
     public static String sword;
@@ -22,13 +23,14 @@ public class Messages {
     }
 
     private static void reloadStrings() {
-        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale)
+        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale);
         npcWelcome = bundle.getString("npcWelcome");
         npcMagician = bundle.getString("npcMagician");
         npcBadMagician = bundle.getString("npcBadMagician");
         npcWeaponsmith = bundle.getString("npcWeaponsmith");
         closeProgram = bundle.getString("closeProgram");
         healing_potion = bundle.getString("healing_potion");
+        itemRequired = bundle.getString("itemRequired");
         inventory = bundle.getString("inventory");
         key = bundle.getString("key");
         sword = bundle.getString("sword");
