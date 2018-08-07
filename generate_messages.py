@@ -23,7 +23,7 @@ public class Messages {{
     }}
 
     private static void reloadStrings() {{
-        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale)
+        bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", locale);
 {fragment2}
     }}
 
