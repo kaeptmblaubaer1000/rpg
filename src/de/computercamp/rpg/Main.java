@@ -74,6 +74,7 @@ public class Main {
 		jf.setVisible(true);
 		player.setMap(map);
 		ConsoleClearAndWrite(map.render());
+		new Background(closepanel, 1);
 	}
 
 	public static void ClearConsole() {
