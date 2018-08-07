@@ -15,8 +15,12 @@ public class MapBuilder {
 
     public MapBuilder() {
         map = new Map();
-        player = new Player(new Vector2D(0, 0));
+        player = new Player(new Vector2D(1, 1));
+
+        wall.add(new WallTile(new Vector2D(0, 0), WallTile.Type.LEFT_UPPER_EDGE));
         wall.add(new WallTile(new Vector2D(0, 1), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(1, 0), WallTile.Type.VERTICAL));
+
         map.addObject(player);
         for (WallTile wallTile : wall) {
             map.addObject(wallTile);
