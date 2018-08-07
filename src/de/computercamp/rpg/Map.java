@@ -36,9 +36,12 @@ public class Map {
         return Collections.unmodifiableList(mapContents);
     }
 
-    public void onPlayerMove(Player player) {
+    public boolean onPlayerMove(Player player) {
         for(BaseObject object: mapContents) {
-            object.onPlayerMove(player);
+            if (!object.onPlayerMove(player)) {
+                return false;
+            }
         }
+        return true;
     }
 }

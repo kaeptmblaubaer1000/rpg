@@ -40,4 +40,9 @@ public class WallTile extends BaseObject {
                 return 'E';
         }
     }
+
+    @Override
+    public boolean onPlayerMove(Player player) {
+        return !player.position.equals(position);
+    }
 }

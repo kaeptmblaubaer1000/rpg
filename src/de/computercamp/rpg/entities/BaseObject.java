@@ -29,5 +29,7 @@ public abstract class BaseObject {
 
     abstract public char render();
 
-    public void onPlayerMove(Player player) {}
+    public boolean onPlayerMove(Player player) {
+        return true;
+    }
 }

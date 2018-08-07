@@ -3,8 +3,9 @@ package de.computercamp.rpg.entities;
 import de.computercamp.rpg.Vector2D;
 
 public class NPC extends BaseObject{
-	public enum NPCType {TALKING, GIVING_ITEM, HEALTH_CHANGING};
-	private NPCType type;
+    public enum NPCType {TALKING, GIVING_ITEM, HEALTH_CHANGING}
+
+    private NPCType type;
 	private String message;
 	private Item toGive;
 	private boolean healingOrKilling;
@@ -26,7 +27,7 @@ public class NPC extends BaseObject{
 		this.healingOrKilling = healingOrKilling;
 	}
 	@Override
-	public void onPlayerMove(Player player) {
+    public boolean onPlayerMove(Player player) {
 		Vector2D ppos = player.getPosition();
         if ((Math.abs(ppos.x - position.x) == 1 && ppos.y == position.y) ||
                 (Math.abs(ppos.y - position.y) == 1 && ppos.x == position.x)) {

@@ -37,32 +37,36 @@ public class Player extends BaseObject {
      * Moves this player upwards.
      */
     public void up() {
-        position.y--;
-        map.onPlayerMove(this);
+        if (map.onPlayerMove(this)) {
+            position.y--;
+        }
     }
 
     /**
      * Moves the player downwards.
      */
     public void down() {
-        position.y++;
-        map.onPlayerMove(this);
+        if (map.onPlayerMove(this)) {
+            position.y++;
+        }
     }
 
     /**
      * Moves this player to the right.
      */
     public void right() {
-        position.x++;
-        map.onPlayerMove(this);
+        if (map.onPlayerMove(this)) {
+            position.x++;
+        }
     }
 
     /**
      * Moves this player to the left.
      */
     public void left() {
-        position.x--;
-        map.onPlayerMove(this);
+        if (map.onPlayerMove(this)) {
+            position.x--;
+        }
     }
 
     public void increaseHealth(int health) {
