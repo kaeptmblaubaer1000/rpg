@@ -34,6 +34,11 @@ public class Player extends BaseObject {
         return 'X';
     }
 
+    /**
+     * Just use this method to teleport the player
+     *
+     * @param newPosition the new position to teleport to
+     */
     @Override
     public void setPosition(Vector2D newPosition) {
         Vector2D oldPosition = position;
