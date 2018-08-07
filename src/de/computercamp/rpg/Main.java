@@ -27,9 +27,6 @@ public class Main {
 	private static JButton closeButton;
 	private static JFrame jf;
 	private static JTextArea ta;
-	private static Locale language = Locale.getDefault();
-	private static ResourceBundle bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
-
 	public static void main(String[] args) {
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -43,7 +40,7 @@ public class Main {
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
-		closeButton.setText(GetLanguageText("closeProgram"));
+		closeButton.setText(Messages.closeProgram);
 		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
@@ -83,19 +80,6 @@ public class Main {
 		ClearConsole();
 		ConsoleWrite(text);
 	}
-	
-	public static String GetLanguageText(String key) {
-		return bundle.getString(key);
-	}
-
-	public static void ConsoleWriteInLanguage(String key) {
-		ta.setText(bundle.getString(key));
-	}
-
-	public static void ConsoleWriteInLanguageAndClear(String key) {
-		ClearConsole();
-		ConsoleWriteInLanguage(key);
-	}
 
 	static class KeyHandler implements KeyListener {
 		@Override
@@ -128,9 +112,6 @@ public class Main {
 		public void keyTyped(KeyEvent e) {
 		}
 	}
-	public static Locale getLanguage() {
-		return language;
-	}
 
 	static class CloseHandler implements ActionListener {
 
@@ -144,21 +125,6 @@ public class Main {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			@SuppressWarnings("unchecked")
-			JComboBox<String> comboBox = (JComboBox<String>) e.getSource();
-			switch ((String) comboBox.getSelectedItem()) {
-			case "Deutsch":
-				language = new Locale("de", "DE");
-				System.out.println("Sucessfully set language to german!");
-				break;
-			default:
-				language = Locale.ENGLISH;
-				System.out.println("Sucessfully set language to english!");
-			}
-			bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language);
-			System.out.println(GetLanguageText("closeProgram"));
-			closeButton.setText(Messages.closeProgram);
-			jf.setVisible(true);
 		}
 
 	}
