@@ -1,8 +1,9 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.resources.Messages;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -37,8 +38,7 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);
-		closeButton = new JButton(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
-				.getString("closeButton"));
+		closeButton = new JButton(Messages.closeProgram);
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
@@ -46,9 +46,6 @@ public class Main {
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
 		String[] languageList = { "Deutsch", "Englisch" };
-
-		// Create the combo box, select item at index 4.
-		// Indices start at 0, so 4 specifies the pig.
 		JComboBox<String> selectLanguageComboBox = new JComboBox<String>(languageList);
 		selectLanguageComboBox.setSelectedIndex(0);
 		selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
