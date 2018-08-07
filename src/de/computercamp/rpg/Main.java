@@ -1,8 +1,9 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.resources.Messages;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -19,23 +20,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.text.DefaultCaret;
 
 public class Main {
 	private static JButton closeButton;
 	private static JFrame jf;
 	private static JTextArea ta;
+	private static Locale language = Locale.getDefault();
 
 	public static void main(String[] args) {
-		// JFrame frame = new JFrame();
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.add(new JScrollPane(jta));
-		// jta.setLineWrap(true);
-		// jta.setWrapStyleWord(true);
-		// jta.setText("☃");
-		// jta.setFont(new Font("Consolas", Font.PLAIN, 50));
-		// frame.pack();
-		// frame.setVisible(true);
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
@@ -43,14 +35,13 @@ public class Main {
 		ta.addKeyListener(new KeyHandler());
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
-		ta.setEditable(false); 
-		closeButton = new JButton(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", new Locale("de", "DE")).getString("closeButton"));
+		ta.setEditable(false);
+		closeButton = new JButton(Messages.closeProgram);
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
-		JScrollPane scroll = new JScrollPane(ta,
-	            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-	            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setOpaque(true);
@@ -67,31 +58,38 @@ public class Main {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 	}
+
 	public static void ClearConsole() {
 		ta.setText(" ");
 	}
+
 	public static void ConsoleWrite(String text) {
-		ta.setText(ta.getText()+text+"\r\n");
+		ta.setText(ta.getText() + text + "\r\n");
 	}
+
 	public static void ConsoleClearAndWrite(String text) {
 		ClearConsole();
 		ConsoleWrite(text);
 	}
+
 	public static void ConsoleWriteInLanguage(String key) {
-		ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", new Locale("de", "DE")).getString(key));
+		 ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle",
+		 language).getString(key));
 	}
+
 	public static void ConsoleWriteInLanguageAndClear(String key) {
 		ClearConsole();
 		ConsoleWriteInLanguage(key);
 	}
-	static class KeyHandler implements KeyListener{
+
+	static class KeyHandler implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			switch(e.getKeyCode()) {
+			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
 				ConsoleClearAndWrite("Lauf nach vorne!");
