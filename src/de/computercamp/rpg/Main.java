@@ -1,6 +1,5 @@
 package de.computercamp.rpg;
 
-import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
@@ -16,9 +15,8 @@ public class Main {
 	private static JFrame jf;
 	private static JTextArea ta;
 	private static JComboBox<Locale> selectLanguageComboBox;
-	public static Player player = new Player(new Vector2D(0, 0));
-	
-	public static Map map = MapBuilder.GetMap1(player);
+    private static MapBuilder mapBuilder = new MapBuilder();
+
 	public static void main(String[] args) {
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -61,8 +59,7 @@ public class Main {
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
-		player.setMap(map);
-		ConsoleClearAndWrite(map.render());
+        ConsoleClearAndWrite(mapBuilder.getMap().render());
 	}
 
 	public static void ClearConsole() {
@@ -88,23 +85,23 @@ public class Main {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
-				player.up();
-				ConsoleClearAndWrite(map.render());
+                mapBuilder.getPlayer().up();
+                ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_A:
-				player.left();
-				ConsoleClearAndWrite(map.render());
+                mapBuilder.getPlayer().left();
+                ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S:
-				player.down();
-				ConsoleClearAndWrite(map.render());
+                mapBuilder.getPlayer().down();
+                ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_D:
-				player.right();
-				ConsoleClearAndWrite(map.render());
+                mapBuilder.getPlayer().right();
+                ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			}
 		}

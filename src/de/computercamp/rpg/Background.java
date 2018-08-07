@@ -20,14 +20,14 @@ public class Background extends TimerTask {
 		this.slowness = slowness;
 		this.frame = frame;
 		Timer timer = new Timer();
-		timer.schedule(this, 0, 5);
+		timer.schedule(this, 0, 10);
 	}
 
 	public Background(JPanel panel, int slowness) {
 		this.slowness = slowness;
 		this.panel = panel;
 		Timer timer = new Timer();
-		timer.schedule(this, 0, 5);
+		timer.schedule(this, 0, 10);
 	}
 
 	public void run() {
