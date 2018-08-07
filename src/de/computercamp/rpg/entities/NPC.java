@@ -52,7 +52,6 @@ public class NPC extends BaseObject{
 			} else if (type == NPCType.HEALTH_CHANGING) {
 				if (System.currentTimeMillis() >= nextUse) {
 					int healthChange = (int) Math.round((Math.random()*(maxHealthChange-minHealthChange)) + minHealthChange);
-						player.increaseHealth(Player.MAX_HEALTH-player.getHealth());
 					player.sendMessage(message.replace("{HEALTHCHANGE}", String.valueOf(healthChange)));
 					
 					if (healthChange < 0) {
