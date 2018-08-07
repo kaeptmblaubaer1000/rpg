@@ -27,10 +27,6 @@ public class Main {
 	private static JButton closeButton;
 	private static JFrame jf;
 	private static JTextArea ta;
-	private static Locale language = Locale.getDefault();
-	private static ResourceBundle bundleDE = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle");
-	private static ResourceBundle bundleEN = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", Locale.GERMAN);
-
 	public static void main(String[] args) {
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -44,7 +40,7 @@ public class Main {
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
-		closeButton.setText(GetLanguageText("closeProgram"));
+		closeButton.setText(Messages.closeProgram);
 		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
@@ -84,25 +80,6 @@ public class Main {
 		ClearConsole();
 		ConsoleWrite(text);
 	}
-	
-	public static String GetLanguageText(String key) {
-		if(language == Locale.GERMAN)
-		return bundleDE.getString(key);
-		else
-			return bundleEN.getString(key);
-	}
-
-	public static void ConsoleWriteInLanguage(String key) {
-		if(language == Locale.GERMAN)
-		ta.setText(bundleDE.getString(key));
-		else
-			ta.setText(bundleEN.getString(key));
-	}
-
-	public static void ConsoleWriteInLanguageAndClear(String key) {
-		ClearConsole();
-		ConsoleWriteInLanguage(key);
-	}
 
 	static class KeyHandler implements KeyListener {
 		@Override
@@ -135,9 +112,6 @@ public class Main {
 		public void keyTyped(KeyEvent e) {
 		}
 	}
-	public static Locale getLanguage() {
-		return language;
-	}
 
 	static class CloseHandler implements ActionListener {
 
@@ -151,20 +125,6 @@ public class Main {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			@SuppressWarnings("unchecked")
-			JComboBox<String> comboBox = (JComboBox<String>) e.getSource();
-			switch ((String) comboBox.getSelectedItem()) {
-			case "Deutsch":
-				language = Locale.GERMAN;
-				System.out.println("Sucessfully set language to german!");
-				break;
-			default:
-				language = Locale.ENGLISH;
-				System.out.println("Sucessfully set language to english!");
-			}
-			System.out.println(GetLanguageText("closeProgram"));
-			closeButton.setText(GetLanguageText("closeProgram"));
-			jf.setVisible(true);
 		}
 
 	}
