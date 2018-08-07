@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -34,7 +36,7 @@ public class Main {
 		// jta.setFont(new Font("Consolas", Font.PLAIN, 50));
 		// frame.pack();
 		// frame.setVisible(true);
-		jf = new JFrame("Demo");
+		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
@@ -42,7 +44,7 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false); 
-		closeButton = new JButton("Schlieﬂen");
+		closeButton = new JButton(ResourceBundle.getBundle("MessageBundle", new Locale("de_DE")).getString("closeButton"));
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());

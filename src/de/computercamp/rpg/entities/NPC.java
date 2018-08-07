@@ -44,6 +44,9 @@ public class NPC extends BaseObject{
 				player.sendMessage(message);
 			} else if (type == NPCType.GIVING_ITEM) {
 				if (System.currentTimeMillis() >= nextUse) {
+					toGive.position.x = player.position.x;
+					toGive.position.y = player.position.y;
+					player.map.addObject(toGive);
 					player.collectItem(toGive);
 					player.sendMessage(message);
 				} else {
