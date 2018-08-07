@@ -36,9 +36,11 @@ public class Main implements KeyListener {
 		// frame.pack();
 		// frame.setVisible(true);
 		jf = new JFrame("Demo");
-		JTextArea ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
+		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
+		ta.setBackground(Color.black);
+		ta.setEditable(false); 
 		closeButton = new JButton("Schlieﬂen");
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
