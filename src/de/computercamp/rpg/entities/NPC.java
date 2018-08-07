@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities;
 
+import de.computercamp.rpg.Main;
 import de.computercamp.rpg.Vector2D;
 
 public class NPC extends BaseObject{
@@ -12,6 +13,7 @@ public class NPC extends BaseObject{
 	private int minHealthChange;
 	private int maxHealthChange;
 	private long nextUse;
+	private Item requiredItem = null;
 	public NPC(Vector2D position, String message) {
 		super(position);
 		this.message = message;
@@ -32,6 +34,9 @@ public class NPC extends BaseObject{
 		this.maxHealthChange = maxHealthChange;
 		nextUse = System.currentTimeMillis() + delay;
 	}
+	public void setRequiredItem(Item item) {
+		requiredItem = item;
+	}
 	@Override
     public boolean onPlayerMove(Player player) {
 		Vector2D ppos = player.getPosition();
@@ -40,6 +45,13 @@ public class NPC extends BaseObject{
 		}
         if ((Math.abs(ppos.x - position.x) == 1 && ppos.y == position.y) ||
                 (Math.abs(ppos.y - position.y) == 1 && ppos.x == position.x)) {
+        	if (requiredItem != null && !player.getInventory().contains(requiredItem)) {
+        			player.sendMessage(Main.GetLanguageText("itemRequired").replace("%1", requiredItem.getDisplayName()));
+        	}
+        	if (requiredItem != null) {
+        		player.getInventory().remove(requiredItem);
+        	}
+        	requiredItem = null;
 			if (type == NPCType.TALKING) {
 				player.sendMessage(message);
 			} else if (type == NPCType.GIVING_ITEM) {
