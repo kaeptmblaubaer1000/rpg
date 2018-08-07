@@ -79,10 +79,6 @@ public class Main {
 	static class KeyHandler implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
@@ -105,6 +101,10 @@ public class Main {
                 ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
 		}
 
 		@Override
