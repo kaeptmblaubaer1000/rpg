@@ -27,15 +27,6 @@ public class Main {
 	private static JTextArea ta;
 
 	public static void main(String[] args) {
-		// JFrame frame = new JFrame();
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.add(new JScrollPane(jta));
-		// jta.setLineWrap(true);
-		// jta.setWrapStyleWord(true);
-		// jta.setText("☃");
-		// jta.setFont(new Font("Consolas", Font.PLAIN, 50));
-		// frame.pack();
-		// frame.setVisible(true);
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
