@@ -66,6 +66,10 @@ public class Map {
             strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
         }
 
+        for (BaseObject object : mapContents.stream().filter((object) -> object instanceof Player).collect(Collectors.toList())) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        }
+
         for (StringBuilder builder : strings) {
             whole.append(builder);
             whole.append('\n');
