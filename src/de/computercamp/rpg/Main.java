@@ -56,7 +56,6 @@ public class Main {
 		selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
 		selectLanguageComboBox.setBackground(Color.green);
 		selectLanguageComboBox.setForeground(Color.black);
-		UIManager.put("ComboBox.selectionBackground", Color.yellow);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setOpaque(true);
 		JPanel closepanel = new JPanel();
@@ -74,7 +73,8 @@ public class Main {
 		jf.setVisible(true);
 		player.setMap(map);
 		consoleClearAndWrite(map.render());
-		new Background(closepanel, 1);
+		closepanel.setBackground(Color.black);
+//		new Background(closepanel, 1);
 	}
 
 	public static void clearConsole() {
@@ -130,7 +130,7 @@ public class Main {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			jf.dispose();
+			System.exit(0);
 		}
 	}
 
