@@ -34,6 +34,15 @@ public class Player extends BaseObject {
         return 'X';
     }
 
+    @Override
+    public void setPosition(Vector2D newPosition) {
+        Vector2D oldPosition = position;
+        super.setPosition(newPosition);
+        if (!map.onPlayerMove(this)) {
+            position = oldPosition;
+        }
+    }
+
     /**
      * Moves this player upwards.
      */
