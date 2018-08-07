@@ -27,7 +27,6 @@ public class Main {
 	public static void main(String[] args) {
 		// JFrame frame = new JFrame();
 		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 JTextArea ta = new JTextArea(40, 100);
 		// frame.add(new JScrollPane(jta));
 		// jta.setLineWrap(true);
 		// jta.setWrapStyleWord(true);
@@ -36,12 +35,10 @@ public class Main {
 		// frame.pack();
 		// frame.setVisible(true);
 		jf = new JFrame("Demo");
-		jf.addKeyListener(new KeyHandler());
-        jf.setFocusTraversalKeysEnabled(false);
-        jf.setFocusable(true);
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height - 5);
 		ta.setFont(new Font("Consolas", Font.PLAIN, 50));
+		ta.addKeyListener(new KeyHandler());
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false); 
@@ -63,16 +60,16 @@ public class Main {
 		jf.getContentPane().add(BorderLayout.CENTER, panel);
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height);
-//		jf.setUndecorated(true);
+		jf.setUndecorated(true);
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 	}
 	public static void ClearConsole() {
-		ta.setText("");
+		ta.setText(" ");
 	}
 	public static void ConsoleWrite(String text) {
-		ta.setText(ta.getText()+"\r\n"+text);
+		ta.setText(ta.getText()+text+"\r\n");
 	}
 	public static void ConsoleClearAndWrite(String text) {
 		ClearConsole();
@@ -81,17 +78,32 @@ public class Main {
 	static class KeyHandler implements KeyListener{
 		@Override
 		public void keyPressed(KeyEvent e) {
-			System.out.println("KEY PRESSED: "+e.getKeyCode());
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			System.out.println("KEY RELEASED: "+e.getKeyCode());
+			switch(e.getKeyCode()) {
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_W:
+				ConsoleClearAndWrite("Lauf nach vorne!");
+				break;
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_A:
+				ConsoleClearAndWrite("Lauf nach links!");
+				break;
+			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_S:
+				ConsoleClearAndWrite("Lauf nach hinten!");
+				break;
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_D:
+				ConsoleClearAndWrite("Lauf nach rechts!");
+				break;
+			}
 		}
 
 		@Override
 		public void keyTyped(KeyEvent e) {
-			System.out.println("KEY TYPED: "+e.getKeyCode());
 		}
 	}
 
