@@ -35,6 +35,20 @@ public class Player extends BaseObject {
     }
 
     /**
+     * Just use this method to teleport the player
+     *
+     * @param newPosition the new position to teleport to
+     */
+    @Override
+    public void setPosition(Vector2D newPosition) {
+        Vector2D oldPosition = position;
+        super.setPosition(newPosition);
+        if (!map.onPlayerMove(this)) {
+            position = oldPosition;
+        }
+    }
+
+    /**
      * Moves this player upwards.
      */
     public void up() {
