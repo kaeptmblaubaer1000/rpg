@@ -27,14 +27,13 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);
-		ta.setAutoscrolls(false);
-		ta.setFocusable(true);
-        ta.addKeyListener(new KeyHandler());
 		closeButton = new JButton(Messages.closeProgram);
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
 		closeButton.setText(Messages.closeProgram);
+		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
 		Locale[] languageList = { Locale.GERMAN, Locale.ENGLISH };
 		JComboBox<Locale> selectLanguageComboBox = new JComboBox<Locale>(languageList);
@@ -50,7 +49,7 @@ public class Main {
 		panel.setOpaque(true);
 		JPanel closepanel = new JPanel();
 		closepanel.setLayout(new FlowLayout());
-		panel.add(ta);
+		panel.add(scroll);
 		closepanel.add(closeButton);
 		closepanel.add(selectLanguageComboBox);
 		panel.add(closepanel);
@@ -80,6 +79,10 @@ public class Main {
 	static class KeyHandler implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
@@ -102,10 +105,6 @@ public class Main {
                 ConsoleClearAndWrite(mapBuilder.getMap().render());
 				break;
 			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
 		}
 
 		@Override
