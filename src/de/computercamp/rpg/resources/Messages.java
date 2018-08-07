@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Messages {
-    private static final ResourceBundle bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", Locale.getDefault());
+    public static final ResourceBundle bundle = ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", Locale.getDefault());
 
     public static final String closeProgram = bundle.getString("closeProgram");
     public static final String healing_potion = bundle.getString("healing_potion");
