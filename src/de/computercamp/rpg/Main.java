@@ -1,5 +1,7 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.resources.Resources;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -36,8 +38,7 @@ public class Main {
 		ta.setBackground(Color.black);
 		ta.setForeground(Color.white);
 		ta.setEditable(false);
-		closeButton = new JButton(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
-				.getString("closeButton"));
+		closeButton = new JButton(Resources.closeProgram);
 		closeButton.setBackground(Color.red);
 		closeButton.setForeground(Color.white);
 		closeButton.addActionListener(new CloseHandler());
