@@ -1,5 +1,6 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.resources.Messages;
 
 import java.awt.BorderLayout;
@@ -12,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -27,6 +27,9 @@ public class Main {
 	private static JButton closeButton;
 	private static JFrame jf;
 	private static JTextArea ta;
+	private static JComboBox<Locale> selectLanguageComboBox;
+	public static Player player = new Player(new Vector2D(0, 0));
+	public static Map map = MapBuilder.GetMap1(player);
 	public static void main(String[] args) {
 		jf = new JFrame("");
 		ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -44,9 +47,12 @@ public class Main {
 		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
-		String[] languageList = { "Deutsch", "Englisch" };
-		JComboBox<String> selectLanguageComboBox = new JComboBox<String>(languageList);
+		Locale[] languageList = { Locale.GERMAN, Locale.ENGLISH };
+		JComboBox<Locale> selectLanguageComboBox = new JComboBox<Locale>(languageList);
+		if(Locale.getDefault().equals(Locale.GERMAN))
 		selectLanguageComboBox.setSelectedIndex(0);
+		else
+			selectLanguageComboBox.setSelectedIndex(1);
 		selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
 		selectLanguageComboBox.setBackground(Color.green);
 		selectLanguageComboBox.setForeground(Color.black);
@@ -62,10 +68,12 @@ public class Main {
 		jf.getContentPane().add(BorderLayout.CENTER, panel);
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height);
-//		jf.setUndecorated(true);
-//		jf.setResizable(false);
+		jf.setUndecorated(true);
+		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
+		player.setMap(map);
+		ConsoleClearAndWrite(map.render());
 	}
 
 	public static void ClearConsole() {
@@ -73,7 +81,7 @@ public class Main {
 	}
 
 	public static void ConsoleWrite(String text) {
-		ta.setText(ta.getText() + text + "\r\n");
+		ta.setText(ta.getText() + text + "\n");
 	}
 
 	public static void ConsoleClearAndWrite(String text) {
@@ -91,19 +99,23 @@ public class Main {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W:
-				ConsoleClearAndWrite("Lauf nach vorne!");
+				player.up();
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_A:
-				ConsoleClearAndWrite("Lauf nach links!");
+				player.left();
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S:
-				ConsoleClearAndWrite("Lauf nach hinten!");
+				player.down();
+				ConsoleClearAndWrite(map.render());
 				break;
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_D:
-				ConsoleClearAndWrite("Lauf nach rechts!");
+				player.right();
+				ConsoleClearAndWrite(map.render());
 				break;
 			}
 		}
@@ -125,6 +137,9 @@ public class Main {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(selectLanguageComboBox)) {
+				Messages.changeLanguage((Locale)selectLanguageComboBox.getSelectedItem());
+			}
 		}
 
 	}
