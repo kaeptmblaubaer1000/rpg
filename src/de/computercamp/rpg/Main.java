@@ -15,11 +15,12 @@ import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.text.DefaultCaret;
+import javax.swing.UIManager;
 
 public class Main {
 	private static JButton closeButton;
@@ -44,12 +45,23 @@ public class Main {
 		JScrollPane scroll = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JPanel panel = new JPanel();
+		String[] languageList = { "Deutsch", "Englisch" };
+
+		// Create the combo box, select item at index 4.
+		// Indices start at 0, so 4 specifies the pig.
+		JComboBox<String> selectLanguageComboBox = new JComboBox<String>(languageList);
+		selectLanguageComboBox.setSelectedIndex(0);
+		selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
+		selectLanguageComboBox.setBackground(Color.green);
+		selectLanguageComboBox.setForeground(Color.black);
+		UIManager.put("ComboBox.selectionBackground", Color.yellow);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setOpaque(true);
 		JPanel closepanel = new JPanel();
 		closepanel.setLayout(new FlowLayout());
 		panel.add(scroll);
 		closepanel.add(closeButton);
+		closepanel.add(selectLanguageComboBox);
 		panel.add(closepanel);
 		jf.getContentPane().add(BorderLayout.CENTER, panel);
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -72,10 +84,14 @@ public class Main {
 		ClearConsole();
 		ConsoleWrite(text);
 	}
+	
+	public static String GetLanguageText(String key) {
+		return ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
+		.getString(key);
+	}
 
 	public static void ConsoleWriteInLanguage(String key) {
-		 ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle",
-		 language).getString(key));
+		ta.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language).getString(key));
 	}
 
 	public static void ConsoleWriteInLanguageAndClear(String key) {
@@ -121,5 +137,24 @@ public class Main {
 		public void actionPerformed(ActionEvent e) {
 			jf.dispose();
 		}
+	}
+
+	static class SelectLanguageHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			@SuppressWarnings("unchecked")
+			JComboBox<String> comboBox = (JComboBox<String>) e.getSource();
+			switch ((String) comboBox.getSelectedItem()) {
+			case "Deutsch":
+				language = new Locale("de", "DE");
+				break;
+			default:
+				language = Locale.ENGLISH;
+			}
+			closeButton.setText(ResourceBundle.getBundle("de.computercamp.rpg.resources.MessageBundle", language)
+					.getString("closeButton"));
+		}
+
 	}
 }
