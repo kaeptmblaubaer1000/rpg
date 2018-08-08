@@ -9,11 +9,15 @@ public class Key extends Item {
     public Key(Vector2D pos) {
         super(pos);
         symbol = '\ua720';
-        displayName = Messages.key;
     }
 
     @Override
     public void use(Player player) {
         player.up();
+    }
+
+    @Override
+    public String getDisplayName() {
+        return  Messages.key;
     }
 }

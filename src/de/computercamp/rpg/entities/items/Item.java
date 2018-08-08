@@ -7,7 +7,6 @@ import de.computercamp.rpg.entities.Player;
 public abstract class Item extends BaseObject {
 
     protected char symbol;
-    protected String displayName;
 
     public Item(Vector2D position) {
         super(position);
@@ -19,9 +18,7 @@ public abstract class Item extends BaseObject {
         return symbol;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+    public abstract String getDisplayName();
 
     @Override
     public char render() {

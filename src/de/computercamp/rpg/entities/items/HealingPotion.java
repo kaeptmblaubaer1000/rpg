@@ -16,4 +16,9 @@ public class HealingPotion extends Item {
     public void use(Player player) {
         player.heal();
     }
+
+    @Override
+    public String getDisplayName() {
+        return Messages.healing_potion;
+    }
 }
