@@ -24,10 +24,10 @@ public class Main {
     	                JOptionPane.YES_NO_CANCEL_OPTION,
     	                JOptionPane.QUESTION_MESSAGE, null, 
     	                new String[]{"English", "German"}, "English") == 0) {
-    		Messages.locale = Locale.GERMAN;
+    		Messages.changeLanguage(Locale.GERMAN);
     	}
     	else {
-    		Messages.locale = Locale.ENGLISH;
+    		Messages.changeLanguage(Locale.ENGLISH);
     	}
     	createJFrame();
         
