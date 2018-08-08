@@ -29,8 +29,7 @@ public class ItemSpawner {
     public static Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
         Random random = new Random();
         int randomInt = random.nextInt(3);
-        Vector2D randomPos =
-                new Vector2D((int) Math.round((Math.random() * maxPos.x) - minPos.x), (int) Math.round((Math.random() * maxPos.y) - minPos.y));
+        Vector2D randomPos = getRandomLocation(minPos, maxPos);
         Item item;
 
         if (randomInt == 0) {
@@ -43,4 +42,9 @@ public class ItemSpawner {
         map.addObject(item);
         return item;
     }
+    private static Vector2D getRandomLocation(Vector2D minPos, Vector2D maxPos) {
+		int posX = (int) Math.round((Math.random()*(maxPos.x-minPos.x))+minPos.x);
+		int posY = (int) Math.round((Math.random()*(maxPos.y-minPos.y))+minPos.y);
+		return new Vector2D(posX, posY);
+	}
 }

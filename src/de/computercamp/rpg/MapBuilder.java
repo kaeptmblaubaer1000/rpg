@@ -41,7 +41,9 @@ public class MapBuilder {
         }
 
         NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
-        ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
+        for (int i = 0; i != 4; i++) {
+        	ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
+        }
     }
 
     public Map getMap() {

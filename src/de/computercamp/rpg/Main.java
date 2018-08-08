@@ -1,7 +1,5 @@
 package de.computercamp.rpg;
 
-import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
@@ -36,7 +34,7 @@ public class Main {
     }
     
     private static void createJFrame() {
-    	jf = new JFrame("");
+        GridLayout layout = new GridLayout(1, 2);
         ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 5);
         try {
@@ -119,7 +117,7 @@ public class Main {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderInventory());
     }
-    
+
 
     static class CloseHandler implements ActionListener {
 
