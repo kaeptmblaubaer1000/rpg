@@ -94,24 +94,21 @@ public class Main {
                 case KeyEvent.VK_UP:
                 case KeyEvent.VK_W:
                     mapBuilder.getPlayer().up();
-                    renderGame();
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
                     mapBuilder.getPlayer().left();
-                    renderGame();
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_S:
                     mapBuilder.getPlayer().down();
-                    renderGame();
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
-                    renderGame();
                     break;
             }
+            renderGame();
         }
 
         @Override
