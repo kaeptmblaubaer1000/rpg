@@ -120,15 +120,7 @@ public class Main {
 
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
-        consoleWrite(showItems(mapBuilder.getPlayer()));
-    }
-
-    private static String showItems(Player player) {
-    	String returnText = "";
-    	for(Item item : player.getInventory()) {
-    		returnText+= item.getDisplayName() +" ";
-    	}
-		return returnText;
+        consoleWrite(mapBuilder.getPlayer().renderInventory());
     }
 
     static class CloseHandler implements ActionListener {
