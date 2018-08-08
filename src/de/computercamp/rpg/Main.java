@@ -23,7 +23,7 @@ public class Main {
     	if(JOptionPane.showOptionDialog(null, "Which language do you want?","Select language",
     	                JOptionPane.YES_NO_CANCEL_OPTION,
     	                JOptionPane.QUESTION_MESSAGE, null, 
-    	                new String[]{"English", "German"}, "English") == 0) {
+    	                new String[]{"German", "English"}, "English") == 0) {
     		Messages.changeLanguage(Locale.GERMAN);
     	}
     	else {
