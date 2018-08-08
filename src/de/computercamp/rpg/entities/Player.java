@@ -141,7 +141,7 @@ public class Player extends BaseObject {
         StringBuilder string = new StringBuilder(Messages.inventory + ": \n");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
-            string.append(i).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
+            string.append(i + 1).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
         }
         return string.toString();
     }
