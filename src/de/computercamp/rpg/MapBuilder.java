@@ -41,6 +41,7 @@ public class MapBuilder {
         }
 
         NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
+        ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
     }
 
     public Map getMap() {

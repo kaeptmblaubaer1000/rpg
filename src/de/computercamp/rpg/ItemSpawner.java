@@ -26,7 +26,7 @@ public class ItemSpawner {
     //    return item;
     //}
 
-    public Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
+    public static Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
         Random random = new Random();
         int randomInt = random.nextInt(3);
         Vector2D randomPos =
@@ -40,6 +40,7 @@ public class ItemSpawner {
         } else {
             item = new Key(randomPos);
         }
+        map.addObject(item);
         return item;
     }
 }
