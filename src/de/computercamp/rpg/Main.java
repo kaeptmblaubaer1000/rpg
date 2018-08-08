@@ -74,17 +74,17 @@ public class Main {
         renderGame();
     }
 
-    public static void ClearConsole() {
+    public static void clearConsole() {
         ta.setText("");
     }
 
-    public static void ConsoleWrite(String text) {
+    public static void consoleWrite(String text) {
         ta.setText(ta.getText() + text + "\n");
     }
 
-    public static void ConsoleClearAndWrite(String text) {
-        ClearConsole();
-        ConsoleWrite(text);
+    public static void consoleClearAndWrite(String text) {
+        clearConsole();
+        consoleWrite(text);
     }
 
     static class KeyHandler extends KeyAdapter {
@@ -117,8 +117,8 @@ public class Main {
     }
 
     private static void renderGame() {
-        ConsoleClearAndWrite(mapBuilder.getMap().render());
-        ConsoleWrite(showItems(mapBuilder.getPlayer()));
+        consoleClearAndWrite(mapBuilder.getMap().render());
+        consoleWrite(showItems(mapBuilder.getPlayer()));
     }
 
     private static String showItems(Player player) {
