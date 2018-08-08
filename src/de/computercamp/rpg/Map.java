@@ -33,6 +33,15 @@ public class Map {
         }
     }
 
+    public BaseObject getObjectByPosition(Vector2D position) {
+        for (BaseObject baseObject : mapContents) {
+            if (baseObject.getPosition().equals(position) && !(baseObject instanceof Player)) {
+                return baseObject;
+            }
+        }
+        return null;
+    }
+
     public List<BaseObject> getMapContents() {
         return Collections.unmodifiableList(mapContents);
     }
