@@ -57,12 +57,10 @@ public class Main {
         selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
         selectLanguageComboBox.setBackground(Color.green);
         selectLanguageComboBox.setForeground(Color.black);
-        UIManager.put("ComboBox.selectionBackground", Color.yellow);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(true);
         JPanel closepanel = new JPanel();
         closepanel.setLayout(new FlowLayout());
-        panel.add(ta);
         closepanel.add(closeButton);
         closepanel.add(selectLanguageComboBox);
         panel.add(closepanel);
@@ -109,6 +107,9 @@ public class Main {
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    jf.dispose();
+                    System.exit(0);
             }
             renderGame();
         }
@@ -122,12 +123,14 @@ public class Main {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderInventory());
     }
+    
 
     static class CloseHandler implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             jf.dispose();
+            System.exit(0);
         }
     }
 
