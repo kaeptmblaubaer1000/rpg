@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Locale;
 
 public class Main {
@@ -24,10 +26,11 @@ public class Main {
                 Toolkit.getDefaultToolkit().getScreenSize().height - 5);
         try {
             ta.setFont(Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf")));
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (FontFormatException | IOException e) {
+            StringWriter stringWriter = new StringWriter();
+            e.printStackTrace(new PrintWriter(stringWriter));
+            JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error while reading font", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         ta.addKeyListener(new KeyHandler());
         ta.setBackground(Color.black);
