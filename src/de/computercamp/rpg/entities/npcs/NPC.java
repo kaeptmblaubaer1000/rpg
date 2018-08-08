@@ -1,6 +1,9 @@
-package de.computercamp.rpg.entities;
+package de.computercamp.rpg.entities.npcs;
 
 import de.computercamp.rpg.Vector2D;
+import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
@@ -9,22 +12,23 @@ public class NPC extends BaseObject {
     public enum NPCType {TALKING, GIVING_ITEM, HEALTH_CHANGING}
 
     private NPCType type;
-    private String message;
-    private Item toGive;
+    /*private Item toGive;*/
     private boolean healingOrKilling;
     private int minHealthChange;
     private int maxHealthChange;
-    private long nextUse;
-    private Item requiredItem = null;
-    private int npcMessageID;
+    protected long nextUse;
+    protected Item requiredItem = null;
+    protected int npcMessageID;
+    protected long delay;
 
-    public NPC(Vector2D position, int message) {
+    public NPC(Vector2D position, int message, long delay) {
         super(position);
         npcMessageID = message;
         type = NPCType.TALKING;
+        this.delay = delay;
     }
 
-    public NPC(Vector2D position, int message, Item toGive, int delay) {
+    /*public NPC(Vector2D position, int message, Item toGive, int delay) {
         super(position);
         npcMessageID = message;
         type = NPCType.GIVING_ITEM;
@@ -39,7 +43,7 @@ public class NPC extends BaseObject {
         this.minHealthChange = minHealthChange;
         this.maxHealthChange = maxHealthChange;
         nextUse = System.currentTimeMillis() + delay;
-    }
+    }*/
 
     public void setRequiredItem(Item item) {
         requiredItem = item;
@@ -68,42 +72,24 @@ public class NPC extends BaseObject {
             if (requiredItem != null && !player.getInventory().contains(requiredItem)) {
                 MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
                 player.sendMessage(messageFormat.format(new Object[]{requiredItem.getDisplayName()}));
+                return true;
             }
             if (requiredItem != null) {
                 player.getInventory().remove(requiredItem);
             }
             requiredItem = null;
-            if (type == NPCType.TALKING) {
-                player.sendMessage(message);
-            } else if (type == NPCType.GIVING_ITEM) {
-                if (System.currentTimeMillis() >= nextUse) {
-					/*toGive.position.x = player.position.x;
-					toGive.position.y = player.position.y;
-					player.map.addObject(toGive);*/
-                    player.collectItem(toGive);
-                    player.sendMessage(message);
-                } else {
-                    MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
-                    player.sendMessage(messageFormat.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
-                }
-            } else if (type == NPCType.HEALTH_CHANGING) {
-                if (System.currentTimeMillis() >= nextUse) {
-                    int healthChange = (int) Math.round((Math.random() * (maxHealthChange - minHealthChange)) + minHealthChange);
-                    player.sendMessage(message.replace("{HEALTHCHANGE}", String.valueOf(healthChange)));
-
-                    if (healthChange < 0) {
-                        player.decreaseHealth((-1) * healthChange);
-                    } else {
-                        player.increaseHealth(healthChange);
-                    }
-                } else {
-                    MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
-                    player.sendMessage(messageFormat.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
-                }
+            if (System.currentTimeMillis() < nextUse) {
+            	MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
+                player.sendMessage(messageFormat.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
+                return true;
             }
+            player.sendMessage(message);
+            doNPCAction(player);
+            nextUse = System.currentTimeMillis() + delay;
         }
         return true;
     }
+    protected void doNPCAction(Player player) {}
 
     @Override
     public char render() {
