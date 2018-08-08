@@ -130,6 +130,7 @@ public class Main {
         @Override
         public void actionPerformed(ActionEvent e) {
             jf.dispose();
+            System.exit(0);
         }
     }
 
