@@ -1,7 +1,5 @@
 package de.computercamp.rpg;
 
-import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
@@ -22,7 +20,21 @@ public class Main {
     private static MapBuilder mapBuilder = new MapBuilder();
 
     public static void main(String[] args) {
-        jf = new JFrame("");
+    	if(JOptionPane.showOptionDialog(null, "Which language do you want?","Select language",
+    	                JOptionPane.YES_NO_CANCEL_OPTION,
+    	                JOptionPane.WARNING_MESSAGE, null, 
+    	                new String[]{"English", "German"}, "English") == 0) {
+    		Messages.locale = Locale.GERMAN;
+    	}
+    	else {
+    		Messages.locale = Locale.ENGLISH;
+    	}
+    	createJFrame();
+        
+    }
+    
+    private static void createJFrame() {
+        GridLayout layout = new GridLayout(1, 2);
         ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 5);
         try {
@@ -43,14 +55,6 @@ public class Main {
         ta.setFocusable(true);
         JPanel panel = new JPanel();
         Locale[] languageList = {Locale.GERMAN, Locale.ENGLISH};
-        JComboBox<Locale> selectLanguageComboBox = new JComboBox<Locale>(languageList);
-        if (Locale.getDefault().equals(Locale.GERMAN))
-            selectLanguageComboBox.setSelectedIndex(0);
-        else
-            selectLanguageComboBox.setSelectedIndex(1);
-        selectLanguageComboBox.addActionListener(new SelectLanguageHandler());
-        selectLanguageComboBox.setBackground(Color.green);
-        selectLanguageComboBox.setForeground(Color.black);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(true);
         panel.add(ta);
@@ -113,7 +117,7 @@ public class Main {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderInventory());
     }
-    
+
 
     static class CloseHandler implements ActionListener {
 
