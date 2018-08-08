@@ -4,7 +4,6 @@ import de.computercamp.rpg.entities.items.Sword;
 import de.computercamp.rpg.entities.npcs.HealthChangingNPC;
 import de.computercamp.rpg.entities.npcs.ItemGivingNPC;
 import de.computercamp.rpg.entities.npcs.NPC;
-import de.computercamp.rpg.resources.Messages;
 
 public class NPCSpawner {
 	public static void spawnRandomNPCs(Map map, Vector2D minPos, Vector2D maxPos) {

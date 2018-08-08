@@ -17,9 +17,23 @@ public class MapBuilder {
         map = new Map();
         player = new Player(new Vector2D(1, 1));
 
+        wall.add(new WallTile(new Vector2D(10, 10), WallTile.Type.LEFT_UPPER_EDGE));
+        wall.add(new WallTile(new Vector2D(10, 11), WallTile.Type.LEFT_LOWER_EDGE));
+        wall.add(new WallTile(new Vector2D(11, 10), WallTile.Type.RIGHT_UPPER_EDGE));
+        wall.add(new WallTile(new Vector2D(11, 11), WallTile.Type.RIGHT_LOWER_EDGE));
+
         wall.add(new WallTile(new Vector2D(0, 0), WallTile.Type.LEFT_UPPER_EDGE));
-        wall.add(new WallTile(new Vector2D(0, 1), WallTile.Type.HORIZONTAL));
-        wall.add(new WallTile(new Vector2D(1, 0), WallTile.Type.VERTICAL));
+        wall.add(new WallTile(new Vector2D(0, 14), WallTile.Type.LEFT_LOWER_EDGE));
+        wall.add(new WallTile(new Vector2D(60, 0), WallTile.Type.RIGHT_UPPER_EDGE));
+        wall.add(new WallTile(new Vector2D(60, 14), WallTile.Type.RIGHT_LOWER_EDGE));
+        for (int i = 1; i < 14; i++) {
+            wall.add(new WallTile(new Vector2D(0, i), WallTile.Type.HORIZONTAL));
+            wall.add(new WallTile(new Vector2D(60, i), WallTile.Type.HORIZONTAL));
+        }
+        for (int i = 1; i < 60; i++) {
+            wall.add(new WallTile(new Vector2D(i, 0), WallTile.Type.VERTICAL));
+            wall.add(new WallTile(new Vector2D(i, 14), WallTile.Type.VERTICAL));
+        }
 
         map.addObject(player);
         for (WallTile wallTile : wall) {
