@@ -37,6 +37,7 @@ public class Main {
 
     private static void createJFrame() {
         jf = new JFrame("");
+        jf.setBackground(Color.black);
         ta = new JTextArea();
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
@@ -70,6 +71,7 @@ public class Main {
         panel.setOpaque(true);
         panel.add(ta);
         panel.add(rightTextArea);
+        panel.setBackground(Color.black);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
         jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height);
