@@ -65,14 +65,10 @@ public class NPC extends BaseObject {
         	message = "Error: Message not found.";
         }
         if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
-            return false;
-        }
-        if ((Math.abs(ppos.x - position.x) == 1 && ppos.y == position.y) ||
-                (Math.abs(ppos.y - position.y) == 1 && ppos.x == position.x)) {
             if (requiredItem != null && !player.getInventory().contains(requiredItem)) {
                 MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
                 player.sendMessage(messageFormat.format(new Object[]{requiredItem.getDisplayName()}));
-                return true;
+                return false;
             }
             if (requiredItem != null) {
                 player.getInventory().remove(requiredItem);
@@ -81,11 +77,19 @@ public class NPC extends BaseObject {
             if (System.currentTimeMillis() < nextUse) {
             	MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
                 player.sendMessage(messageFormat.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
-                return true;
+                return false;
+            } else if (nextUse == -1) {
+            	player.sendMessage(Messages.npcWaitingForever);
+            	return false;
             }
             player.sendMessage(message);
             doNPCAction(player);
-            nextUse = System.currentTimeMillis() + delay;
+            if (delay == -1)
+            	nextUse = -1;
+            else 
+            	nextUse = System.currentTimeMillis() + delay;
+            
+            return false;
         }
         return true;
     }
