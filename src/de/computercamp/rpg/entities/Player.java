@@ -1,6 +1,7 @@
 package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Vector2D;
+import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.util.*;
@@ -142,6 +143,15 @@ public class Player extends BaseObject {
             Item item = inventory.get(i);
             System.out.println(i + ". " + item.getSymbol() + " (" + item.getDisplayName() + ")");
         }
+    }
+
+    public void useItem(Item item) {
+        item.use(this);
+        inventory.remove(item);
+    }
+
+    public void useItem(int inventoryIndex) {
+        useItem(inventory.get(inventoryIndex));
     }
 
     public void sendMessage(String message) {
