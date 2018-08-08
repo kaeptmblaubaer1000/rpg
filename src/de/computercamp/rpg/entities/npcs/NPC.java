@@ -97,6 +97,6 @@ public class NPC extends BaseObject {
 
     @Override
     public char render() {
-        return '\u263a';
+        return '\uA66A';
     }
 }
