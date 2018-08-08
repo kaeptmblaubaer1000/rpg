@@ -17,8 +17,8 @@ public class NPCSpawner {
 		map.addObject(weaponsmith);
 	}
 	private static Vector2D getRandomLocation(Vector2D minPos, Vector2D maxPos) {
-		int posX = (int) Math.round((Math.random()*maxPos.x)-minPos.x);
-		int posY = (int) Math.round((Math.random()*maxPos.y)-minPos.y);
+		int posX = (int) Math.round((Math.random()*(maxPos.x-minPos.x))+minPos.x);
+		int posY = (int) Math.round((Math.random()*(maxPos.y-minPos.y))+minPos.y);
 		return new Vector2D(posX, posY);
 	}
 }

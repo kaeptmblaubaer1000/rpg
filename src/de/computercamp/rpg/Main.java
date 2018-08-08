@@ -118,7 +118,7 @@ public class Main {
 
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
-        mapBuilder.getPlayer().printInventory();
+        consoleWrite(mapBuilder.getPlayer().renderInventory());
     }
     
 

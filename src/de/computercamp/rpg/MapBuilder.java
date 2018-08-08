@@ -40,7 +40,7 @@ public class MapBuilder {
             map.addObject(wallTile);
         }
 
-        NPCSpawner.spawnRandomNPCs(map, new Vector2D(0,0), new Vector2D(5,20));
+        NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
     }
 
     public Map getMap() {
