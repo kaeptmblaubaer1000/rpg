@@ -107,6 +107,9 @@ public class Main {
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    jf.dispose();
+                    System.exit(0);
             }
             renderGame();
         }
