@@ -16,7 +16,6 @@ import java.io.StringWriter;
 import java.util.Locale;
 
 public class Main {
-    private static JButton closeButton;
     private static JFrame jf;
     private static JTextArea ta;
     private static JComboBox<Locale> selectLanguageComboBox;
@@ -42,11 +41,6 @@ public class Main {
         ta.setEditable(false);
         ta.setAutoscrolls(false);
         ta.setFocusable(true);
-        closeButton = new JButton(Messages.closeProgram);
-        closeButton.setBackground(Color.red);
-        closeButton.setForeground(Color.white);
-        closeButton.addActionListener(new CloseHandler());
-        closeButton.setText(Messages.closeProgram);
         JPanel panel = new JPanel();
         Locale[] languageList = {Locale.GERMAN, Locale.ENGLISH};
         JComboBox<Locale> selectLanguageComboBox = new JComboBox<Locale>(languageList);
@@ -60,11 +54,6 @@ public class Main {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(true);
         panel.add(ta);
-        JPanel closepanel = new JPanel();
-        closepanel.setLayout(new FlowLayout());
-        closepanel.add(closeButton);
-        closepanel.add(selectLanguageComboBox);
-        panel.add(closepanel);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
         jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height);
