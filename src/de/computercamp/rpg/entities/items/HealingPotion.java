@@ -9,7 +9,6 @@ public class HealingPotion extends Item {
     public HealingPotion(Vector2D position) {
         super(position);
         symbol = '\u1e50';
-        displayName = Messages.healing_potion;
     }
 
     @Override
