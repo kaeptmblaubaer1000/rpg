@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
     	if(JOptionPane.showOptionDialog(null, "Which language do you want?","Select language",
     	                JOptionPane.YES_NO_CANCEL_OPTION,
-    	                JOptionPane.WARNING_MESSAGE, null, 
+    	                JOptionPane.QUESTION_MESSAGE, null, 
     	                new String[]{"English", "German"}, "English") == 0) {
     		Messages.locale = Locale.GERMAN;
     	}
@@ -34,6 +34,7 @@ public class Main {
     }
     
     private static void createJFrame() {
+        jf = new JFrame("");
         GridLayout layout = new GridLayout(1, 2);
         ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 5);
