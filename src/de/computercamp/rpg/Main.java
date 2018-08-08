@@ -16,28 +16,28 @@ import java.util.Locale;
 public class Main {
     private static JFrame jf;
     private static JTextArea ta;
+    private static JTextArea rightTextArea;
     private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
 
+    private static final int TEXTAREA_WIDTH_PERCENT = 50;
+
     public static void main(String[] args) {
-    	if(JOptionPane.showOptionDialog(null, "Which language do you want?","Select language",
-    	                JOptionPane.YES_NO_CANCEL_OPTION,
-    	                JOptionPane.QUESTION_MESSAGE, null, 
-    	                new String[]{"German", "English"}, "English") == 0) {
-    		Messages.changeLanguage(Locale.GERMAN);
-    	}
-    	else {
-    		Messages.changeLanguage(Locale.ENGLISH);
-    	}
-    	createJFrame();
-        
+        if (JOptionPane.showOptionDialog(null, "Which language do you want?", "Select language",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null,
+                new String[]{"German", "English"}, "English") == 0) {
+            Messages.changeLanguage(Locale.GERMAN);
+        } else {
+            Messages.changeLanguage(Locale.ENGLISH);
+        }
+        createJFrame();
+
     }
-    
+
     private static void createJFrame() {
         jf = new JFrame("");
-        GridLayout layout = new GridLayout(1, 2);
-        ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
-                Toolkit.getDefaultToolkit().getScreenSize().height - 5);
+        ta = new JTextArea();
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
@@ -54,11 +54,22 @@ public class Main {
         ta.setEditable(false);
         ta.setAutoscrolls(false);
         ta.setFocusable(true);
+        int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int leftTextAreaWidth = (int) (((float) screenWidth) / ((float) TEXTAREA_WIDTH_PERCENT) * 100);
+        int rightTextAreaWidth = screenWidth - leftTextAreaWidth;
+        ta.setBounds(0, 0, leftTextAreaWidth, Toolkit.getDefaultToolkit().getScreenSize().height);
+        rightTextArea = new JTextArea();
+        rightTextArea.setBackground(Color.black);
+        rightTextArea.setForeground(Color.white);
+        rightTextArea.setEditable(false);
+        rightTextArea.setAutoscrolls(false);
+        rightTextArea.setFocusable(true);
+        rightTextArea.addKeyListener(new KeyHandler());
         JPanel panel = new JPanel();
-        Locale[] languageList = {Locale.GERMAN, Locale.ENGLISH};
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
         panel.add(ta);
+        panel.add(rightTextArea);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
         jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height);
