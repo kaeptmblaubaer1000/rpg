@@ -38,7 +38,7 @@ public class Map {
     }
 
     public boolean onPlayerMove(Player player) {
-        for (BaseObject object : mapContents) {
+        for (BaseObject object : new ArrayList<>(mapContents)) {
             if (!object.onPlayerMove(player)) {
                 return false;
             }
