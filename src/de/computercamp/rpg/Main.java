@@ -71,7 +71,7 @@ public class Main {
         jf.setResizable(false);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
-        ConsoleClearAndWrite(mapBuilder.getMap().render());
+        renderGame();
     }
 
     public static void ClearConsole() {
@@ -94,26 +94,22 @@ public class Main {
                 case KeyEvent.VK_UP:
                 case KeyEvent.VK_W:
                     mapBuilder.getPlayer().up();
-                    ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
+                    renderGame();
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
                     mapBuilder.getPlayer().left();
-                    ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
+                    renderGame();
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_S:
                     mapBuilder.getPlayer().down();
-                    ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
+                    renderGame();
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
-                    ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
+                    renderGame();
                     break;
             }
         }
@@ -122,6 +118,12 @@ public class Main {
         public void keyTyped(KeyEvent e) {
         }
     }
+
+    private static void renderGame() {
+        ConsoleClearAndWrite(mapBuilder.getMap().render());
+        ConsoleWrite(showItems(mapBuilder.getPlayer()));
+    }
+
     private static String showItems(Player player) {
     	String returnText = "";
     	for(Item item : player.getInventory()) {
