@@ -95,25 +95,25 @@ public class Main {
                 case KeyEvent.VK_W:
                     mapBuilder.getPlayer().up();
                     ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(itemrenderer(mapBuilder.getPlayer()));
+                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
                     mapBuilder.getPlayer().left();
                     ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(itemrenderer(mapBuilder.getPlayer()));
+                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_S:
                     mapBuilder.getPlayer().down();
                     ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(itemrenderer(mapBuilder.getPlayer()));
+                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
                     ConsoleClearAndWrite(mapBuilder.getMap().render());
-                    ConsoleWrite(itemrenderer(mapBuilder.getPlayer()));
+                    ConsoleWrite(showItems(mapBuilder.getPlayer()));
                     break;
             }
         }
@@ -122,7 +122,7 @@ public class Main {
         public void keyTyped(KeyEvent e) {
         }
     }
-    private static String itemrenderer(Player player) {
+    private static String showItems(Player player) {
     	String returnText = "";
     	for(Item item : player.getInventory()) {
     		returnText+= item.getDisplayName() +" ";
