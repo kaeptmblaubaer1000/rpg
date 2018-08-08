@@ -70,7 +70,7 @@ public class Map {
             strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
         }
 
-        for (StringBuilder builder : strings.subList(0, strings.size() - 2)) {
+        for (StringBuilder builder : strings.subList(0, strings.size() - 1)) {
             whole.append(builder);
             whole.append('\n');
         }
