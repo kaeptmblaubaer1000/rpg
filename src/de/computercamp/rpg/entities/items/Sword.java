@@ -8,7 +8,7 @@ public class Sword extends Item {
 
     public Sword(Vector2D position) {
         super(position);
-        symbol = '\u1e36';
+        symbol = '\u2e38';
     }
 
     @Override

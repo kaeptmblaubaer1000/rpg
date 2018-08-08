@@ -45,7 +45,7 @@ public class Main {
         } catch (FontFormatException | IOException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
-            JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error while reading font", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         ta.addKeyListener(new KeyHandler());
