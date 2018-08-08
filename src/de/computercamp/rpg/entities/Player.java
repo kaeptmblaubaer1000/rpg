@@ -137,12 +137,13 @@ public class Player extends BaseObject {
         return Collections.unmodifiableList(inventory);
     }
 
-    public void printInventory() {
-        System.out.println(Messages.inventory + ": ");
+    public String renderInventory() {
+        StringBuilder string = new StringBuilder(Messages.inventory + ": \n");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
-            System.out.println(i + ". " + item.getSymbol() + " (" + item.getDisplayName() + ")");
+            string.append(i).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
         }
+        return string.toString();
     }
 
     public void useItem(Item item) {
