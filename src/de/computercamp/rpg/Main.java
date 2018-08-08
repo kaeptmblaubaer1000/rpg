@@ -59,6 +59,7 @@ public class Main {
         selectLanguageComboBox.setForeground(Color.black);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(true);
+        panel.add(ta);
         JPanel closepanel = new JPanel();
         closepanel.setLayout(new FlowLayout());
         closepanel.add(closeButton);
