@@ -27,7 +27,9 @@ public class Main {
         ta = new JTextArea(Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height - 5);
         try {
-            ta.setFont(Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf")));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
+            font = font.deriveFont(40f);
+            ta.setFont(font);
         } catch (FontFormatException | IOException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
