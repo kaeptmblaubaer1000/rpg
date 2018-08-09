@@ -5,6 +5,7 @@ import de.computercamp.rpg.Vector2D;
 
 public class RunThroughObject extends BaseObject {
     public enum Type {
+    	GRASS,
     	DOOR;
     }
 
