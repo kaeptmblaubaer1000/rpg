@@ -14,7 +14,6 @@ import java.util.TimerTask;
 
 
 public class NPC extends LivingBaseObject {
-    /*private Item toGive;*/
     protected long nextUse;
     protected Item requiredItem = null;
     protected int npcMessageID;

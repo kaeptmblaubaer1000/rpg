@@ -34,7 +34,7 @@ public class Player extends LivingBaseObject {
         if (health <= 0) {
             return 'X';
         }
-        return '#';
+        return '0';
     }
 
     /**
@@ -125,7 +125,7 @@ public class Player extends LivingBaseObject {
         StringBuilder string = new StringBuilder(Messages.inventory + ": \n");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
-            string.append(i + 1).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
+            string.append(i).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
         }
         return string.toString();
     }
@@ -144,13 +144,14 @@ public class Player extends LivingBaseObject {
         messagesForPlayer.add(message);
     }
 
-	public List<String> getMessagesForPlayer() {
-		return messagesForPlayer;
-	}
-	public String renderMessagesForPlayer() {
-		String toReturn = "";
-		if (messagesForPlayer.size() > 0)
-			toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size()-1);
-		return toReturn;
-	}
+    public List<String> getMessagesForPlayer() {
+        return messagesForPlayer;
+    }
+
+    public String renderMessagesForPlayer() {
+        String toReturn = "";
+        if (messagesForPlayer.size() > 0)
+            toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size() - 1);
+        return toReturn;
+    }
 }

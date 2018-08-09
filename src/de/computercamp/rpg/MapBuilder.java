@@ -1,6 +1,7 @@
 package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.RunThroughObject;
 import de.computercamp.rpg.entities.WallTile;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class MapBuilder {
     private Map map;
     private Player player;
     private List<WallTile> wall = new ArrayList<>();
+    private List<RunThroughObject> through = new ArrayList<>();
 
     public MapBuilder() {
         map = new Map();
@@ -36,10 +38,15 @@ public class MapBuilder {
             wall.add(new WallTile(new Vector2D(i, 0), WallTile.Type.VERTICAL));
             wall.add(new WallTile(new Vector2D(i, 14), WallTile.Type.VERTICAL));
         }
+        
+        through.add(new RunThroughObject(new Vector2D(6,6), RunThroughObject.Type.DOOR));
 
         map.addObject(player);
         for (WallTile wallTile : wall) {
             map.addObject(wallTile);
+        }
+        for (RunThroughObject runThrough : through) {
+            map.addObject(runThrough);
         }
 
         NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
