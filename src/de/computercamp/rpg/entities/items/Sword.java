@@ -14,14 +14,14 @@ public class Sword extends Item {
 
     @Override
     public boolean use(Player player) {
-        if (map.getObjectByPosition(position.withY(position.y + 1)) != null && map.getObjectByPosition(position.withY(position.y + 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)map.getObjectByPosition(position.withY(position.y + 1))).decreaseHealth(10);
-        } else if (map.getObjectByPosition(position.withY(position.y - 1)) != null && map.getObjectByPosition(position.withY(position.y - 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)map.getObjectByPosition(position.withY(position.y - 1))).decreaseHealth(10);
-        } else if (map.getObjectByPosition(position.withX(position.x + 1)) != null && map.getObjectByPosition(position.withX(position.x + 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)map.getObjectByPosition(position.withX(position.x + 1))).decreaseHealth(10);
-        } else if (map.getObjectByPosition(position.withX(position.x - 1)) != null && map.getObjectByPosition(position.withX(position.x - 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)map.getObjectByPosition(position.withX(position.x - 1))).decreaseHealth(10);
+        if (player.getMap().getObjectByPosition(position.withY(position.y + 1)) != null && player.getMap().getObjectByPosition(position.withY(position.y + 1)) instanceof LivingBaseObject) {
+            ((LivingBaseObject)player.getMap().getObjectByPosition(position.withY(position.y + 1))).decreaseHealth(10);
+        } else if (player.getMap().getObjectByPosition(position.withY(position.y - 1)) != null && player.getMap().getObjectByPosition(position.withY(position.y - 1)) instanceof LivingBaseObject) {
+            ((LivingBaseObject)player.getMap().getObjectByPosition(position.withY(position.y - 1))).decreaseHealth(10);
+        } else if (player.getMap().getObjectByPosition(position.withX(position.x + 1)) != null && player.getMap().getObjectByPosition(position.withX(position.x + 1)) instanceof LivingBaseObject) {
+            ((LivingBaseObject)player.getMap().getObjectByPosition(position.withX(position.x + 1))).decreaseHealth(10);
+        } else if (player.getMap().getObjectByPosition(position.withX(position.x - 1)) != null && player.getMap().getObjectByPosition(position.withX(position.x - 1)) instanceof LivingBaseObject) {
+            ((LivingBaseObject)player.getMap().getObjectByPosition(position.withX(position.x - 1))).decreaseHealth(10);
         }
         return false;
     }
