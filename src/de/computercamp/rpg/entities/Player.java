@@ -159,8 +159,9 @@ public class Player extends BaseObject {
     }
 
     public void useItem(Item item) {
-        item.use(this);
-        inventory.remove(item);
+        if (item.use(this)) {
+            inventory.remove(item);
+        }
     }
 
     public void useItem(int inventoryIndex) {
