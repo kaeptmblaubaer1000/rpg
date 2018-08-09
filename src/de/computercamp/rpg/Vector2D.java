@@ -27,4 +27,12 @@ public class Vector2D {
         result = 31 * result + y;
         return result;
     }
+
+    public Vector2D withY(int y) {
+        return new Vector2D(x, y);
+    }
+
+    public Vector2D withX(int x) {
+        return new Vector2D(x, y);
+    }
 }
