@@ -24,28 +24,6 @@ public class NPC extends LivingBaseObject {
         super(position);
         npcMessageID = message;
         this.delay = delay;
-        Timer rumlaufTimer = new Timer(true);		
-	    rumlaufTimer.scheduleAtFixedRate(new TimerTask() {
-		    @Override
-	       	public void run() {
-				short random = (short) Math.round(Math.random()*3);
-				Vector2D ziel = new Vector2D(0, 0);
-				if (random == 0) {
-					ziel = new Vector2D(position.x+1, position.y);
-				} else if (random == 1) {
-					ziel = new Vector2D(position.x-1, position.y);
-				} else if (random == 2) {
-					ziel = new Vector2D(position.x, position.y+1);
-				} else if (random == 3) {
-					ziel = new Vector2D(position.x, position.y-1);
-				}
-				if (map != null) {
-					if (map.getObjectByPosition(ziel) == null) {
-						setPosition(ziel);
-					}
-				}
-			}
-	    }, 0, Math.round(Math.random()*2000));
     }
 
     public void setRequiredItem(Item item) {
@@ -104,5 +82,38 @@ public class NPC extends LivingBaseObject {
     	} else {
     		return 'X';
     	}
+    }
+    public void startMoving() {
+    	Thread rumlaufTimer = new Thread(new Runnable() {
+		    @Override
+	       	public void run() {
+		    	short richtung = (short) Math.round(Math.random()*3);
+				while (true) {
+					Vector2D ziel = new Vector2D(0, 0);
+					if (richtung == 0) {
+						ziel = new Vector2D(position.x+1, position.y);
+					} else if (richtung == 1) {
+						ziel = new Vector2D(position.x-1, position.y);
+					} else if (richtung == 2) {
+						ziel = new Vector2D(position.x, position.y+1);
+					} else if (richtung == 3) {
+						ziel = new Vector2D(position.x, position.y-1);
+					}
+					
+					if (map != null) {
+						if (map.getObjectByPosition(ziel) == null) {
+							setPosition(ziel);
+						} else {
+							richtung = (short) Math.round(Math.random()*3);
+						}
+					}
+					try {
+						Thread.sleep(Math.round(Math.random()*5000));
+					} catch (InterruptedException e) {}
+				}
+				
+			}
+	    });
+    	rumlaufTimer.start();
     }
 }

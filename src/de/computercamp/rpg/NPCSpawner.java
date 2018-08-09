@@ -8,9 +8,13 @@ import de.computercamp.rpg.entities.npcs.NPC;
 public class NPCSpawner {
 	public static void spawnRandomNPCs(Map map, Vector2D minPos, Vector2D maxPos) {
 		NPC welcomeNPC = new NPC(getRandomLocation(map, minPos, maxPos), 0, 0);
+		welcomeNPC.startMoving();
 		NPC magician = new ItemGivingNPC(getRandomLocation(map, minPos, maxPos), 1, new HealingPotion(new Vector2D(0,0)), (long)-1);
+		magician.startMoving();
 		NPC badmagician = new HealthChangingNPC(getRandomLocation(map, minPos, maxPos), 2, -6, 8, 20000);
+		badmagician.startMoving();
 		NPC weaponsmith = new ItemGivingNPC(getRandomLocation(map, minPos, maxPos), 3, new Sword(new Vector2D(0,0)), (long) -1);
+		weaponsmith.startMoving();
 		map.addObject(welcomeNPC);
 		map.addObject(magician);
 		map.addObject(badmagician);
