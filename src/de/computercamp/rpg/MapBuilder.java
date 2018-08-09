@@ -50,8 +50,22 @@ public class MapBuilder {
         for (int i = 1; i < 6; i++) {
             wall.add(new WallTile(new Vector2D(0, i), WallTile.Type.VERTICAL));
         }
+        wall.add(new WallTile(new Vector2D(24, 4), WallTile.Type.LEFT_UPPER_EDGE));
+        wall.add(new WallTile(new Vector2D(25, 4), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(26, 4), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(27, 4), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(28, 4), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(29, 4), WallTile.Type.RIGHT_UPPER_EDGE));
+        wall.add(new WallTile(new Vector2D(29, 5), WallTile.Type.VERTICAL));
+        wall.add(new WallTile(new Vector2D(29, 6), WallTile.Type.RIGHT_LOWER_EDGE));
+        wall.add(new WallTile(new Vector2D(28, 6), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(27, 6), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(25, 6), WallTile.Type.HORIZONTAL));
+        wall.add(new WallTile(new Vector2D(24, 6), WallTile.Type.LEFT_LOWER_EDGE));
+        wall.add(new WallTile(new Vector2D(24, 5), WallTile.Type.VERTICAL));
         
         through.add(new RunThroughObject(new Vector2D(6,6), RunThroughObject.Type.DOOR));
+        through.add(new RunThroughObject(new Vector2D(26, 6), RunThroughObject.Type.DOGDOOR));
 
         map.addObject(player);
         for (WallTile wallTile : wall) {
