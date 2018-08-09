@@ -39,8 +39,9 @@ public class Main {
         jf = new JFrame("");
         jf.setBackground(Color.black);
         ta = new JTextArea();
+        Font font;
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
             ta.setFont(font);
         } catch (FontFormatException | IOException e) {
@@ -48,6 +49,7 @@ public class Main {
             e.printStackTrace(new PrintWriter(stringWriter));
             JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
+            throw new Error();
         }
         ta.addKeyListener(new KeyHandler());
         ta.setBackground(Color.black);
@@ -66,6 +68,7 @@ public class Main {
         rightTextArea.setAutoscrolls(false);
         rightTextArea.setFocusable(true);
         rightTextArea.addKeyListener(new KeyHandler());
+        rightTextArea.setFont(font);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
