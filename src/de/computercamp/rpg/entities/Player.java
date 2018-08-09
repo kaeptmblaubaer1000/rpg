@@ -102,11 +102,21 @@ public class Player extends BaseObject {
     }
 
     public void increaseHealth(int health) {
-        this.health = this.health + health;
+        int finalHealth = this.health + health;
+        if (finalHealth > MAX_HEALTH) {
+            this.health = MAX_HEALTH;
+        } else {
+            this.health = finalHealth;
+        }
     }
 
     public void decreaseHealth(int health) {
-        this.health = this.health - health;
+        int finalHealth = this.health - health;
+        if (finalHealth < 0) {
+            this.health = 0;
+        } else {
+            this.health = finalHealth;
+        }
     }
 
     /**

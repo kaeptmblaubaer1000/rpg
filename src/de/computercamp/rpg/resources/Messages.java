@@ -19,6 +19,7 @@ public class Messages {
     public static String sword;
     public static String npcWaiting;
     public static String npcWaitingForever;
+    public static String cucumber;
 
     private Messages() {
     }
@@ -37,6 +38,7 @@ public class Messages {
         sword = bundle.getString("sword");
         npcWaiting = bundle.getString("npcWaiting");
         npcWaitingForever = bundle.getString("npcWaitingForever");
+        cucumber = bundle.getString("cucumber");
     }
 
     static {
