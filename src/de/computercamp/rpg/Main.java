@@ -14,24 +14,26 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
-    private static JFrame jf;
-    private static JTextArea leftTextArea;
-    private static JTextArea rightTextArea;
-    private static JComboBox<Locale> selectLanguageComboBox;
-    private static MapBuilder mapBuilder = new MapBuilder();
-    private static final Object renderLock = new Object();
+	private static JFrame jf;
+	private static JTextArea leftTextArea;
+	private static JTextArea rightTextArea;
+	private static JComboBox<Locale> selectLanguageComboBox;
+	private static MapBuilder mapBuilder = new MapBuilder();
+	private static final Object renderLock = new Object();
 
-    private static final int TEXTAREA_WIDTH_PERCENT = 50;
+	private static final int TEXTAREA_WIDTH_PERCENT = 50;
 
     public static void main(String[] args) {
-        if (JOptionPane.showOptionDialog(null, "Which language do you want?", "Select language",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null,
-                new String[]{"German", "English"}, "English") == 0) {
-            Messages.changeLanguage(Locale.GERMAN);
-        } else {
-            Messages.changeLanguage(Locale.ENGLISH);
-        }
+		int option = JOptionPane.showOptionDialog(null, "Which language do you want?", "Select language",
+				JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] { "German", "English" },
+				"English");
+		if (option == 0) {
+			Messages.changeLanguage(Locale.GERMAN);
+		} else if (option == -1) {
+			System.exit(0);
+		} else {
+			Messages.changeLanguage(Locale.ENGLISH);
+		}
         createJFrame();
 
     }
@@ -116,17 +118,9 @@ public class Main {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_Q) {
-                qPressed = true;
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_ESCAPE:
-                    jf.dispose();
-                    System.exit(0);
+                case KeyEvent.VK_Q:
+                    qPressed = true;
                     break;
 
                 case KeyEvent.VK_UP:
@@ -144,6 +138,19 @@ public class Main {
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
+                    break;
+            }
+            synchronized (renderLock) {
+                renderGame();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_ESCAPE:
+                    jf.dispose();
+                    System.exit(0);
                     break;
 
                 case KeyEvent.VK_0:
