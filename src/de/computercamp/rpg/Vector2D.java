@@ -2,6 +2,11 @@ package de.computercamp.rpg;
 
 public class Vector2D {
 
+    public Vector2D(Vector2D clone) {
+        this.x = clone.x;
+        this.y = clone.y;
+    }
+
     public Vector2D(int x, int y) {
         this.x = x;
         this.y = y;

@@ -112,6 +112,15 @@ public class Main {
     }
 
     static class KeyHandler extends KeyAdapter {
+        private boolean qPressed = false;
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                qPressed = true;
+            }
+        }
+
         @Override
         public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
@@ -119,45 +128,7 @@ public class Main {
                     jf.dispose();
                     System.exit(0);
                     break;
-                case KeyEvent.VK_0:
-                    mapBuilder.getPlayer().useItem(0);
-                    break;
-                case KeyEvent.VK_1:
-                    mapBuilder.getPlayer().useItem(1);
-                    break;
-                case KeyEvent.VK_2:
-                    mapBuilder.getPlayer().useItem(2);
-                    break;
-                case KeyEvent.VK_3:
-                    mapBuilder.getPlayer().useItem(3);
-                    break;
-                case KeyEvent.VK_4:
-                    mapBuilder.getPlayer().useItem(4);
-                    break;
-                case KeyEvent.VK_5:
-                    mapBuilder.getPlayer().useItem(5);
-                    break;
-                case KeyEvent.VK_6:
-                    mapBuilder.getPlayer().useItem(6);
-                    break;
-                case KeyEvent.VK_7:
-                    mapBuilder.getPlayer().useItem(7);
-                    break;
-                case KeyEvent.VK_8:
-                    mapBuilder.getPlayer().useItem(8);
-                    break;
-                case KeyEvent.VK_9:
-                    mapBuilder.getPlayer().useItem(9);
-                    break;
-            }
-            synchronized (renderLock) {
-                renderGame();
-            }
-        }
 
-        @Override
-        public void keyTyped(KeyEvent e) {
-            switch (e.getKeyCode()) {
                 case KeyEvent.VK_UP:
                 case KeyEvent.VK_W:
                     mapBuilder.getPlayer().up();
@@ -174,6 +145,51 @@ public class Main {
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
                     break;
+
+                case KeyEvent.VK_0:
+                    numberKeyPressed(0);
+                    break;
+                case KeyEvent.VK_1:
+                    numberKeyPressed(1);
+                    break;
+                case KeyEvent.VK_2:
+                    numberKeyPressed(2);
+                    break;
+                case KeyEvent.VK_3:
+                    numberKeyPressed(3);
+                    break;
+                case KeyEvent.VK_4:
+                    numberKeyPressed(4);
+                    break;
+                case KeyEvent.VK_5:
+                    numberKeyPressed(5);
+                    break;
+                case KeyEvent.VK_6:
+                    numberKeyPressed(6);
+                    break;
+                case KeyEvent.VK_7:
+                    numberKeyPressed(7);
+                    break;
+                case KeyEvent.VK_8:
+                    numberKeyPressed(8);
+                    break;
+                case KeyEvent.VK_9:
+                    numberKeyPressed(9);
+                    break;
+                case KeyEvent.VK_Q:
+                    qPressed = false;
+                    break;
+            }
+            synchronized (renderLock) {
+                renderGame();
+            }
+        }
+
+        private void numberKeyPressed(int number) {
+            if (qPressed) {
+                mapBuilder.getPlayer().dropItem(number);
+            } else {
+                mapBuilder.getPlayer().useItem(number);
             }
         }
     }
