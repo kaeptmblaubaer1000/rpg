@@ -105,7 +105,7 @@ public class NPC extends LivingBaseObject {
 					if (map != null) {
 						if (!((player.getPosition().x == position.x-1 || player.getPosition().x == position.x+1 || player.getPosition().x == position.x) && 
 								(player.getPosition().y == position.y-1 || player.getPosition().y == position.y+1 || player.getPosition().y == position.y))) {
-							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition()) && (position.x > 0 && position.y > 0 && position.x < 59 && position.y < 15)) {
+							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition()) && (ziel.x > 0 && ziel.y > 0 && ziel.x < 59 && ziel.y < 15)) {
 								if (health > 0) {
 									setPosition(ziel);
 								}
