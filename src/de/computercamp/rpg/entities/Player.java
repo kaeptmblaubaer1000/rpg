@@ -23,7 +23,7 @@ public class Player extends BaseObject {
         healthTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (health < MAX_HEALTH) {
+                if (health < MAX_HEALTH && health > 0) {
                     health++;
                 }
             }
@@ -32,7 +32,10 @@ public class Player extends BaseObject {
 
     @Override
     public char render() {
-        return 'X';
+        if (health <= 0) {
+            return 'X';
+        }
+        return '#';
     }
 
     /**
@@ -53,9 +56,11 @@ public class Player extends BaseObject {
      * Moves this player upwards.
      */
     public void up() {
-        position.y--;
-        if (position.y < 0 || !map.onPlayerMove(this)) {
-            position.y++;
+        if (health > 0) {
+            position.y--;
+            if (position.y < 0 || !map.onPlayerMove(this)) {
+                position.y++;
+            }
         }
     }
 
@@ -63,9 +68,11 @@ public class Player extends BaseObject {
      * Moves the player downwards.
      */
     public void down() {
-        position.y++;
-        if (!map.onPlayerMove(this)) {
-            position.y--;
+        if (health > 0) {
+            position.y++;
+            if (!map.onPlayerMove(this)) {
+                position.y--;
+            }
         }
     }
 
@@ -73,9 +80,11 @@ public class Player extends BaseObject {
      * Moves this player to the right.
      */
     public void right() {
-        position.x++;
-        if (!map.onPlayerMove(this)) {
-            position.x--;
+        if (health > 0) {
+            position.x++;
+            if (!map.onPlayerMove(this)) {
+                position.x--;
+            }
         }
     }
 
@@ -83,9 +92,11 @@ public class Player extends BaseObject {
      * Moves this player to the left.
      */
     public void left() {
-        position.x--;
-        if (position.x < 0 || !map.onPlayerMove(this)) {
-            position.x++;
+        if (health > 0) {
+            position.x--;
+            if (position.x < 0 || !map.onPlayerMove(this)) {
+                position.x++;
+            }
         }
     }
 
