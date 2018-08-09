@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.ItemSpawner;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.LivingBaseObject;
@@ -8,12 +9,12 @@ import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class NPC extends LivingBaseObject {
     /*private Item toGive;*/
-    private int minHealthChange;
-    private int maxHealthChange;
     protected long nextUse;
     protected Item requiredItem = null;
     protected int npcMessageID;
@@ -23,6 +24,28 @@ public class NPC extends LivingBaseObject {
         super(position);
         npcMessageID = message;
         this.delay = delay;
+        Timer rumlaufTimer = new Timer(true);		
+	    rumlaufTimer.scheduleAtFixedRate(new TimerTask() {
+		    @Override
+	       	public void run() {
+				short random = (short) Math.round(Math.random()*3);
+				Vector2D ziel = new Vector2D(0, 0);
+				if (random == 0) {
+					ziel = new Vector2D(position.x+1, position.y);
+				} else if (random == 1) {
+					ziel = new Vector2D(position.x-1, position.y);
+				} else if (random == 2) {
+					ziel = new Vector2D(position.x, position.y+1);
+				} else if (random == 3) {
+					ziel = new Vector2D(position.x, position.y-1);
+				}
+				if (map != null) {
+					if (map.getObjectByPosition(ziel) == null) {
+						setPosition(ziel);
+					}
+				}
+			}
+	    }, 0, Math.round(Math.random()*2000));
     }
 
     public void setRequiredItem(Item item) {

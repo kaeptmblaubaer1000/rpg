@@ -6,6 +6,8 @@ import de.computercamp.rpg.entities.WallTile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapBuilder {
 
@@ -41,9 +43,15 @@ public class MapBuilder {
         }
 
         NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
-        for (int i = 0; i != 4; i++) {
-        	ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
-        }
+	    Timer itemspawnTimer = new Timer(true);		
+	    itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
+		    @Override
+	       	public void run() {
+				ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
+			}
+	    }, 0, 10000);
+	        	
+        
     }
 
     public Map getMap() {
