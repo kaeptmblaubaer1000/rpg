@@ -15,7 +15,7 @@ import java.util.Locale;
 
 public class Main {
     private static JFrame jf;
-    private static JTextArea ta;
+    private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
     private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
@@ -38,12 +38,12 @@ public class Main {
     private static void createJFrame() {
         jf = new JFrame("");
         jf.setBackground(Color.black);
-        ta = new JTextArea();
+        leftTextArea = new JTextArea();
         Font font;
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
-            ta.setFont(font);
+            leftTextArea.setFont(font);
         } catch (FontFormatException | IOException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
@@ -51,16 +51,16 @@ public class Main {
             System.exit(1);
             throw new Error();
         }
-        ta.addKeyListener(new KeyHandler());
-        ta.setBackground(Color.black);
-        ta.setForeground(Color.white);
-        ta.setEditable(false);
-        ta.setAutoscrolls(false);
-        ta.setFocusable(true);
+        leftTextArea.addKeyListener(new KeyHandler());
+        leftTextArea.setBackground(Color.black);
+        leftTextArea.setForeground(Color.white);
+        leftTextArea.setEditable(false);
+        leftTextArea.setAutoscrolls(false);
+        leftTextArea.setFocusable(true);
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int leftTextAreaWidth = (int) (((float) screenWidth) / ((float) TEXTAREA_WIDTH_PERCENT) * 100);
         int rightTextAreaWidth = screenWidth - leftTextAreaWidth;
-        ta.setBounds(0, 0, leftTextAreaWidth, Toolkit.getDefaultToolkit().getScreenSize().height);
+        leftTextArea.setBounds(0, 0, leftTextAreaWidth, Toolkit.getDefaultToolkit().getScreenSize().height);
         rightTextArea = new JTextArea();
         rightTextArea.setBackground(Color.black);
         rightTextArea.setForeground(Color.white);
@@ -72,7 +72,7 @@ public class Main {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
-        panel.add(ta);
+        panel.add(leftTextArea);
         panel.add(rightTextArea);
         panel.setBackground(Color.black);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
@@ -86,11 +86,11 @@ public class Main {
     }
 
     public static void clearConsole() {
-        ta.setText("");
+        leftTextArea.setText("");
     }
 
     public static void consoleWrite(String text) {
-        ta.setText(ta.getText() + text + "\n");
+        leftTextArea.setText(leftTextArea.getText() + text + "\n");
     }
 
     public static void consoleClearAndWrite(String text) {
