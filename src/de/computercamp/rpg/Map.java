@@ -16,8 +16,6 @@ public class Map {
     public static final char RIGHT_UPPER_EDGE = '\u2510';
     public static final char LEFT_LOWER_EDGE = '\u2514';
     public static final char RIGHT_LOWER_EDGE = '\u2518';
-    public static final char DOOR = '\u258D';
-
 
     private List<BaseObject> mapContents = new ArrayList<>();
 
