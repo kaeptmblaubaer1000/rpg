@@ -7,8 +7,8 @@ public class Vector2D {
         this.y = y;
     }
 
-    public int x = 0;
-    public int y = 0;
+    public int x;
+    public int y;
 
     @Override
     public boolean equals(Object o) {
