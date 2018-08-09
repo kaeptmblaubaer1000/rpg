@@ -60,9 +60,10 @@ public class Main {
         leftTextArea.setAutoscrolls(false);
         leftTextArea.setFocusable(true);
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int leftTextAreaWidth = (int) (((float) screenWidth) / ((float) TEXTAREA_WIDTH_PERCENT) * 100);
+        int leftTextAreaWidth = (int) (((float) screenWidth) * ((float) TEXTAREA_WIDTH_PERCENT)) / 100;
         int rightTextAreaWidth = screenWidth - leftTextAreaWidth;
-        leftTextArea.setBounds(0, 0, leftTextAreaWidth, Toolkit.getDefaultToolkit().getScreenSize().height);
+        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+        leftTextArea.setBounds(0, 0, leftTextAreaWidth, screenHeight);
         rightTextArea = new JTextArea();
         rightTextArea.setBackground(Color.black);
         rightTextArea.setForeground(Color.white);
@@ -71,6 +72,7 @@ public class Main {
         rightTextArea.setFocusable(true);
         rightTextArea.addKeyListener(new KeyHandler());
         rightTextArea.setFont(font.deriveFont(25f));
+        rightTextArea.setBounds(leftTextAreaWidth, 0, rightTextAreaWidth, screenHeight);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
@@ -78,8 +80,7 @@ public class Main {
         panel.add(rightTextArea);
         panel.setBackground(Color.black);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
-        jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
-                Toolkit.getDefaultToolkit().getScreenSize().height);
+        jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, screenHeight);
         jf.setUndecorated(true);
         jf.setResizable(false);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
