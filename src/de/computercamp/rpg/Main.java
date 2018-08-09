@@ -130,6 +130,7 @@ public class Main {
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderInventory());
+        consoleWrite(mapBuilder.getPlayer().renderMessagesForPlayer());
     }
 
 
