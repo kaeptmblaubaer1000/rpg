@@ -2,13 +2,18 @@ package de.computercamp.rpg.entities.npcs;
 
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
 
-public class NPC extends BaseObject {
+
+public class NPC extends LivingBaseObject {
+    /*private Item toGive;*/
+    private int minHealthChange;
+    private int maxHealthChange;
     protected long nextUse;
     protected Item requiredItem = null;
     protected int npcMessageID;
@@ -72,6 +77,10 @@ public class NPC extends BaseObject {
 
     @Override
     public char render() {
-        return '\uA66A';
+    	if (health > 0) {
+    		return '\uA66A';
+    	} else {
+    		return 'X';
+    	}
     }
 }
