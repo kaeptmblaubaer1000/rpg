@@ -20,7 +20,6 @@ public class Map {
 	public static final char GRASS = '\u2059';
 	public static final char DOGDOOR = '\u2594';
 
-
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public boolean removeObject(BaseObject base) {
