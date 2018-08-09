@@ -1,16 +1,12 @@
 package de.computercamp.rpg.entities.npcs;
 
-import de.computercamp.rpg.ItemSpawner;
 import de.computercamp.rpg.Vector2D;
-import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class NPC extends LivingBaseObject {
@@ -79,48 +75,46 @@ public class NPC extends LivingBaseObject {
 
     @Override
     public char render() {
-    	if (health > 0) {
+        if (!isDead()) {
     		return '\uA66A';
     	} else {
     		return 'X';
     	}
     }
     public void startMoving(Player player) {
-    	Thread rumlaufTimer = new Thread(new Runnable() {
-		    @Override
-	       	public void run() {
-		    	short richtung = (short) Math.round(Math.random()*3);
-				while (true) {
-					Vector2D ziel = new Vector2D(0, 0);
-					if (richtung == 0) {
-						ziel = new Vector2D(position.x+1, position.y);
-					} else if (richtung == 1) {
-						ziel = new Vector2D(position.x-1, position.y);
-					} else if (richtung == 2) {
-						ziel = new Vector2D(position.x, position.y+1);
-					} else if (richtung == 3) {
-						ziel = new Vector2D(position.x, position.y-1);
-					}
-					
-					if (map != null) {
-						if (!((player.getPosition().x == position.x-1 || player.getPosition().x == position.x+1 || player.getPosition().x == position.x) && 
-								(player.getPosition().y == position.y-1 || player.getPosition().y == position.y+1 || player.getPosition().y == position.y))) {
-							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition()) && (position.x > 0 && position.y > 0 && position.x < 59 && position.y < 15)) {
-								if (health > 0) {
-									setPosition(ziel);
-								}
-							} else {
-								richtung = (short) Math.round(Math.random()*3);
-							}
-						}
-					}
-					try {
-						Thread.sleep(Math.round(Math.random()*5000));
-					} catch (InterruptedException e) {}
-				}
-				
-			}
-	    });
+        Thread rumlaufTimer = new Thread(() -> {
+            short richtung = (short) Math.round(Math.random() * 3);
+            while (true) {
+                Vector2D ziel = new Vector2D(0, 0);
+                if (richtung == 0) {
+                    ziel = new Vector2D(position.x + 1, position.y);
+                } else if (richtung == 1) {
+                    ziel = new Vector2D(position.x - 1, position.y);
+                } else if (richtung == 2) {
+                    ziel = new Vector2D(position.x, position.y + 1);
+                } else if (richtung == 3) {
+                    ziel = new Vector2D(position.x, position.y - 1);
+                }
+
+                if (map != null) {
+                    if (!((player.getPosition().x == position.x - 1 || player.getPosition().x == position.x + 1 || player.getPosition().x == position.x) &&
+                            (player.getPosition().y == position.y - 1 || player.getPosition().y == position.y + 1 || player.getPosition().y == position.y))) {
+                        if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition()) && (position.x > 0 && position.y > 0 && position.x < 59 && position.y < 15)) {
+                            if (health > 0) {
+                                setPosition(ziel);
+                            }
+                        } else {
+                            richtung = (short) Math.round(Math.random() * 3);
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(Math.round(Math.random() * 5000));
+                } catch (InterruptedException e) {
+                }
+            }
+
+        });
     	rumlaufTimer.start();
     }
 }
