@@ -115,59 +115,59 @@ public class Main {
 
     static class KeyHandler extends KeyAdapter {
         @Override
-        public void keyPressed(KeyEvent e) {
+        public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_UP:
-                case KeyEvent.VK_W:
-                    mapBuilder.getPlayer().up();
-                    break;
-                case KeyEvent.VK_LEFT:
-                case KeyEvent.VK_A:
-                    mapBuilder.getPlayer().left();
-                    break;
-                case KeyEvent.VK_DOWN:
-                case KeyEvent.VK_S:
-                    mapBuilder.getPlayer().down();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                case KeyEvent.VK_D:
-                    mapBuilder.getPlayer().right();
-                    break;
-                case KeyEvent.VK_ESCAPE:
-                    jf.dispose();
-                    System.exit(0);
-                    break;
-                case KeyEvent.VK_1:
-                    mapBuilder.getPlayer().useItem(0);
-                    break;
-                case KeyEvent.VK_2:
-                    mapBuilder.getPlayer().useItem(1);
-                    break;
-                case KeyEvent.VK_3:
-                    mapBuilder.getPlayer().useItem(2);
-                    break;
-                case KeyEvent.VK_4:
-                    mapBuilder.getPlayer().useItem(3);
-                    break;
-                case KeyEvent.VK_5:
-                    mapBuilder.getPlayer().useItem(4);
-                    break;
-                case KeyEvent.VK_6:
-                    mapBuilder.getPlayer().useItem(5);
-                    break;
-                case KeyEvent.VK_7:
-                    mapBuilder.getPlayer().useItem(6);
-                    break;
-                case KeyEvent.VK_8:
-                    mapBuilder.getPlayer().useItem(7);
-                    break;
-                case KeyEvent.VK_9:
-                    mapBuilder.getPlayer().useItem(8);
-                    break;
-            }
-            synchronized (renderLock) {
-                renderGame();
-            }
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+                mapBuilder.getPlayer().up();
+                break;
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
+                mapBuilder.getPlayer().left();
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
+                mapBuilder.getPlayer().down();
+                break;
+            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
+                mapBuilder.getPlayer().right();
+                break;
+            case KeyEvent.VK_ESCAPE:
+                jf.dispose();
+                System.exit(0);
+                break;
+            case KeyEvent.VK_1:
+                mapBuilder.getPlayer().useItem(0);
+                break;
+            case KeyEvent.VK_2:
+                mapBuilder.getPlayer().useItem(1);
+                break;
+            case KeyEvent.VK_3:
+                mapBuilder.getPlayer().useItem(2);
+                break;
+            case KeyEvent.VK_4:
+                mapBuilder.getPlayer().useItem(3);
+                break;
+            case KeyEvent.VK_5:
+                mapBuilder.getPlayer().useItem(4);
+                break;
+            case KeyEvent.VK_6:
+                mapBuilder.getPlayer().useItem(5);
+                break;
+            case KeyEvent.VK_7:
+                mapBuilder.getPlayer().useItem(6);
+                break;
+            case KeyEvent.VK_8:
+                mapBuilder.getPlayer().useItem(7);
+                break;
+            case KeyEvent.VK_9:
+                mapBuilder.getPlayer().useItem(8);
+                break;
+        }
+        synchronized (renderLock) {
+            renderGame();
+        }
         }
 
         @Override
