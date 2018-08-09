@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Map {
-    public static final char VERTICAL_LINE = '\u2500';
-    public static final char HORIZONTAL_LINE = '\u2502';
+    public static final char VERTICAL_LINE = '\u2502';
+    public static final char HORIZONTAL_LINE = '\u2500';
 
     public static final char LEFT_UPPER_EDGE = '\u250c';
     public static final char RIGHT_UPPER_EDGE = '\u2510';
     public static final char LEFT_LOWER_EDGE = '\u2514';
     public static final char RIGHT_LOWER_EDGE = '\u2518';
-    public static final char DOOR = '\u2593';
+    public static final char DOOR = '\u258D';
 
 
     private List<BaseObject> mapContents = new ArrayList<>();
