@@ -12,8 +12,9 @@ public class Sword extends Item {
     }
 
     @Override
-    public void use(Player player) {
+    public boolean use(Player player) {
         player.kill();
+        return false;
     }
 
     @Override

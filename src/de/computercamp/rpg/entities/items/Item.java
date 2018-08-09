@@ -12,7 +12,11 @@ public abstract class Item extends BaseObject {
         super(position);
     }
 
-    public abstract void use(Player player);
+    /**
+     * @param player the player who uses the item
+     * @return Returns if the item should remove from the inventory. True: the item will be removed
+     */
+    public abstract boolean use(Player player);
 
     public char getSymbol() {
         return symbol;

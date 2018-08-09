@@ -39,8 +39,9 @@ public class Main {
         jf = new JFrame("");
         jf.setBackground(Color.black);
         ta = new JTextArea();
+        Font font;
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
             ta.setFont(font);
         } catch (FontFormatException | IOException e) {
@@ -48,6 +49,7 @@ public class Main {
             e.printStackTrace(new PrintWriter(stringWriter));
             JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
+            throw new Error();
         }
         ta.addKeyListener(new KeyHandler());
         ta.setBackground(Color.black);
@@ -66,6 +68,7 @@ public class Main {
         rightTextArea.setAutoscrolls(false);
         rightTextArea.setFocusable(true);
         rightTextArea.addKeyListener(new KeyHandler());
+        rightTextArea.setFont(font.deriveFont(25f));
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
@@ -118,6 +121,34 @@ public class Main {
                 case KeyEvent.VK_ESCAPE:
                     jf.dispose();
                     System.exit(0);
+                    break;
+                case KeyEvent.VK_1:
+                    mapBuilder.getPlayer().useItem(0);
+                    break;
+                case KeyEvent.VK_2:
+                    mapBuilder.getPlayer().useItem(1);
+                    break;
+                case KeyEvent.VK_3:
+                    mapBuilder.getPlayer().useItem(2);
+                    break;
+                case KeyEvent.VK_4:
+                    mapBuilder.getPlayer().useItem(3);
+                    break;
+                case KeyEvent.VK_5:
+                    mapBuilder.getPlayer().useItem(4);
+                    break;
+                case KeyEvent.VK_6:
+                    mapBuilder.getPlayer().useItem(5);
+                    break;
+                case KeyEvent.VK_7:
+                    mapBuilder.getPlayer().useItem(6);
+                    break;
+                case KeyEvent.VK_8:
+                    mapBuilder.getPlayer().useItem(7);
+                    break;
+                case KeyEvent.VK_9:
+                    mapBuilder.getPlayer().useItem(8);
+                    break;
             }
             renderGame();
         }
@@ -131,6 +162,7 @@ public class Main {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderInventory());
         consoleWrite(mapBuilder.getPlayer().renderMessagesForPlayer());
+        rightTextArea.setText(mapBuilder.getPlayer().renderInventory());
     }
 
 

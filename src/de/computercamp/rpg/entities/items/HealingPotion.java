@@ -12,8 +12,9 @@ public class HealingPotion extends Item {
     }
 
     @Override
-    public void use(Player player) {
+    public boolean use(Player player) {
         player.heal();
+        return true;
     }
 
     @Override

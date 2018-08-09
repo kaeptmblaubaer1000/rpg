@@ -117,6 +117,18 @@ public class Player extends BaseObject {
         return health;
     }
 
+    public String renderHealth() {
+        int hearts = health / 2;
+        StringBuilder string = new StringBuilder();
+        for (int i = 0; i < hearts; i++) {
+            string.append('\u2665');
+        }
+        for (int i = 0; i < MAX_HEALTH / 2 - hearts; i++) {
+            string.append('\u2661');
+        }
+        return string.toString();
+    }
+
     public void collectItem(Item item) {
         if (map == null) {
             throw new NullPointerException("Player removed from map");
