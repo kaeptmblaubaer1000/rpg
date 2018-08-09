@@ -4,6 +4,7 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
+import java.awt.Color;
 import java.util.*;
 
 /**
@@ -16,6 +17,7 @@ public class Player extends BaseObject {
 
     private int health = MAX_HEALTH;
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
+    private List<String> messagesForPlayer = new ArrayList<>();
 
     public Player(Vector2D position) {
         super(position);
@@ -169,6 +171,16 @@ public class Player extends BaseObject {
     }
 
     public void sendMessage(String message) {
-        System.out.println(message);
+        messagesForPlayer.add(message);
     }
+
+	public List<String> getMessagesForPlayer() {
+		return messagesForPlayer;
+	}
+	public String renderMessagesForPlayer() {
+		String toReturn = "";
+		if (messagesForPlayer.size() > 0)
+			toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size()-1);
+		return toReturn;
+	}
 }
