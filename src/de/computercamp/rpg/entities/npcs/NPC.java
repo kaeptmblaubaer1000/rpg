@@ -82,7 +82,7 @@ public class NPC extends LivingBaseObject {
     		return 'X';
     	}
     }
-    public void startMoving() {
+    public void startMoving(Player player) {
     	Thread rumlaufTimer = new Thread(new Runnable() {
 		    @Override
 	       	public void run() {
@@ -100,10 +100,13 @@ public class NPC extends LivingBaseObject {
 					}
 					
 					if (map != null) {
-						if (map.getObjectByPosition(ziel) == null) {
-							setPosition(ziel);
-						} else {
-							richtung = (short) Math.round(Math.random()*3);
+						if (!((player.getPosition().x == position.x-1 || player.getPosition().x == position.x+1 || player.getPosition().x == position.x) && 
+								(player.getPosition().y == position.y-1 || player.getPosition().y == position.y+1 || player.getPosition().y == position.y))) {
+							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition())) {
+								setPosition(ziel);
+							} else {
+								richtung = (short) Math.round(Math.random()*3);
+							}
 						}
 					}
 					try {
