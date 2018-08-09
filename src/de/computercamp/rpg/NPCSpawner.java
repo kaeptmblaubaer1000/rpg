@@ -1,4 +1,5 @@
 package de.computercamp.rpg;
+import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.HealingPotion;
 import de.computercamp.rpg.entities.items.Sword;
 import de.computercamp.rpg.entities.npcs.HealthChangingNPC;
@@ -6,11 +7,15 @@ import de.computercamp.rpg.entities.npcs.ItemGivingNPC;
 import de.computercamp.rpg.entities.npcs.NPC;
 
 public class NPCSpawner {
-	public static void spawnRandomNPCs(Map map, Vector2D minPos, Vector2D maxPos) {
+	public static void spawnRandomNPCs(Player player, Map map, Vector2D minPos, Vector2D maxPos) {
 		NPC welcomeNPC = new NPC(getRandomLocation(map, minPos, maxPos), 0, 0);
+		welcomeNPC.startMoving(player);
 		NPC magician = new ItemGivingNPC(getRandomLocation(map, minPos, maxPos), 1, new HealingPotion(new Vector2D(0,0)), (long)-1);
+		magician.startMoving(player);
 		NPC badmagician = new HealthChangingNPC(getRandomLocation(map, minPos, maxPos), 2, -6, 8, 20000);
+		badmagician.startMoving(player);
 		NPC weaponsmith = new ItemGivingNPC(getRandomLocation(map, minPos, maxPos), 3, new Sword(new Vector2D(0,0)), (long) -1);
+		weaponsmith.startMoving(player);
 		map.addObject(welcomeNPC);
 		map.addObject(magician);
 		map.addObject(badmagician);
