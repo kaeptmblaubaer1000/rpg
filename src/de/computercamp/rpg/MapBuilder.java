@@ -61,7 +61,7 @@ public class MapBuilder {
             map.addObject(runThrough);
         }
 
-        NPCSpawner.spawnRandomNPCs(map, new Vector2D(2,2), new Vector2D(58,12));
+        NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2,2), new Vector2D(58,12));
 	    Timer itemspawnTimer = new Timer(true);		
 	    itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
 		    @Override

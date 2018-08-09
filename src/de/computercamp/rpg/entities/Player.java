@@ -117,6 +117,29 @@ public class Player extends LivingBaseObject {
         return inventory.remove(item);
     }
 
+    public void dropItem(int inventoryIndex) {
+        dropItem(inventory.get(inventoryIndex));
+    }
+
+    public void dropItem(Item item) {
+        if (map != null) {
+            if (map.getObjectByPosition(position.withY(position.y + 1)) == null) {
+                item.setPosition(position.withY(position.y + 1));
+            } else if (map.getObjectByPosition(position.withY(position.y - 1)) == null) {
+                item.setPosition(position.withY(position.y - 1));
+            } else if (map.getObjectByPosition(position.withX(position.x + 1)) == null) {
+                item.setPosition(position.withX(position.x + 1));
+            } else if (map.getObjectByPosition(position.withX(position.x - 1)) == null) {
+                item.setPosition(position.withX(position.x - 1));
+            } else {
+                return;
+            }
+            removeItem(item);
+            map.addObject(item);
+            System.gc();
+        }
+    }
+
     public List<Item> getInventory() {
         return Collections.unmodifiableList(inventory);
     }
