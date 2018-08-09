@@ -116,17 +116,9 @@ public class Main {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_Q) {
-                qPressed = true;
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_ESCAPE:
-                    jf.dispose();
-                    System.exit(0);
+                case KeyEvent.VK_Q:
+                    qPressed = true;
                     break;
 
                 case KeyEvent.VK_UP:
@@ -144,6 +136,19 @@ public class Main {
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     mapBuilder.getPlayer().right();
+                    break;
+            }
+            synchronized (renderLock) {
+                renderGame();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_ESCAPE:
+                    jf.dispose();
+                    System.exit(0);
                     break;
 
                 case KeyEvent.VK_0:
