@@ -4,20 +4,31 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
-import java.awt.Color;
 import java.util.*;
 
 /**
  * Simple player class with position and up, down, right and left method
  */
-public class Player extends LivingBaseObject {
+public class Player extends BaseObject {
+
+    public static final int MAX_HEALTH = 20;
     private static final int INVENTORY_SIZE = 10;
+
+    private int health = MAX_HEALTH;
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
     private List<String> messagesForPlayer = new ArrayList<>();
 
     public Player(Vector2D position) {
         super(position);
-        
+        Timer healthTimer = new Timer(true);
+        healthTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (health < MAX_HEALTH && health > 0) {
+                    health++;
+                }
+            }
+        }, 0, 2000);
     }
 
     @Override
@@ -90,14 +101,46 @@ public class Player extends LivingBaseObject {
         }
     }
 
+    public void increaseHealth(int health) {
+        this.health = this.health + health;
+    }
+
+    public void decreaseHealth(int health) {
+        this.health = this.health - health;
+    }
+
+    /**
+     * Sets the health to MAX_HEALTH
+     */
+    public void heal() {
+        health = MAX_HEALTH;
+    }
+
+    /**
+     * Sets the health to 0
+     */
+    public void kill() {
+        health = 0;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public boolean isDead() {
+        return health <= 0;
+    }
+
     public String renderHealth() {
         int hearts = health / 2;
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < hearts; i++) {
-            string.append('\u2665');
+            //string.append('\u2665');
+            string.append('+');
         }
         for (int i = 0; i < MAX_HEALTH / 2 - hearts; i++) {
-            string.append('\u2661');
+            //string.append('\u2661');
+            string.append('-');
         }
         return string.toString();
     }

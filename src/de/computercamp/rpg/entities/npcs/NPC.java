@@ -54,7 +54,6 @@ public class NPC extends LivingBaseObject {
 
     @Override
     public boolean onPlayerMove(Player player) {
-        Vector2D ppos = player.getPosition();
         String message;
         if (npcMessageID == 0) {
         	message = Messages.npcWelcome;

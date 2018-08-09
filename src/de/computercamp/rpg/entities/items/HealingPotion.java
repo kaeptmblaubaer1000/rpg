@@ -13,8 +13,11 @@ public class HealingPotion extends Item {
 
     @Override
     public boolean use(Player player) {
-        player.heal();
-        return true;
+        if (!player.isDead()) {
+            player.heal();
+            return true;
+        }
+        return false;
     }
 
     @Override
