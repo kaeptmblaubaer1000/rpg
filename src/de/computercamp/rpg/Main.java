@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -21,6 +22,7 @@ public class Main {
     private static JTextArea rightTextArea;
     private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
+    private static final Object renderLock = new Object();
 
     private static final int TEXTAREA_WIDTH_PERCENT = 50;
 
@@ -40,6 +42,7 @@ public class Main {
     private static void createJFrame() {
         jf = new JFrame("");
         jf.setBackground(Color.black);
+        jf.setCursor(jf.getToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(), null));
         leftTextArea = new JTextArea();
         Font font;
         try {
@@ -90,7 +93,9 @@ public class Main {
         renderTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                renderGame();
+                synchronized (renderLock) {
+                    renderGame();
+                }
             }
         }, 0, 500);
     }
@@ -160,7 +165,9 @@ public class Main {
                     mapBuilder.getPlayer().useItem(8);
                     break;
             }
-            renderGame();
+            synchronized (renderLock) {
+                renderGame();
+            }
         }
 
         @Override
