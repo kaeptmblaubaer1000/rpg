@@ -68,7 +68,7 @@ public class Main {
         rightTextArea.setAutoscrolls(false);
         rightTextArea.setFocusable(true);
         rightTextArea.addKeyListener(new KeyHandler());
-        rightTextArea.setFont(font);
+        rightTextArea.setFont(font.deriveFont(25f));
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(true);
@@ -160,7 +160,7 @@ public class Main {
 
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
-        consoleWrite(mapBuilder.getPlayer().renderInventory());
+        rightTextArea.setText(mapBuilder.getPlayer().renderInventory());
     }
 
 
