@@ -31,6 +31,9 @@ public class NPC extends LivingBaseObject {
 
     @Override
     public boolean onPlayerMove(Player player) {
+    	if (health <= 0) {
+    		return true;
+    	}
         String message;
         if (npcMessageID == 0) {
         	message = Messages.npcWelcome;
