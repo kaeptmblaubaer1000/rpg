@@ -121,6 +121,34 @@ public class Main {
                 case KeyEvent.VK_ESCAPE:
                     jf.dispose();
                     System.exit(0);
+                    break;
+                case KeyEvent.VK_1:
+                    mapBuilder.getPlayer().useItem(0);
+                    break;
+                case KeyEvent.VK_2:
+                    mapBuilder.getPlayer().useItem(1);
+                    break;
+                case KeyEvent.VK_3:
+                    mapBuilder.getPlayer().useItem(2);
+                    break;
+                case KeyEvent.VK_4:
+                    mapBuilder.getPlayer().useItem(3);
+                    break;
+                case KeyEvent.VK_5:
+                    mapBuilder.getPlayer().useItem(4);
+                    break;
+                case KeyEvent.VK_6:
+                    mapBuilder.getPlayer().useItem(5);
+                    break;
+                case KeyEvent.VK_7:
+                    mapBuilder.getPlayer().useItem(6);
+                    break;
+                case KeyEvent.VK_8:
+                    mapBuilder.getPlayer().useItem(7);
+                    break;
+                case KeyEvent.VK_9:
+                    mapBuilder.getPlayer().useItem(8);
+                    break;
             }
             renderGame();
         }

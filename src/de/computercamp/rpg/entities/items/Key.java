@@ -12,8 +12,9 @@ public class Key extends Item {
     }
 
     @Override
-    public void use(Player player) {
-        player.up();
+    public boolean use(Player player) {
+        player.setPosition(new Vector2D(1, 1));
+        return true;
     }
 
     @Override
