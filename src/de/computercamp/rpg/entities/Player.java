@@ -10,26 +10,14 @@ import java.util.*;
 /**
  * Simple player class with position and up, down, right and left method
  */
-public class Player extends BaseObject {
-
-    public static final int MAX_HEALTH = 20;
+public class Player extends LivingBaseObject {
     private static final int INVENTORY_SIZE = 10;
-
-    private int health = MAX_HEALTH;
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
     private List<String> messagesForPlayer = new ArrayList<>();
 
     public Player(Vector2D position) {
         super(position);
-        Timer healthTimer = new Timer(true);
-        healthTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (health < MAX_HEALTH && health > 0) {
-                    health++;
-                }
-            }
-        }, 0, 2000);
+        
     }
 
     @Override
@@ -100,32 +88,6 @@ public class Player extends BaseObject {
                 position.x++;
             }
         }
-    }
-
-    public void increaseHealth(int health) {
-        this.health = this.health + health;
-    }
-
-    public void decreaseHealth(int health) {
-        this.health = this.health - health;
-    }
-
-    /**
-     * Sets the health to MAX_HEALTH
-     */
-    public void heal() {
-        health = MAX_HEALTH;
-    }
-
-    /**
-     * Sets the health to 0
-     */
-    public void kill() {
-        health = 0;
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public String renderHealth() {

@@ -2,13 +2,14 @@ package de.computercamp.rpg.entities.npcs;
 
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
 
-public class NPC extends BaseObject {
+public class NPC extends LivingBaseObject {
     public enum NPCType {TALKING, GIVING_ITEM, HEALTH_CHANGING}
 
     private NPCType type;
@@ -97,6 +98,10 @@ public class NPC extends BaseObject {
 
     @Override
     public char render() {
-        return '\uA66A';
+    	if (health > 0) {
+    		return '\uA66A';
+    	} else {
+    		return 'X';
+    	}
     }
 }
