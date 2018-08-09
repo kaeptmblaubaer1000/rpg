@@ -4,10 +4,7 @@ import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,6 +37,7 @@ public class Main {
     }
 
     private static void createJFrame() {
+        KeyListener keyListener = new KeyHandler();
         jf = new JFrame("");
         jf.setBackground(Color.black);
         jf.setCursor(jf.getToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(), null));
@@ -56,7 +54,7 @@ public class Main {
             System.exit(1);
             throw new Error();
         }
-        leftTextArea.addKeyListener(new KeyHandler());
+        leftTextArea.addKeyListener(keyListener);
         leftTextArea.setBackground(Color.black);
         leftTextArea.setForeground(Color.white);
         leftTextArea.setEditable(false);
@@ -73,7 +71,7 @@ public class Main {
         rightTextArea.setEditable(false);
         rightTextArea.setAutoscrolls(false);
         rightTextArea.setFocusable(true);
-        rightTextArea.addKeyListener(new KeyHandler());
+        rightTextArea.addKeyListener(keyListener);
         rightTextArea.setFont(font.deriveFont(25f));
         rightTextArea.setBounds(leftTextAreaWidth, 0, rightTextAreaWidth, screenHeight);
         JPanel panel = new JPanel();
