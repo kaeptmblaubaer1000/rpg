@@ -1,16 +1,16 @@
 package de.computercamp.rpg.entities;
 
+import de.computercamp.rpg.Vector2D;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.computercamp.rpg.Vector2D;
+public abstract class LivingBaseObject extends BaseObject {
 
-public class LivingBaseObject extends BaseObject {
-	public static final int MAX_HEALTH = 20;
-
+    public static final int MAX_HEALTH = 20;
     protected int health = MAX_HEALTH;
-	
-	public LivingBaseObject(Vector2D position) {
+
+    public LivingBaseObject(Vector2D position) {
 		super(position);
 		Timer healthTimer = new Timer(true);
 		
@@ -23,13 +23,25 @@ public class LivingBaseObject extends BaseObject {
             }
         }, 0, 2000);
 	}
-	public void increaseHealth(int health) {
-        this.health = this.health + health;
+
+    public void increaseHealth(int health) {
+        int finalHealth = this.health + health;
+        if (finalHealth > MAX_HEALTH) {
+            this.health = MAX_HEALTH;
+        } else {
+            this.health = finalHealth;
+        }
     }
 
     public void decreaseHealth(int health) {
-        this.health = this.health - health;
+        int finalHealth = this.health - health;
+        if (finalHealth < 0) {
+            this.health = 0;
+        } else {
+            this.health = finalHealth;
+        }
     }
+
     /**
      * Sets the health to MAX_HEALTH
      */
@@ -47,9 +59,22 @@ public class LivingBaseObject extends BaseObject {
     public int getHealth() {
         return health;
     }
-	@Override
-	public char render() {
-		return 0;
-	}
 
+    public boolean isDead() {
+        return health <= 0;
+    }
+
+    public String renderHealth() {
+        int hearts = health / 2;
+        StringBuilder string = new StringBuilder();
+        for (int i = 0; i < hearts; i++) {
+            //string.append('\u2665');
+            string.append('+');
+        }
+        for (int i = 0; i < MAX_HEALTH / 2 - hearts; i++) {
+            //string.append('\u2661');
+            string.append('-');
+        }
+        return string.toString();
+    }
 }
