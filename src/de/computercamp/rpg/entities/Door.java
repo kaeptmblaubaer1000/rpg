@@ -3,7 +3,6 @@ package de.computercamp.rpg.entities;
 import de.computercamp.rpg.Vector2D;
 
 public class Door extends BaseObject {
-
     public Door(Vector2D position) {
         super(position);
     }

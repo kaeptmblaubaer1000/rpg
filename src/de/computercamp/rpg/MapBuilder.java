@@ -1,15 +1,11 @@
 package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.Door;
 import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.RunThroughObject;
 import de.computercamp.rpg.entities.WallTile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class MapBuilder {
 
@@ -63,9 +59,8 @@ public class MapBuilder {
         objects.add(new WallTile(new Vector2D(25, 6), WallTile.Type.HORIZONTAL));
         objects.add(new WallTile(new Vector2D(24, 6), WallTile.Type.LEFT_LOWER_EDGE));
         objects.add(new WallTile(new Vector2D(24, 5), WallTile.Type.VERTICAL));
-        
-        objects.add(new RunThroughObject(new Vector2D(6,6), RunThroughObject.Type.DOOR));
-        objects.add(new RunThroughObject(new Vector2D(26, 6), RunThroughObject.Type.DOGDOOR));
+
+        objects.add(new Door(new Vector2D(6, 6)));
 
         map.addObject(player);
         for (BaseObject object : objects) {
