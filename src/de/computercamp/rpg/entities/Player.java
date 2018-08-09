@@ -4,7 +4,6 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
-import java.awt.Color;
 import java.util.*;
 
 /**
@@ -128,14 +127,20 @@ public class Player extends BaseObject {
         return health;
     }
 
+    public boolean isDead() {
+        return health <= 0;
+    }
+
     public String renderHealth() {
         int hearts = health / 2;
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < hearts; i++) {
-            string.append('\u2665');
+            //string.append('\u2665');
+            string.append('+');
         }
         for (int i = 0; i < MAX_HEALTH / 2 - hearts; i++) {
-            string.append('\u2661');
+            //string.append('\u2661');
+            string.append('-');
         }
         return string.toString();
     }

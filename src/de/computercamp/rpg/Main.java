@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
     private static JFrame jf;
@@ -82,7 +84,14 @@ public class Main {
         jf.setResizable(false);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
-        renderGame();
+
+        Timer renderTimer = new Timer(true);
+        renderTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                renderGame();
+            }
+        }, 0, 500);
     }
 
     public static void clearConsole() {
