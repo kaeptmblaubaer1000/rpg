@@ -160,7 +160,8 @@ public class Main {
 
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
-        rightTextArea.setText(mapBuilder.getPlayer().renderInventory());
+        consoleWrite(mapBuilder.getPlayer().renderMessagesForPlayer());
+        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n" + mapBuilder.getPlayer().renderInventory());
     }
 
 
