@@ -9,13 +9,6 @@ import de.computercamp.rpg.resources.Messages;
 import java.text.MessageFormat;
 
 public class NPC extends BaseObject {
-    public enum NPCType {TALKING, GIVING_ITEM, HEALTH_CHANGING}
-
-    private NPCType type;
-    /*private Item toGive;*/
-    private boolean healingOrKilling;
-    private int minHealthChange;
-    private int maxHealthChange;
     protected long nextUse;
     protected Item requiredItem = null;
     protected int npcMessageID;
@@ -24,26 +17,8 @@ public class NPC extends BaseObject {
     public NPC(Vector2D position, int message, long delay) {
         super(position);
         npcMessageID = message;
-        type = NPCType.TALKING;
         this.delay = delay;
     }
-
-    /*public NPC(Vector2D position, int message, Item toGive, int delay) {
-        super(position);
-        npcMessageID = message;
-        type = NPCType.GIVING_ITEM;
-        this.toGive = toGive;
-        nextUse = System.currentTimeMillis() + delay;
-    }
-
-    public NPC(Vector2D position, int message, int minHealthChange, int maxHealthChange, int delay) {
-        super(position);
-        npcMessageID = message;
-        type = NPCType.HEALTH_CHANGING;
-        this.minHealthChange = minHealthChange;
-        this.maxHealthChange = maxHealthChange;
-        nextUse = System.currentTimeMillis() + delay;
-    }*/
 
     public void setRequiredItem(Item item) {
         requiredItem = item;
