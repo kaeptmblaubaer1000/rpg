@@ -33,7 +33,6 @@ public abstract class Item extends BaseObject {
     public boolean onPlayerMove(Player player) {
     	if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
     		player.collectItem(this);
-    		player.getMap().removeObject(this);
     	}
     	return true;
     }
