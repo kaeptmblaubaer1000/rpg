@@ -117,22 +117,6 @@ public class Main {
         @Override
         public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_UP:
-                case KeyEvent.VK_W:
-                    mapBuilder.getPlayer().up();
-                    break;
-                case KeyEvent.VK_LEFT:
-                case KeyEvent.VK_A:
-                    mapBuilder.getPlayer().left();
-                    break;
-                case KeyEvent.VK_DOWN:
-                case KeyEvent.VK_S:
-                    mapBuilder.getPlayer().down();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                case KeyEvent.VK_D:
-                    mapBuilder.getPlayer().right();
-                    break;
                 case KeyEvent.VK_ESCAPE:
                     jf.dispose();
                     System.exit(0);
@@ -175,6 +159,24 @@ public class Main {
 
         @Override
         public void keyTyped(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
+                    mapBuilder.getPlayer().up();
+                    break;
+                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
+                    mapBuilder.getPlayer().left();
+                    break;
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
+                    mapBuilder.getPlayer().down();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
+                    mapBuilder.getPlayer().right();
+                    break;
+            }
         }
     }
 
