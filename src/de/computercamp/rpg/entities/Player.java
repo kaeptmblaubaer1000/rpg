@@ -26,7 +26,7 @@ public class Player extends LivingBaseObject {
                     health++;
                 }
             }
-        }, 0, 2000);
+        }, 0, 4000);
     }
 
     @Override
