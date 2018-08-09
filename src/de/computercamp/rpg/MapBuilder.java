@@ -1,8 +1,10 @@
 package de.computercamp.rpg;
 
+import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.RunThroughObject;
 import de.computercamp.rpg.entities.WallTile;
+import de.computercamp.rpg.entities.items.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,10 +53,19 @@ public class MapBuilder {
 
         NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2,2), new Vector2D(58,12));
 	    Timer itemspawnTimer = new Timer(true);		
+	    
 	    itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
 		    @Override
 	       	public void run() {
-				ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
+		    	int items = 0;
+		    	List<BaseObject> mapContents = map.getMapContents();
+		    	for (int i = 0; i != mapContents.size(); i++) {
+		    		if (mapContents.get(i) instanceof Item) {
+		    			items++;
+		    		}
+		    	}
+		    	if (items <= 10)
+		    		ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
 			}
 	    }, 0, 10000);
 	        	
