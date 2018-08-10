@@ -4,12 +4,7 @@ import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.items.Cucumber;
-import de.computercamp.rpg.entities.items.HealingPotion;
-import de.computercamp.rpg.entities.items.Item;
-import de.computercamp.rpg.entities.items.Key;
-import de.computercamp.rpg.entities.items.SuicideSword;
-import de.computercamp.rpg.entities.items.Sword;
+import de.computercamp.rpg.entities.items.*;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
@@ -18,14 +13,6 @@ import java.util.List;
 public class NPC extends LivingBaseObject {
 	protected long nextUse;
 	protected Item requiredItem = null;
-	public enum MessageID {
-		npcWelcome,
-		npcMagician,
-		npcBadMagician,
-		npcWeaponsmith,
-		npcCook,
-
-	}
 	protected MessageID npcMessageID;
 	protected long delay;
 	protected long despawn = 0;
@@ -36,6 +23,16 @@ public class NPC extends LivingBaseObject {
 		npcMessageID = message;
 		this.delay = delay;
 		this.player = player;
+	}
+
+	private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
+		Vector2D randloc;
+		do {
+			int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);
+			int posY = (int) Math.round((Math.random() * (maxPos.y - minPos.y)) + minPos.y);
+			randloc = new Vector2D(posX, posY);
+		} while (map.getObjectByPosition(randloc) != null);
+		return randloc;
 	}
 
 	public void setRequiredItem(Item item) {
@@ -66,7 +63,7 @@ public class NPC extends LivingBaseObject {
 			if (requiredItem != null) {
 				if (!removeItemOfType(player, requiredItem)) {
 					MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
-					player.sendMessage(messageFormat.format(new Object[] { requiredItem.getDisplayName() }));
+					player.sendMessage(messageFormat.format(new Object[]{requiredItem.getDisplayName()}));
 					return false;
 				}
 			}
@@ -74,7 +71,7 @@ public class NPC extends LivingBaseObject {
 			if (System.currentTimeMillis() < nextUse) {
 				MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
 				player.sendMessage(messageFormat
-						.format(new Object[] { Math.round((nextUse - System.currentTimeMillis()) / 1000) }));
+						.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
 				return false;
 			} else if (nextUse == -1) {
 				player.sendMessage(Messages.npcWaitingForever);
@@ -154,16 +151,6 @@ public class NPC extends LivingBaseObject {
 		}
 	}
 
-	private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
-		Vector2D randloc;
-		do {
-			int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);
-			int posY = (int) Math.round((Math.random() * (maxPos.y - minPos.y)) + minPos.y);
-			randloc = new Vector2D(posX, posY);
-		} while (map.getObjectByPosition(randloc) != null);
-		return randloc;
-	}
-
 	public void startMoving(Player player) {
 		Thread rumlaufTimer = new Thread(new Runnable() {
 			@Override
@@ -185,7 +172,7 @@ public class NPC extends LivingBaseObject {
 						if (!((player.getPosition().x == position.x - 1 || player.getPosition().x == position.x + 1
 								|| player.getPosition().x == position.x)
 								&& (player.getPosition().y == position.y - 1 || player.getPosition().y == position.y + 1
-										|| player.getPosition().y == position.y))) {
+								|| player.getPosition().y == position.y))) {
 							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition())
 									&& (ziel.x > 0 && ziel.y > 0 && ziel.x < 59 && ziel.y < 15)) {
 								if (health > 0) {
@@ -208,5 +195,14 @@ public class NPC extends LivingBaseObject {
 		});
 
 		rumlaufTimer.start();
+	}
+
+	public enum MessageID {
+		npcWelcome,
+		npcMagician,
+		npcBadMagician,
+		npcWeaponsmith,
+		npcCook,
+
 	}
 }

@@ -4,21 +4,6 @@ import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 
 public class WallTile extends BaseObject {
-    public enum Type {
-        VERTICAL,
-        HORIZONTAL,
-
-        LEFT_UPPER_EDGE,
-        RIGHT_UPPER_EDGE,
-        LEFT_LOWER_EDGE,
-        RIGHT_LOWER_EDGE,
-
-        VERTICAL_RIGHT_T_CONNECTOR,
-        VERTICAL_LEFT_T_CONNECTOR,
-        HORIZONTAL_DOWN_T_CONNECTOR,
-        HORIZONTAL_UP_T_CONNECTOR,
-    }
-
     private Type type;
 
     public WallTile(Vector2D position, Type type) {
@@ -56,5 +41,20 @@ public class WallTile extends BaseObject {
     @Override
     public boolean onPlayerMove(Player player) {
         return !player.position.equals(position);
+    }
+
+    public enum Type {
+        VERTICAL,
+        HORIZONTAL,
+
+        LEFT_UPPER_EDGE,
+        RIGHT_UPPER_EDGE,
+        LEFT_LOWER_EDGE,
+        RIGHT_LOWER_EDGE,
+
+        VERTICAL_RIGHT_T_CONNECTOR,
+        VERTICAL_LEFT_T_CONNECTOR,
+        HORIZONTAL_DOWN_T_CONNECTOR,
+        HORIZONTAL_UP_T_CONNECTOR,
     }
 }

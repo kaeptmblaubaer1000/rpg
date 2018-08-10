@@ -11,18 +11,18 @@ public abstract class LivingBaseObject extends BaseObject {
     protected int health = MAX_HEALTH;
 
     public LivingBaseObject(Vector2D position) {
-		super(position);
-		Timer healthTimer = new Timer(true);
-		
+        super(position);
+        Timer healthTimer = new Timer(true);
+
         healthTimer.scheduleAtFixedRate(new TimerTask() {
-			@Override
+            @Override
             public void run() {
                 if (health < MAX_HEALTH && health > 0) {
                     health++;
                 }
             }
         }, 0, 2000);
-	}
+    }
 
     public void increaseHealth(int health) {
         int finalHealth = this.health + health;

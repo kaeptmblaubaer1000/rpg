@@ -178,11 +178,11 @@ public class Player extends LivingBaseObject {
     public String renderMessagesForPlayer() {
         String toReturn = "";
         if (health > 0) {
-	        if (messagesForPlayer.size() > 0)
-	            toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size() - 1);
-    	} else {
-    		toReturn += "\n>> " + Messages.youDied;
-    	}
+            if (messagesForPlayer.size() > 0)
+                toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size() - 1);
+        } else {
+            toReturn += "\n>> " + Messages.youDied;
+        }
         return toReturn;
     }
 }

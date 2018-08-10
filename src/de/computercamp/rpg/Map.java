@@ -96,6 +96,6 @@ public class Map {
     }
 
     public int countObjectsOfType(Class<? extends BaseObject> type) {
-        return (int)mapContents.stream().filter(type::isInstance).count();
+        return (int) mapContents.stream().filter(type::isInstance).count();
     }
 }

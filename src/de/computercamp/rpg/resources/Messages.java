@@ -4,9 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Messages {
-    private static ResourceBundle bundle;
     public static Locale locale;
-
     public static String npcWelcome;
     public static String npcMagician;
     public static String npcBadMagician;
@@ -23,6 +21,12 @@ public class Messages {
     public static String cucumber;
     public static String suicideSword;
     public static String youDied;
+    private static ResourceBundle bundle;
+
+    static {
+        locale = Locale.getDefault();
+        reloadStrings();
+    }
 
     private Messages() {
     }
@@ -45,11 +49,6 @@ public class Messages {
         cucumber = bundle.getString("cucumber");
         suicideSword = bundle.getString("suicideSword");
         youDied = bundle.getString("youDied");
-    }
-
-    static {
-        locale = Locale.getDefault();
-        reloadStrings();
     }
 
     public static void changeLanguage(Locale locale) {

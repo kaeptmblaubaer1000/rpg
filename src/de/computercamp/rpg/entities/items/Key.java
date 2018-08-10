@@ -22,6 +22,6 @@ public class Key extends Item {
 
     @Override
     public String getDisplayName() {
-        return  Messages.key;
+        return Messages.key;
     }
 }

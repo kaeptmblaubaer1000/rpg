@@ -15,15 +15,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
+    private static final Object renderLock = new Object();
+    private static final int TEXTAREA_WIDTH_PERCENT = 50;
     private static JFrame jf;
     private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
     private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
-    private static final Object renderLock = new Object();
-
-    private static final int TEXTAREA_WIDTH_PERCENT = 50;
-
     private static boolean debugMode = false;
 
     public static void main(String[] args) {
@@ -117,6 +115,15 @@ public class Main {
         consoleWrite(text);
     }
 
+    private static void renderGame() {
+        consoleClearAndWrite(mapBuilder.getMap().render());
+        consoleWrite(mapBuilder.getPlayer().renderMessagesForPlayer());
+        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n" + mapBuilder.getPlayer().renderInventory());
+        if (debugMode) {
+            rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());
+        }
+    }
+
     static class KeyHandler extends KeyAdapter {
         private boolean qPressed = false;
 
@@ -206,16 +213,6 @@ public class Main {
             }
         }
     }
-
-    private static void renderGame() {
-        consoleClearAndWrite(mapBuilder.getMap().render());
-        consoleWrite(mapBuilder.getPlayer().renderMessagesForPlayer());
-        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n" + mapBuilder.getPlayer().renderInventory());
-        if(debugMode) {
-            rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());
-        }
-    }
-
 
     static class CloseHandler implements ActionListener {
 

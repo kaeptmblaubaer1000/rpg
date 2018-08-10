@@ -15,13 +15,13 @@ public class Sword extends Item {
     @Override
     public boolean use(Player player) {
         if (player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y + 1)) != null && player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y + 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y + 1))).decreaseHealth(10);
+            ((LivingBaseObject) player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y + 1))).decreaseHealth(10);
         } else if (player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y - 1)) != null && player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y - 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y - 1))).decreaseHealth(10);
+            ((LivingBaseObject) player.getMap().getObjectByPosition(player.getPosition().withY(player.getPosition().y - 1))).decreaseHealth(10);
         } else if (player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x + 1)) != null && player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x + 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x + 1))).decreaseHealth(10);
+            ((LivingBaseObject) player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x + 1))).decreaseHealth(10);
         } else if (player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x - 1)) != null && player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x - 1)) instanceof LivingBaseObject) {
-            ((LivingBaseObject)player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x - 1))).decreaseHealth(10);
+            ((LivingBaseObject) player.getMap().getObjectByPosition(player.getPosition().withX(player.getPosition().x - 1))).decreaseHealth(10);
         }
         return false;
     }
