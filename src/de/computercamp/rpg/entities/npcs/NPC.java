@@ -45,17 +45,25 @@ public class NPC extends LivingBaseObject {
 			return true;
 		}
 		String message;
+        if (npcMessageID == null) {
+            return false;
+        }
 		switch (npcMessageID) {
 			case npcWelcome:
 				message = Messages.npcWelcome;
+				break;
 			case npcMagician:
 				message = Messages.npcMagician;
+				break;
 			case npcBadMagician:
 				message = Messages.npcBadMagician;
+				break;
 			case npcWeaponsmith:
 				message = Messages.npcWeaponsmith;
+				break;
 			case npcCook:
 				message = Messages.npcCook;
+				break;
 			default:
 				message = "Error: Message not found.";
 		}

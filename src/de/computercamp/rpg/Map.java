@@ -2,6 +2,7 @@ package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.npcs.NPC;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,7 +77,11 @@ public class Map {
             strings.add(row);
         }
 
-        for (BaseObject object : mapContents.stream().filter((object) -> !(object instanceof Player)).collect(Collectors.toList())) {
+        for (BaseObject object : mapContents) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        }
+
+        for (BaseObject object : mapContents.stream().filter((object) -> object instanceof NPC).collect(Collectors.toList())) {
             strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
         }
 
