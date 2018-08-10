@@ -8,7 +8,7 @@ public class Cucumber extends Item {
 
     public Cucumber(Vector2D position) {
         super(position);
-        symbol = '(';
+        symbol = '\uA5DA';
     }
 
     @Override
