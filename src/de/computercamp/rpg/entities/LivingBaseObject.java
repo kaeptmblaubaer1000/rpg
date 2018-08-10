@@ -22,7 +22,7 @@ public abstract class LivingBaseObject extends BaseObject {
                     onHealthChanged();
                 }
             }
-        }, 0, 2000);
+        }, 0, 3000);
     }
 
     public void increaseHealth(int health) {
