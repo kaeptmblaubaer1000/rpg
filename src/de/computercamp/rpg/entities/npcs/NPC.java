@@ -121,44 +121,52 @@ public class NPC extends LivingBaseObject {
 
 	protected void doNPCAction(Player player) {
 	}
+	public void despawn(NPC npc) {
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				if (despawn == 0) {
+					despawn = System.currentTimeMillis() + 5000;
+				}
+				if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
+					if (Math.random() < 0.2) {
+						Monster monster = new Monster(player, position, null, 0);
+						synchronized (map) {
+							map.addObject(monster);
+						}
+						monster.startFighting(player);
+					}
+					synchronized (map) {
+						map.removeObject(npc);
+					}
+					NPC me = npc;
+					Thread addThread = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(5000);
+							} catch (InterruptedException e) {
+							}
+							health = 20;
+							nextUse = 0;
+							despawn = 0;
+							synchronized (player.getMap()) {
+								player.getMap().addObject(me);
+							}
+						}
+					});
+					addThread.start();
+				}
+			}
+		});
+	}
 
 	@Override
 	public char render() {
 		if (!isDead()) {
 			return '\uA66A';
 		} else {
-			if (despawn == 0) {
-				despawn = System.currentTimeMillis() + 5000;
-			}
-			if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
-				if (Math.random() < 0.2) {
-					Monster monster = new Monster(player, position, null, 0);
-					synchronized (map) {
-						map.addObject(monster);
-					}
-					monster.startFighting(player);
-				}
-				synchronized (map) {
-					map.removeObject(this);
-				}
-				NPC me = this;
-				Thread addThread = new Thread(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-						}
-						health = 20;
-						nextUse = 0;
-						despawn = 0;
-						synchronized (player.getMap()) {
-							player.getMap().addObject(me);
-						}
-					}
-				});
-				addThread.start();
-			}
+			
 
 			return 'X';
 		}

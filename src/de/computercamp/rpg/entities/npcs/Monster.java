@@ -49,17 +49,24 @@ public class Monster extends NPC {
 
         rumlaufTimer.start();
     }
-
+    protected void monsterDespawn(Monster monster) {
+    	Thread thread = new Thread(new Runnable() {
+    		 @Override
+    		 public void run() {
+    			 if (despawn == 0) {
+    	             despawn = System.currentTimeMillis() + 5000;
+    	         }
+    	         if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this))
+    	              map.removeObject(monster);
+    		 }
+    	});
+    }
     @Override
     public char render() {
         if (!isDead()) {
             return '\u2e0e';
         } else {
-            if (despawn == 0) {
-                despawn = System.currentTimeMillis() + 5000;
-            }
-            if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this))
-                map.removeObject(this);
+            
 
             return 'X';
         }
