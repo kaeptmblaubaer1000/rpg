@@ -43,6 +43,8 @@ public class NPC extends LivingBaseObject {
         	message = Messages.npcBadMagician;
         } else if (npcMessageID == 3) {
         	message = Messages.npcWeaponsmith;
+        } else if (npcMessageID == 4) {
+        	message = Messages.npcCook;
         } else {
         	message = "Error: Message not found.";
         }
