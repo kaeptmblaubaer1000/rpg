@@ -1,16 +1,12 @@
 package de.computercamp.rpg.entities.npcs;
 
-import de.computercamp.rpg.ItemSpawner;
 import de.computercamp.rpg.Vector2D;
-import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class NPC extends LivingBaseObject {
@@ -79,7 +75,7 @@ public class NPC extends LivingBaseObject {
 
     @Override
     public char render() {
-    	if (!isDead()) {
+        if (!isDead()) {
     		return '\uA66A';
     	} else {
     		return 'X';
@@ -121,6 +117,7 @@ public class NPC extends LivingBaseObject {
 				
 			}
 	    });
+        
     	rumlaufTimer.start();
     }
 }

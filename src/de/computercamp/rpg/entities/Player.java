@@ -34,7 +34,7 @@ public class Player extends LivingBaseObject {
         if (health <= 0) {
             return 'X';
         }
-        return '0';
+        return 'T';
     }
 
     /**
