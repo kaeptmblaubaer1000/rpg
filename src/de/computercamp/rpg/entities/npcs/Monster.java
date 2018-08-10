@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Main;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 
@@ -30,8 +31,9 @@ public class Monster extends NPC {
 			    		} else {
 			    			player.decreaseHealth(5);
 			    		}
+			    		
 			    		try {
-							Thread.sleep(1000);
+							Thread.sleep(500);
 						} catch (InterruptedException e) {}
 		    		}
 		    	}

@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
@@ -85,7 +86,7 @@ public class NPC extends LivingBaseObject {
     			despawn = System.currentTimeMillis()+5000;
     		}
     		if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
-    			if (Math.random() < 0.11) {
+    			if (Math.random() < 1) {
 	    			Monster monster = new Monster(player, position, 0, 0);
 	    			System.out.println(monster);
 	    			System.out.println(position);
@@ -93,11 +94,33 @@ public class NPC extends LivingBaseObject {
 	    			monster.startFighting(player);
     			}
     			map.removeObject(this);
+    			NPC me = this;
+    			Thread addThread = new Thread(new Runnable() {
+    				@Override
+    				public void run() {
+    					try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {}
+    					health = 20;
+    					System.out.println(me);
+    					player.getMap().addObject(me);
+    				}
+    			});
+    			addThread.start();
     		}
     		
     		return 'X';
     	}
     }
+    private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
+		Vector2D randloc;
+		do {
+			int posX = (int) Math.round((Math.random()*(maxPos.x-minPos.x))+minPos.x);
+			int posY = (int) Math.round((Math.random()*(maxPos.y-minPos.y))+minPos.y);
+			randloc = new Vector2D(posX, posY);
+		} while (map.getObjectByPosition(randloc) != null);
+		return randloc;
+	}
     public void startMoving(Player player) {
     	Thread rumlaufTimer = new Thread(new Runnable() {
 		    @Override
@@ -127,9 +150,11 @@ public class NPC extends LivingBaseObject {
 							}
 						}
 					}
+					
 					try {
 						Thread.sleep(Math.round(Math.random()*5000));
 					} catch (InterruptedException e) {}
+					
 				}
 				
 			}
