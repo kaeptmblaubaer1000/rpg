@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
@@ -11,7 +12,7 @@ public class Monster extends NPC {
         // TODO Auto-generated constructor stub
     }
 
-    public void startFighting(Player player) {
+    public void startFighting(Player player, Map map) {
         Thread rumlaufTimer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -19,19 +20,35 @@ public class Monster extends NPC {
                     if (health > 0) {
                         if (Math.abs(player.getPosition().x - position.x) > 1) {
                             if (player.getPosition().x < position.x) {
-                            	if (!(map.getObjectByPosition(new Vector2D(position.x - 1, position.y)) instanceof LivingBaseObject))
+                            	if (!(map.getObjectByPosition(new Vector2D(position.x - 1, position.y)) instanceof LivingBaseObject)) {
+                            		
+                            			setPosition(new Vector2D(position.x - 1, position.y));
+                            	} else if (((LivingBaseObject)map.getObjectByPosition(new Vector2D(position.x - 1, position.y))).getHealth() <= 0) {
                             		setPosition(new Vector2D(position.x - 1, position.y));
+                            	}
                             } else {
-                            	if (!(map.getObjectByPosition(new Vector2D(position.x + 1, position.y)) instanceof LivingBaseObject))
+                            	if (!(map.getObjectByPosition(new Vector2D(position.x + 1, position.y)) instanceof LivingBaseObject)) {
+                            		
+                            			setPosition(new Vector2D(position.x + 1, position.y));
+                            	} else if (((LivingBaseObject)map.getObjectByPosition(new Vector2D(position.x + 1, position.y))).getHealth() <= 0) {
                             		setPosition(new Vector2D(position.x + 1, position.y));
+                            	}
                             }
                         } else if (Math.abs(player.getPosition().y - position.y) > 0) {
                             if (player.getPosition().y < position.y) {
-                            	if (!(map.getObjectByPosition(new Vector2D(position.x, position.y - 1)) instanceof LivingBaseObject))
+                            	if (!(map.getObjectByPosition(new Vector2D(position.x, position.y - 1)) instanceof LivingBaseObject)) {
+                            		
+                            			setPosition(new Vector2D(position.x, position.y - 1));
+                            	} else if (((LivingBaseObject)map.getObjectByPosition(new Vector2D(position.x, position.y -1))).getHealth() <= 0) {
                             		setPosition(new Vector2D(position.x, position.y - 1));
+                            	}
                             } else {
-                            	if (!(map.getObjectByPosition(new Vector2D(position.x, position.y + 1)) instanceof LivingBaseObject))
-                            		setPosition(new Vector2D(position.x, position.y + 1));
+                            	if (!(map.getObjectByPosition(new Vector2D(position.x, position.y + 1)) instanceof LivingBaseObject)) {
+                            		
+                            			setPosition(new Vector2D(position.x, position.y + 1));
+                            	} else if (((LivingBaseObject)map.getObjectByPosition(new Vector2D(position.x, position.y + 1))).getHealth() <= 0) {
+                            		setPosition(new Vector2D(position.x, position.y +1));
+                            	}
                             }
                         } else {
                             player.decreaseHealth(5);
@@ -61,8 +78,13 @@ public class Monster extends NPC {
     			 if (despawn == 0) {
     	             despawn = System.currentTimeMillis() + 5000;
     	         }
-    	         if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this))
-    	              map.removeObject(monster);
+    	         while (!(System.currentTimeMillis() >= despawn && player.getMap().getMapContents().contains(monster))) {
+    	        	 try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {}
+    	         }
+    	         
+    	         map.removeObject(monster);
     		 }
     	});
     	thread.start();

@@ -46,7 +46,11 @@ public class NPC extends LivingBaseObject {
 		}
 		String message;
 		if (npcMessageID == null) {
-			return false;
+			if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
+				return false;
+			} else {
+				return true;
+			}
 		}
 		switch (npcMessageID) {
 		case npcWelcome:
@@ -131,8 +135,9 @@ public class NPC extends LivingBaseObject {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
+				
 				despawn = System.currentTimeMillis() + 5000;
-				while (!(System.currentTimeMillis() >= despawn && map.getMapContents().contains(npc))) {
+				while (!(System.currentTimeMillis() >= despawn && player.getMap().getMapContents().contains(npc))) {
 					try {
 						Thread.sleep(10);
 					} catch (InterruptedException e) {
@@ -141,15 +146,22 @@ public class NPC extends LivingBaseObject {
 					}
 				}
 					
-					synchronized (map) {
-						map.removeObject(npc);
+					synchronized (player.getMap()) {
+						player.getMap().removeObject(npc);
 					}
 					NPC me = npc;
 					
-							try {
-								Thread.sleep(5000);
-							} catch (InterruptedException e) {
-							}
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+					}
+					if (Math.random() < 0.2) {
+						Monster monster = new Monster(player, position, null, 0);
+						synchronized (player.getMap()) {
+							player.getMap().addObject(monster);
+						}
+						monster.startFighting(player, player.getMap());
+					}
 							health = 20;
 							nextUse = 0;
 							despawn = 0;
