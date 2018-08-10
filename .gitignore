@@ -7,3 +7,5 @@
 /out/
 /bin/
 .settings/
+.gradle/
+!/gradle/wrapper/gradle-wrapper.jar
