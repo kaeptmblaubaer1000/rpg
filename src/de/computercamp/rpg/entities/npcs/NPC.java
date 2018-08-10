@@ -14,6 +14,7 @@ public class NPC extends LivingBaseObject {
     protected Item requiredItem = null;
     protected int npcMessageID;
     protected long delay;
+    protected long despawn = 0;
 
     public NPC(Vector2D position, int message, long delay) {
         super(position);
@@ -78,6 +79,12 @@ public class NPC extends LivingBaseObject {
         if (!isDead()) {
     		return '\uA66A';
     	} else {
+    		if (despawn == 0) {
+    			despawn = System.currentTimeMillis()+5000;
+    		}
+    		if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this))
+    			map.removeObject(this);
+    		
     		return 'X';
     	}
     }
