@@ -17,12 +17,6 @@ public class Map {
     public static final char LEFT_LOWER_EDGE = '\u2514';
     public static final char RIGHT_LOWER_EDGE = '\u2518';
 
-
-    public static final char DOOR = '\u258D';
-	public static final char GRASS = '\u2059';
-
-
-
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public boolean removeObject(BaseObject base) {

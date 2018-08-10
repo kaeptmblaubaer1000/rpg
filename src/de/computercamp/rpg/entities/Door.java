@@ -1,6 +1,5 @@
 package de.computercamp.rpg.entities;
 
-import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 
 public class Door extends BaseObject {
@@ -9,7 +8,7 @@ public class Door extends BaseObject {
     }
 
     public char render() {
-        return Map.DOOR;
+        return '\u258D';
     }
 
     @Override
