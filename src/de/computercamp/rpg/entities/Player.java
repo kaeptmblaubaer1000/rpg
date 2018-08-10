@@ -18,15 +18,6 @@ public class Player extends LivingBaseObject {
 
     public Player(Vector2D position) {
         super(position);
-        Timer healthTimer = new Timer(true);
-        healthTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (health < MAX_HEALTH && health > 0) {
-                    health++;
-                }
-            }
-        }, 0, 4000);
     }
 
     @Override
