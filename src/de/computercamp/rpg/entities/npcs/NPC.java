@@ -79,7 +79,7 @@ public class NPC extends LivingBaseObject {
 
     @Override
     public char render() {
-    	if (health > 0) {
+    	if (!isDead()) {
     		return '\uA66A';
     	} else {
     		return 'X';
