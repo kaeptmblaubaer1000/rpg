@@ -1,0 +1,12 @@
+*.java eol=lf
+*.md eol=lf
+*.properties eol=lf
+*.txt eol=lf
+*.kt eol=lf
+*.kts eol=lf
+*.gitattributes eol=lf
+*.gitignore eol=lf
+gradlew eol=lf
+*.mailmap eol=lf
+*.py eol=lf
+*.bat eol=crlf
