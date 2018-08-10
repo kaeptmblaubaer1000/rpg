@@ -85,10 +85,14 @@ public class NPC extends LivingBaseObject {
     			despawn = System.currentTimeMillis()+5000;
     		}
     		if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
+    			if (Math.random() < 0.11) {
+	    			Monster monster = new Monster(player, position, 0, 0);
+	    			System.out.println(monster);
+	    			System.out.println(position);
+	    		    map.addObject(monster);
+	    			monster.startFighting(player);
+    			}
     			map.removeObject(this);
-    			Monster monster = new Monster(player, position, 0, 0);
-    		    map.addObject(monster);
-    			monster.startFighting(player);
     		}
     		
     		return 'X';
