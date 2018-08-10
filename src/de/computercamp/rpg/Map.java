@@ -61,7 +61,7 @@ public class Map {
         return true;
     }
 
-    public String render() {
+    public synchronized String render() {
         int maxX = 60;
         int maxY = 16;
 
