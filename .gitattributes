@@ -10,3 +10,4 @@ gradlew eol=lf
 *.mailmap eol=lf
 *.py eol=lf
 *.bat eol=crlf
+*.ttf filter=lfs diff=lfs merge=lfs -text
