@@ -17,6 +17,11 @@ public class Map {
     public static final char LEFT_LOWER_EDGE = '\u2514';
     public static final char RIGHT_LOWER_EDGE = '\u2518';
 
+    public static final char VERTICAL_RIGHT_T_CONNECTOR = '\u251C';
+    public static final char VERTICAL_LEFT_T_CONNECTOR = '\u251C';
+    public static final char HORIZONTAL_RIGHT_T_CONNECTOR = '\u251C';
+
+
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public boolean removeObject(BaseObject base) {
@@ -55,8 +60,8 @@ public class Map {
     }
 
     public String render() {
-        int maxX = mapContents.stream().mapToInt((object) -> object.getPosition().x).max().orElse(-1) + 1;
-        int maxY = mapContents.stream().mapToInt((object) -> object.getPosition().y).max().orElse(-1) + 1;
+        int maxX = 60;
+        int maxY = 16;
 
         StringBuilder whole = new StringBuilder();
         List<StringBuilder> strings = new ArrayList<>(maxY);
