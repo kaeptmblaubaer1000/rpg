@@ -25,7 +25,7 @@ public class Monster extends NPC {
                             	if (!(map.getObjectByPosition(new Vector2D(position.x + 1, position.y)) instanceof LivingBaseObject))
                             		setPosition(new Vector2D(position.x + 1, position.y));
                             }
-                        } else if (Math.abs(player.getPosition().y - position.y) > 1) {
+                        } else if (Math.abs(player.getPosition().y - position.y) > 0) {
                             if (player.getPosition().y < position.y) {
                             	if (!(map.getObjectByPosition(new Vector2D(position.x, position.y - 1)) instanceof LivingBaseObject))
                             		setPosition(new Vector2D(position.x, position.y - 1));

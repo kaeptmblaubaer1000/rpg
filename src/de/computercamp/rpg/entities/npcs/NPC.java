@@ -45,33 +45,33 @@ public class NPC extends LivingBaseObject {
 			return true;
 		}
 		String message;
-        if (npcMessageID == null) {
-            return false;
-        }
+		if (npcMessageID == null) {
+			return false;
+		}
 		switch (npcMessageID) {
-			case npcWelcome:
-				message = Messages.npcWelcome;
-				break;
-			case npcMagician:
-				message = Messages.npcMagician;
-				break;
-			case npcBadMagician:
-				message = Messages.npcBadMagician;
-				break;
-			case npcWeaponsmith:
-				message = Messages.npcWeaponsmith;
-				break;
-			case npcCook:
-				message = Messages.npcCook;
-				break;
-			default:
-				message = "Error: Message not found.";
+		case npcWelcome:
+			message = Messages.npcWelcome;
+			break;
+		case npcMagician:
+			message = Messages.npcMagician;
+			break;
+		case npcBadMagician:
+			message = Messages.npcBadMagician;
+			break;
+		case npcWeaponsmith:
+			message = Messages.npcWeaponsmith;
+			break;
+		case npcCook:
+			message = Messages.npcCook;
+			break;
+		default:
+			message = "Error: Message not found.";
 		}
 		if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
 			if (requiredItem != null) {
 				if (!removeItemOfType(player, requiredItem)) {
 					MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
-					player.sendMessage(messageFormat.format(new Object[]{requiredItem.getDisplayName()}));
+					player.sendMessage(messageFormat.format(new Object[] { requiredItem.getDisplayName() }));
 					return false;
 				}
 			}
@@ -79,7 +79,7 @@ public class NPC extends LivingBaseObject {
 			if (System.currentTimeMillis() < nextUse) {
 				MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
 				player.sendMessage(messageFormat
-						.format(new Object[]{Math.round((nextUse - System.currentTimeMillis()) / 1000)}));
+						.format(new Object[] { Math.round((nextUse - System.currentTimeMillis()) / 1000) }));
 				return false;
 			} else if (nextUse == -1) {
 				player.sendMessage(Messages.npcWaitingForever);
@@ -134,10 +134,14 @@ public class NPC extends LivingBaseObject {
 			if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
 				if (Math.random() < 0.2) {
 					Monster monster = new Monster(player, position, null, 0);
-					map.addObject(monster);
+					synchronized (map) {
+						map.addObject(monster);
+					}
 					monster.startFighting(player);
 				}
-				map.removeObject(this);
+				synchronized (map) {
+					map.removeObject(this);
+				}
 				NPC me = this;
 				Thread addThread = new Thread(new Runnable() {
 					@Override
@@ -148,7 +152,10 @@ public class NPC extends LivingBaseObject {
 						}
 						health = 20;
 						nextUse = 0;
-						player.getMap().addObject(me);
+						despawn = 0;
+						synchronized (player.getMap()) {
+							player.getMap().addObject(me);
+						}
 					}
 				});
 				addThread.start();
@@ -179,7 +186,7 @@ public class NPC extends LivingBaseObject {
 						if (!((player.getPosition().x == position.x - 1 || player.getPosition().x == position.x + 1
 								|| player.getPosition().x == position.x)
 								&& (player.getPosition().y == position.y - 1 || player.getPosition().y == position.y + 1
-								|| player.getPosition().y == position.y))) {
+										|| player.getPosition().y == position.y))) {
 							if (map.getObjectByPosition(ziel) == null && !ziel.equals(player.getPosition())
 									&& (ziel.x > 0 && ziel.y > 0 && ziel.x < 59 && ziel.y < 15)) {
 								if (health > 0) {
@@ -205,11 +212,7 @@ public class NPC extends LivingBaseObject {
 	}
 
 	public enum MessageID {
-		npcWelcome,
-		npcMagician,
-		npcBadMagician,
-		npcWeaponsmith,
-		npcCook,
+		npcWelcome, npcMagician, npcBadMagician, npcWeaponsmith, npcCook,
 
 	}
 }
