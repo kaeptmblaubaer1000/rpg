@@ -31,31 +31,11 @@ public class ItemSpawner {
         Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
         Item item;
 
-        //switch (randomInt) {
-        //    case 0:
-        //        item = new HealingPotion(randomPos);
-        //        break;
-        //    case 1:
-        //        item = new Sword(randomPos);
-        //        break;
-        //    case 2:
-        //        item = new Cucumber(randomPos);
-        //        break;
-        //    case 3:
-        //        item = new Key(randomPos);
-        //        break;
-        //    case 4:
-        //        item = new SuicideSword(randomPos);
-        //        break;
-        //    default:
-        //        item = null;
-        //}
-
         if (randomInt < 10) {
             item = new Cucumber(randomPos);
-        } else if (randomInt < 20) {
+        } else if (randomInt < 15) {
             item = new SuicideSword(randomPos);
-        } else if (randomInt < 40) {
+        } else if (randomInt < 35) {
             item = new Key(randomPos);
         } else if (randomInt < 70) {
             item = new HealingPotion(randomPos);

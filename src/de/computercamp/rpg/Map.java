@@ -18,8 +18,9 @@ public class Map {
     public static final char RIGHT_LOWER_EDGE = '\u2518';
 
     public static final char VERTICAL_RIGHT_T_CONNECTOR = '\u251C';
-    public static final char VERTICAL_LEFT_T_CONNECTOR = '\u251C';
-    public static final char HORIZONTAL_RIGHT_T_CONNECTOR = '\u251C';
+    public static final char VERTICAL_LEFT_T_CONNECTOR = '\u2524';
+    public static final char HORIZONTAL_DOWN_T_CONNECTOR = '\u252C';
+    public static final char HORIZONTAL_UP_T_CONNECTOR = '\u2534';
 
 
     private List<BaseObject> mapContents = new ArrayList<>();
@@ -87,7 +88,7 @@ public class Map {
             whole.append(builder);
             whole.append('\n');
         }
-        if(strings.size() > 0) {
+        if (strings.size() > 0) {
             whole.append(strings.get(strings.size() - 1));
         }
 
