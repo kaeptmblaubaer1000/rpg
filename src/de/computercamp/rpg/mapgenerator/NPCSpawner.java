@@ -21,7 +21,7 @@ public class NPCSpawner {
 		badmagician.startMoving(player);
 		NPC weaponsmith = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcWeaponsmith, new Sword(new Vector2D(0, 0)), (long) -1);
 		weaponsmith.startMoving(player);
-		NPC cook = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcCook, new Cucumber(new Vector2D(0, 0)), (long) -1);
+		NPC cook = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcCook, new Cucumber(new Vector2D(0, 0)), (long) 45);
 		cook.setRequiredItem(new Key(new Vector2D(0, 0)));
 		cook.startMoving(player);
 		map.addObject(welcomeNPC);
