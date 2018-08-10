@@ -13,8 +13,11 @@ public class Key extends Item {
 
     @Override
     public boolean use(Player player) {
-        player.setPosition(new Vector2D(1, 1));
-        return true;
+        if (!player.isDead()) {
+            player.setPosition(new Vector2D(1, 1));
+            return true;
+        }
+        return false;
     }
 
     @Override

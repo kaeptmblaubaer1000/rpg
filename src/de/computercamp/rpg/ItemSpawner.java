@@ -25,7 +25,7 @@ public class ItemSpawner {
 
     public static Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
         Random random = new Random();
-        int randomInt = random.nextInt(4);
+        int randomInt = random.nextInt(5);
         Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
         Item item;
 
@@ -41,6 +41,9 @@ public class ItemSpawner {
                 break;
             case 3:
                 item = new Key(randomPos);
+                break;
+            case 4:
+                item = new SuicideSword(randomPos);
                 break;
             default:
                 item = null;

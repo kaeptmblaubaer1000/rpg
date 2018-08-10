@@ -65,16 +65,16 @@ public abstract class LivingBaseObject extends BaseObject {
     }
 
     public String renderHealth() {
-        int hearts = health / 2;
         StringBuilder string = new StringBuilder();
-        for (int i = 0; i < hearts; i++) {
+        for (int i = 0; i < health; i++) {
             //string.append('\u2665');
             string.append('+');
         }
-        for (int i = 0; i < MAX_HEALTH / 2 - hearts; i++) {
+        for (int i = 0; i < MAX_HEALTH - health; i++) {
             //string.append('\u2661');
             string.append('-');
         }
+        string.insert(MAX_HEALTH / 2, '\n');
         return string.toString();
     }
 }
