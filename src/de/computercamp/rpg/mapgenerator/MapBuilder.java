@@ -2,11 +2,8 @@ package de.computercamp.rpg.mapgenerator;
 
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
-import de.computercamp.rpg.entities.BaseObject;
-import de.computercamp.rpg.entities.DogDoor;
-import de.computercamp.rpg.entities.Door;
-import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.WallTile;
+import de.computercamp.rpg.entities.*;
+
 import java.util.*;
 
 public class MapBuilder {
@@ -170,9 +167,9 @@ public class MapBuilder {
 		itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				ItemSpawner.getRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
+				ItemSpawner.spawnRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
 			}
-		}, 0, 10000);
+		}, 0, 30000);
 
 	}
 
