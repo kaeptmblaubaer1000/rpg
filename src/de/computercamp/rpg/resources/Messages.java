@@ -11,6 +11,7 @@ public class Messages {
     public static String npcMagician;
     public static String npcBadMagician;
     public static String npcWeaponsmith;
+
     public static String closeProgram;
     public static String healing_potion;
     public static String itemRequired;

@@ -63,6 +63,7 @@ public class Main {
         leftTextArea.setEditable(false);
         leftTextArea.setAutoscrolls(false);
         leftTextArea.setFocusable(true);
+        leftTextArea.setDragEnabled(false);
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int leftTextAreaWidth = (int) (((float) screenWidth) * ((float) TEXTAREA_WIDTH_PERCENT)) / 100;
         int rightTextAreaWidth = screenWidth - leftTextAreaWidth;
