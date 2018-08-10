@@ -1,6 +1,7 @@
 package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.BaseObject;
+import de.computercamp.rpg.entities.DogDoor;
 import de.computercamp.rpg.entities.Door;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.WallTile;
@@ -60,7 +61,24 @@ public class MapBuilder {
         objects.add(new WallTile(new Vector2D(24, 6), WallTile.Type.LEFT_LOWER_EDGE));
         objects.add(new WallTile(new Vector2D(24, 5), WallTile.Type.VERTICAL));
 
+        objects.add(new WallTile(new Vector2D(24, 5), WallTile.Type.VERTICAL));
+        for (int i = 3; i < 12; i++) {
+            objects.add(new WallTile(new Vector2D(i, 2), WallTile.Type.HORIZONTAL));
+        }
+            objects.add(new WallTile(new Vector2D(8, 3), WallTile.Type.VERTICAL));
+            objects.add(new WallTile(new Vector2D(15, 3), WallTile.Type.VERTICAL));
+            objects.add(new WallTile(new Vector2D(5, 4), WallTile.Type.VERTICAL));
+            objects.add(new WallTile(new Vector2D(5, 5), WallTile.Type.VERTICAL));
+            objects.add(new WallTile(new Vector2D(8, 4), WallTile.Type.LEFT_LOWER_EDGE));
+            objects.add(new WallTile(new Vector2D(15, 4), WallTile.Type.RIGHT_LOWER_EDGE));
+        objects.add(new WallTile(new Vector2D(9, 4), WallTile.Type.HORIZONTAL));
+        objects.add(new WallTile(new Vector2D(10, 4), WallTile.Type.HORIZONTAL));
+        objects.add(new WallTile(new Vector2D(12, 4), WallTile.Type.HORIZONTAL));
+        objects.add(new WallTile(new Vector2D(13, 4), WallTile.Type.HORIZONTAL));
+        objects.add(new WallTile(new Vector2D(14, 4), WallTile.Type.HORIZONTAL));
+
         objects.add(new Door(new Vector2D(6, 6)));
+        objects.add(new DogDoor(new Vector2D(26,6 )));
 
         map.addObject(player);
         for (BaseObject object : objects) {
