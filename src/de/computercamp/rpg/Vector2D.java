@@ -2,6 +2,9 @@ package de.computercamp.rpg;
 
 public class Vector2D {
 
+    public int x;
+    public int y;
+
     public Vector2D(Vector2D clone) {
         this.x = clone.x;
         this.y = clone.y;
@@ -12,8 +15,13 @@ public class Vector2D {
         this.y = y;
     }
 
-    public int x;
-    public int y;
+    public Vector2D withY(int y) {
+        return new Vector2D(x, y);
+    }
+
+    public Vector2D withX(int x) {
+        return new Vector2D(x, y);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -33,11 +41,11 @@ public class Vector2D {
         return result;
     }
 
-    public Vector2D withY(int y) {
-        return new Vector2D(x, y);
-    }
-
-    public Vector2D withX(int x) {
-        return new Vector2D(x, y);
+    @Override
+    public String toString() {
+        return "Vector2D{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
