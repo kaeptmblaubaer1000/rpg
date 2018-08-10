@@ -110,12 +110,22 @@ public class MapBuilder {
 		objects.add(new WallTile(new Vector2D(53,3), WallTile.Type.VERTICAL));
 		objects.add(new WallTile(new Vector2D(53,4), WallTile.Type.VERTICAL));
 		objects.add(new WallTile(new Vector2D(53,5), WallTile.Type.VERTICAL));
+		objects.add(new WallTile(new Vector2D(53,6), WallTile.Type.VERTICAL));
 		for (int i = 38; i < 50; i++) {
 			objects.add(new WallTile(new Vector2D(i,7), WallTile.Type.HORIZONTAL));
 		}
 		for (int i = 51; i < 58; i++) {
 			objects.add(new WallTile(new Vector2D(i,7), WallTile.Type.HORIZONTAL));
 		}
+		objects.add(new WallTile(new Vector2D(37,7), WallTile.Type.LEFT_UPPER_EDGE));
+		objects.add(new WallTile(new Vector2D(37,8), WallTile.Type.VERTICAL));
+		objects.add(new WallTile(new Vector2D(37,9), WallTile.Type.VERTICAL));
+		objects.add(new WallTile(new Vector2D(37,10), WallTile.Type.VERTICAL));
+		for (int i = 33; i < 44; i++) {
+			objects.add(new WallTile(new Vector2D(i,11), WallTile.Type.HORIZONTAL));
+		}
+		objects.add(new WallTile(new Vector2D(44,11), WallTile.Type.RIGHT_UPPER_EDGE));
+		objects.add(new WallTile(new Vector2D(44,13), WallTile.Type.VERTICAL));
 		objects.add(new Door(new Vector2D(32, 8)));
 		objects.add(new Door(new Vector2D(6, 6)));
 		objects.add(new DogDoor(new Vector2D(26, 6)));
