@@ -1,5 +1,7 @@
-package de.computercamp.rpg;
+package de.computercamp.rpg.mapgenerator;
 
+import de.computercamp.rpg.Map;
+import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.*;
 
 import java.util.Random;

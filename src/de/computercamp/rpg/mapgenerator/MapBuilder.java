@@ -1,5 +1,7 @@
-package de.computercamp.rpg;
+package de.computercamp.rpg.mapgenerator;
 
+import de.computercamp.rpg.Map;
+import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.DogDoor;
 import de.computercamp.rpg.entities.Door;
@@ -10,12 +12,12 @@ import java.util.*;
 
 public class MapBuilder {
 
-    private Map map;
+    private de.computercamp.rpg.Map map;
     private Player player;
     private List<BaseObject> objects = new ArrayList<>();
 
     public MapBuilder() {
-        map = new Map();
+        map = new de.computercamp.rpg.Map();
         player = new Player(new Vector2D(1, 1));
 
         objects.add(new WallTile(new Vector2D(0, 0), WallTile.Type.LEFT_UPPER_EDGE));
