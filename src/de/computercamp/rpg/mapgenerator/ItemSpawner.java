@@ -2,13 +2,14 @@ package de.computercamp.rpg.mapgenerator;
 
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
+import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.items.*;
 
 import java.util.Random;
 
 public class ItemSpawner {
 
-    //public Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
+    //public Item spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
     //    Item.Type type;
     //    double rand = Math.random();
     //    if (rand < (1 / 3)) {
@@ -25,26 +26,33 @@ public class ItemSpawner {
     //    return item;
     //}
 
-    public static Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
-        Random random = new Random();
-        int randomInt = random.nextInt(100);
-        Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
-        Item item;
-
-        if (randomInt < 10) {
-            item = new Cucumber(randomPos);
-        } else if (randomInt < 15) {
-            item = new SuicideSword(randomPos);
-        } else if (randomInt < 35) {
-            item = new Key(randomPos);
-        } else if (randomInt < 70) {
-            item = new HealingPotion(randomPos);
-        } else { //Percentage between 70 and 100: 30%
-            item = new Sword(randomPos);
+    public static void spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
+        int counter = 0;
+        for (BaseObject object : map.getMapContents()) {
+            if (object instanceof Item) {
+                counter++;
+            }
         }
 
-        map.addObject(item);
-        return item;
+        if (counter < 10) {
+            Random random = new Random();
+            int randomInt = random.nextInt(100);
+            Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
+            Item item;
+
+            if (randomInt < 10) {
+                item = new Cucumber(randomPos);
+            } else if (randomInt < 15) {
+                item = new SuicideSword(randomPos);
+            } else if (randomInt < 35) {
+                item = new Key(randomPos);
+            } else if (randomInt < 70) {
+                item = new HealingPotion(randomPos);
+            } else { //Percentage between 70 and 100: 30%
+                item = new Sword(randomPos);
+            }
+            map.addObject(item);
+        }
     }
     private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
 		Vector2D randloc;
