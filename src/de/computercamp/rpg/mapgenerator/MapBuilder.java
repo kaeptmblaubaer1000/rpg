@@ -7,7 +7,6 @@ import de.computercamp.rpg.entities.DogDoor;
 import de.computercamp.rpg.entities.Door;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.WallTile;
-
 import java.util.*;
 
 public class MapBuilder {
@@ -17,7 +16,7 @@ public class MapBuilder {
 	private List<BaseObject> objects = new ArrayList<>();
 
 	public MapBuilder() {
-		map = new de.computercamp.rpg.Map();
+		map = new Map();
 		player = new Player(new Vector2D(1, 1));
 
 		objects.add(new WallTile(new Vector2D(0, 0), WallTile.Type.LEFT_UPPER_EDGE));
@@ -125,13 +124,18 @@ public class MapBuilder {
 		for (BaseObject object : objects) {
 			map.addObject(object);
 		}
+        map.addObject(player);
+        for (BaseObject object : objects) {
+            map.addObject(object);
+        }
 
-		NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2, 2), new Vector2D(58, 12));
-		Timer itemspawnTimer = new Timer(true);
-		itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
-				ItemSpawner.getRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
+        NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2,2), new Vector2D(58,12));
+       
+	    Timer itemspawnTimer = new Timer(true);		
+	    itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
+		    @Override
+	       	public void run() {
+				ItemSpawner.getRandomItem(map, new Vector2D(2,2), new Vector2D(58,12));
 			}
 		}, 0, 10000);
 

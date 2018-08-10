@@ -31,6 +31,6 @@ public abstract class BaseObject {
 
     public boolean onPlayerMove(Player player) {
     	//return true;
-        return (player.position.x > 0 && player.position.y > 0 && player.position.x < 59 && player.position.y < 15);
+        return (player.position.x >= 0 && player.position.y >= 0 && player.position.x < 60 && player.position.y < 16);
     }
 }
