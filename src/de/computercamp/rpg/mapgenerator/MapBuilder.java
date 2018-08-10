@@ -2,11 +2,8 @@ package de.computercamp.rpg.mapgenerator;
 
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
-import de.computercamp.rpg.entities.BaseObject;
-import de.computercamp.rpg.entities.DogDoor;
-import de.computercamp.rpg.entities.Door;
-import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.WallTile;
+import de.computercamp.rpg.entities.*;
+
 import java.util.*;
 
 public class MapBuilder {
@@ -100,12 +97,12 @@ public class MapBuilder {
 		}
 		objects.add(new WallTile(new Vector2D(58, 14), WallTile.Type.RIGHT_LOWER_EDGE));
 		for (int i = 33; i < 58; i++) {
-			objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
+			if (i != 44)
+				objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
+			else
+				objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL_UP_T_CONNECTOR));
 		}
 		objects.add(new WallTile(new Vector2D(32, 14), WallTile.Type.LEFT_LOWER_EDGE));
-		for (int i = 33; i < 58; i++) {
-			objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
-		}
 		for (int i = 9; i < 14; i++) {
 			if (i != 11)
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
@@ -113,8 +110,8 @@ public class MapBuilder {
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL_RIGHT_T_CONNECTOR));
 		}
 		for (int i = 1; i < 8; i++) {
-			if(i != 5)
-			objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
+			if (i != 5)
+				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
 			else
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL_RIGHT_T_CONNECTOR));
 		}
@@ -153,7 +150,7 @@ public class MapBuilder {
 		objects.add(new WallTile(new Vector2D(44, 13), WallTile.Type.VERTICAL));
 		objects.add(new Door(new Vector2D(32, 8)));
 		objects.add(new Door(new Vector2D(6, 6)));
-		objects.add(new DogDoor(new Vector2D(26, 6)));
+		objects.add(new SmallDoor(new Vector2D(26, 6)));
 
 		map.addObject(player);
 		for (BaseObject object : objects) {
@@ -170,9 +167,9 @@ public class MapBuilder {
 		itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				ItemSpawner.getRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
+				ItemSpawner.spawnRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
 			}
-		}, 0, 10000);
+        }, 0, 60000);
 
 	}
 

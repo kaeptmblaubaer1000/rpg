@@ -34,7 +34,6 @@ public class Player extends LivingBaseObject {
         if (health <= 0) {
             return 'X';
         }
-        //return '\u0298';
         return '\uA65A';
     }
 
@@ -119,7 +118,9 @@ public class Player extends LivingBaseObject {
     }
 
     public void dropItem(int inventoryIndex) {
-        dropItem(inventory.get(inventoryIndex));
+        if (inventory.size() > inventoryIndex) {
+            dropItem(inventory.get(inventoryIndex));
+        }
     }
 
     public void dropItem(Item item) {

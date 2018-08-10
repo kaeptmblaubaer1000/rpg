@@ -1,12 +1,11 @@
 package de.computercamp.rpg.entities.npcs;
 
-import de.computercamp.rpg.Main;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 
 public class Monster extends NPC {
 
-	public Monster(Player player, Vector2D position, int message, long delay) {
+	public Monster(Player player, Vector2D position, MessageID message, long delay) {
 		super(player, position, message, delay);
 		// TODO Auto-generated constructor stub
 	}
