@@ -55,8 +55,8 @@ public class Map {
     }
 
     public String render() {
-        int maxX = mapContents.stream().mapToInt((object) -> object.getPosition().x).max().orElse(-1) + 1;
-        int maxY = mapContents.stream().mapToInt((object) -> object.getPosition().y).max().orElse(-1) + 1;
+        int maxX = 60;
+        int maxY = 16;
 
         StringBuilder whole = new StringBuilder();
         List<StringBuilder> strings = new ArrayList<>(maxY);
