@@ -126,8 +126,6 @@ public class NPC extends LivingBaseObject {
 			if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
 				if (Math.random() < 0.2) {
 					Monster monster = new Monster(player, position, null, 0);
-					System.out.println(monster);
-					System.out.println(position);
 					map.addObject(monster);
 					monster.startFighting(player);
 				}
@@ -141,6 +139,7 @@ public class NPC extends LivingBaseObject {
 						} catch (InterruptedException e) {
 						}
 						health = 20;
+						nextUse = 0;
 						player.getMap().addObject(me);
 					}
 				});
