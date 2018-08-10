@@ -16,6 +16,7 @@ public class NPC extends LivingBaseObject {
 	protected long delay;
 	protected long despawn = 0;
 	protected Player player;
+	protected boolean monsterSpawned = false;
 
 	public NPC(Player player, Vector2D position, MessageID message, long delay) {
 		super(position);
@@ -130,24 +131,21 @@ public class NPC extends LivingBaseObject {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				if (despawn == 0) {
-					despawn = System.currentTimeMillis() + 5000;
-				}
-				if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
-					if (Math.random() < 0.2) {
-						Monster monster = new Monster(player, position, null, 0);
-						synchronized (map) {
-							map.addObject(monster);
-						}
-						monster.startFighting(player);
+				despawn = System.currentTimeMillis() + 5000;
+				while (!(System.currentTimeMillis() >= despawn && map.getMapContents().contains(npc))) {
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+				}
+					
 					synchronized (map) {
 						map.removeObject(npc);
 					}
 					NPC me = npc;
-					Thread addThread = new Thread(new Runnable() {
-						@Override
-						public void run() {
+					
 							try {
 								Thread.sleep(5000);
 							} catch (InterruptedException e) {
@@ -158,12 +156,11 @@ public class NPC extends LivingBaseObject {
 							synchronized (player.getMap()) {
 								player.getMap().addObject(me);
 							}
-						}
-					});
-					addThread.start();
-				}
+						
+				
 			}
 		});
+		thread.start();
 	}
 
 	@Override
@@ -171,9 +168,19 @@ public class NPC extends LivingBaseObject {
 		if (!isDead()) {
 			return '\uA66A';
 		} else {
-			
-
+			/*if (!monsterSpawned) {
+				if (Math.random() < 0.2) {
+					Monster monster = new Monster(player, position, null, 0);
+					synchronized (map) {
+						map.addObject(monster);
+					}
+					monster.startFighting(player);
+				}
+				monsterSpawned = true;
+			}*/
 			return 'X';
+			
+			
 		}
 	}
 

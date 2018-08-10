@@ -65,6 +65,7 @@ public class Monster extends NPC {
     	              map.removeObject(monster);
     		 }
     	});
+    	thread.start();
     }
     @Override
     public char render() {
