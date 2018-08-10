@@ -160,7 +160,9 @@ public class Player extends LivingBaseObject {
     }
 
     public void useItem(int inventoryIndex) {
-        useItem(inventory.get(inventoryIndex));
+        if (inventory.size() > inventoryIndex) {
+            useItem(inventory.get(inventoryIndex));
+        }
     }
 
     public void sendMessage(String message) {
