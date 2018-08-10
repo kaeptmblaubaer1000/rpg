@@ -3,6 +3,7 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.*;
+
 import java.util.*;
 
 public class MapBuilder {
@@ -168,7 +169,7 @@ public class MapBuilder {
 			public void run() {
 				ItemSpawner.spawnRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
 			}
-		}, 0, 30000);
+        }, 0, 60000);
 
 	}
 
