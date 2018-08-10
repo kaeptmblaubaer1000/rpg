@@ -100,12 +100,12 @@ public class MapBuilder {
 		}
 		objects.add(new WallTile(new Vector2D(58, 14), WallTile.Type.RIGHT_LOWER_EDGE));
 		for (int i = 33; i < 58; i++) {
-			objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
+			if (i != 44)
+				objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
+			else
+				objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL_UP_T_CONNECTOR));
 		}
 		objects.add(new WallTile(new Vector2D(32, 14), WallTile.Type.LEFT_LOWER_EDGE));
-		for (int i = 33; i < 58; i++) {
-			objects.add(new WallTile(new Vector2D(i, 14), WallTile.Type.HORIZONTAL));
-		}
 		for (int i = 9; i < 14; i++) {
 			if (i != 11)
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
@@ -113,8 +113,8 @@ public class MapBuilder {
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL_RIGHT_T_CONNECTOR));
 		}
 		for (int i = 1; i < 8; i++) {
-			if(i != 5)
-			objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
+			if (i != 5)
+				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL));
 			else
 				objects.add(new WallTile(new Vector2D(32, i), WallTile.Type.VERTICAL_RIGHT_T_CONNECTOR));
 		}
