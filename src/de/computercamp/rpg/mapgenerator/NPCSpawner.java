@@ -3,7 +3,10 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.items.Cucumber;
 import de.computercamp.rpg.entities.items.HealingPotion;
+import de.computercamp.rpg.entities.items.Item;
+import de.computercamp.rpg.entities.items.Key;
 import de.computercamp.rpg.entities.items.Sword;
 import de.computercamp.rpg.entities.npcs.HealthChangingNPC;
 import de.computercamp.rpg.entities.npcs.ItemGivingNPC;
@@ -19,10 +22,14 @@ public class NPCSpawner {
 		badmagician.startMoving(player);
 		NPC weaponsmith = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), 3, new Sword(new Vector2D(0,0)), (long) -1);
 		weaponsmith.startMoving(player);
+		NPC cook = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), 4, new Cucumber(new Vector2D(0,0)), (long) -1);
+		cook.setRequiredItem(new Key(new Vector2D(0,0)));
+		cook.startMoving(player);
 		map.addObject(welcomeNPC);
 		map.addObject(magician);
 		map.addObject(badmagician);
 		map.addObject(weaponsmith);
+		map.addObject(cook);
 	}
 	private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
 		Vector2D randloc;

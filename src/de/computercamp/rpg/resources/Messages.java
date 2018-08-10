@@ -11,7 +11,7 @@ public class Messages {
     public static String npcMagician;
     public static String npcBadMagician;
     public static String npcWeaponsmith;
-
+    public static String npcCook;
     public static String closeProgram;
     public static String healing_potion;
     public static String itemRequired;
@@ -33,6 +33,7 @@ public class Messages {
         npcMagician = bundle.getString("npcMagician");
         npcBadMagician = bundle.getString("npcBadMagician");
         npcWeaponsmith = bundle.getString("npcWeaponsmith");
+        npcCook = bundle.getString("npcCook");
         closeProgram = bundle.getString("closeProgram");
         healing_potion = bundle.getString("healing_potion");
         itemRequired = bundle.getString("itemRequired");
