@@ -18,12 +18,20 @@ import java.util.List;
 public class NPC extends LivingBaseObject {
 	protected long nextUse;
 	protected Item requiredItem = null;
-	protected int npcMessageID;
+	public enum MessageID {
+		npcWelcome,
+		npcMagician,
+		npcBadMagician,
+		npcWeaponsmith,
+		npcCook,
+
+	}
+	protected MessageID npcMessageID;
 	protected long delay;
 	protected long despawn = 0;
 	protected Player player;
 
-	public NPC(Player player, Vector2D position, int message, long delay) {
+	public NPC(Player player, Vector2D position, MessageID message, long delay) {
 		super(position);
 		npcMessageID = message;
 		this.delay = delay;
@@ -40,18 +48,19 @@ public class NPC extends LivingBaseObject {
 			return true;
 		}
 		String message;
-		if (npcMessageID == 0) {
-			message = Messages.npcWelcome;
-		} else if (npcMessageID == 1) {
-			message = Messages.npcMagician;
-		} else if (npcMessageID == 2) {
-			message = Messages.npcBadMagician;
-		} else if (npcMessageID == 3) {
-			message = Messages.npcWeaponsmith;
-		} else if (npcMessageID == 4) {
-			message = Messages.npcCook;
-		} else {
-			message = "Error: Message not found.";
+		switch (npcMessageID) {
+			case npcWelcome:
+				message = Messages.npcWelcome;
+			case npcMagician:
+				message = Messages.npcMagician;
+			case npcBadMagician:
+				message = Messages.npcBadMagician;
+			case npcWeaponsmith:
+				message = Messages.npcWeaponsmith;
+			case npcCook:
+				message = Messages.npcCook;
+			default:
+				message = "Error: Message not found.";
 		}
 		if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
 			if (requiredItem != null) {
@@ -119,7 +128,7 @@ public class NPC extends LivingBaseObject {
 			}
 			if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
 				if (Math.random() < 0.2) {
-					Monster monster = new Monster(player, position, 0, 0);
+					Monster monster = new Monster(player, position, null, 0);
 					System.out.println(monster);
 					System.out.println(position);
 					map.addObject(monster);
