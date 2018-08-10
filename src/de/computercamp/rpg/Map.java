@@ -26,13 +26,13 @@ public class Map {
 
     private List<BaseObject> mapContents = new ArrayList<>();
 
-    public boolean removeObject(BaseObject base) {
+    public synchronized boolean removeObject(BaseObject base) {
         if (base.getMap() == this)
             base.setMap(null);
         return mapContents.removeIf((object) -> base == object);
     }
 
-    public void addObject(BaseObject object) {
+    public synchronized void addObject(BaseObject object) {
         object.setMap(this);
         if (!mapContents.contains(object)) {
             mapContents.add(object);
@@ -61,7 +61,7 @@ public class Map {
         return true;
     }
 
-    public String render() {
+    public synchronized String render() {
         int maxX = 60;
         int maxY = 16;
 
