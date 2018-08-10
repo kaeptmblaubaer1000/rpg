@@ -21,6 +21,7 @@ public class Messages {
     public static String npcWaitingForever;
     public static String cucumber;
     public static String suicideSword;
+    public static String youDied;
 
     private Messages() {
     }
@@ -41,6 +42,7 @@ public class Messages {
         npcWaitingForever = bundle.getString("npcWaitingForever");
         cucumber = bundle.getString("cucumber");
         suicideSword = bundle.getString("suicideSword");
+        youDied = bundle.getString("youDied");
     }
 
     static {

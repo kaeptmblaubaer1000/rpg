@@ -7,8 +7,8 @@ import de.computercamp.rpg.entities.items.Item;
 
 public class ItemGivingNPC extends NPC{
 	private Item toGive;
-	public ItemGivingNPC(Vector2D position, int message, Item item, long delay) {
-        super(position, message, delay);
+	public ItemGivingNPC(Player player, Vector2D position, int message, Item item, long delay) {
+        super(player, position, message, delay);
         this.toGive = item;
         
     }

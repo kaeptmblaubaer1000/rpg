@@ -15,11 +15,13 @@ public class NPC extends LivingBaseObject {
     protected int npcMessageID;
     protected long delay;
     protected long despawn = 0;
+    protected Player player;
 
-    public NPC(Vector2D position, int message, long delay) {
+    public NPC(Player player, Vector2D position, int message, long delay) {
         super(position);
         npcMessageID = message;
         this.delay = delay;
+        this.player = player;
     }
 
     public void setRequiredItem(Item item) {
@@ -82,8 +84,12 @@ public class NPC extends LivingBaseObject {
     		if (despawn == 0) {
     			despawn = System.currentTimeMillis()+5000;
     		}
-    		if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this))
+    		if (System.currentTimeMillis() >= despawn && map.getMapContents().contains(this)) {
     			map.removeObject(this);
+    			Monster monster = new Monster(player, position, 0, 0);
+    		    map.addObject(monster);
+    			monster.startFighting(player);
+    		}
     		
     		return 'X';
     	}

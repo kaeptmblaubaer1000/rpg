@@ -7,6 +7,7 @@ import de.computercamp.rpg.entities.DogDoor;
 import de.computercamp.rpg.entities.Door;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.WallTile;
+import de.computercamp.rpg.entities.npcs.Monster;
 
 import java.util.*;
 
@@ -88,6 +89,7 @@ public class MapBuilder {
         }
 
         NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2,2), new Vector2D(58,12));
+       
 	    Timer itemspawnTimer = new Timer(true);		
 	    itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
 		    @Override

@@ -6,8 +6,8 @@ import de.computercamp.rpg.entities.Player;
 public class HealthChangingNPC extends NPC {
 	int minHealthChange;
 	int maxHealthChange;
-	public HealthChangingNPC(Vector2D position, int message, int minHealthChange, int maxHealthChange, long delay) {
-		super(position, message, delay);
+	public HealthChangingNPC(Player player, Vector2D position, int message, int minHealthChange, int maxHealthChange, long delay) {
+		super(player, position, message, delay);
 		this.minHealthChange = minHealthChange;
 		this.maxHealthChange = maxHealthChange;
 	}
