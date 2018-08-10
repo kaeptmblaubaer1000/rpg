@@ -15,6 +15,7 @@ public class WallTile extends BaseObject {
 
         VERTICAL_RIGHT_T_CONNECTOR,
         VERTICAL_LEFT_T_CONNECTOR,
+        HORIZONTAL_DOWN_T_CONNECTOR,
     }
 
     private Type type;
@@ -42,6 +43,8 @@ public class WallTile extends BaseObject {
                 return Map.VERTICAL_RIGHT_T_CONNECTOR;
             case VERTICAL_LEFT_T_CONNECTOR:
                 return Map.VERTICAL_LEFT_T_CONNECTOR;
+            case HORIZONTAL_DOWN_T_CONNECTOR:
+                return Map.HORIZONTAL_DOWN_T_CONNECTOR;
             default:
                 return 'E';
         }
