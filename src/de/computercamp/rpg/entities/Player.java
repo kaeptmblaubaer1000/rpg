@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class Player extends LivingBaseObject {
 
-    private static final int INVENTORY_SIZE = 10;
+    public static final int INVENTORY_SIZE = 10;
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
     private List<String> messagesForPlayer = new ArrayList<>();
