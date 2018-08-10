@@ -2,7 +2,6 @@ package de.computercamp.rpg.mapgenerator;
 
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
-import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.items.*;
 
 import java.util.Random;
@@ -27,14 +26,7 @@ public class ItemSpawner {
     //}
 
     public static void spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
-        int counter = 0;
-        for (BaseObject object : map.getMapContents()) {
-            if (object instanceof Item) {
-                counter++;
-            }
-        }
-
-        if (counter < 10) {
+        if (map.countObjectsOfType(Item.class) < 10) {
             Random random = new Random();
             int randomInt = random.nextInt(100);
             Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
