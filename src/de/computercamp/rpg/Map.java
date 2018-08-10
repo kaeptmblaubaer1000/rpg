@@ -17,6 +17,11 @@ public class Map {
     public static final char LEFT_LOWER_EDGE = '\u2514';
     public static final char RIGHT_LOWER_EDGE = '\u2518';
 
+    public static final char VERTICAL_RIGHT_T_CONNECTOR = '\u251C';
+    public static final char VERTICAL_LEFT_T_CONNECTOR = '\u251C';
+    public static final char HORIZONTAL_RIGHT_T_CONNECTOR = '\u251C';
+
+
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public boolean removeObject(BaseObject base) {

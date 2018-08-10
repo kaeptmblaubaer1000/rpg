@@ -13,6 +13,8 @@ public class WallTile extends BaseObject {
         LEFT_LOWER_EDGE,
         RIGHT_LOWER_EDGE,
 
+        VERTICAL_RIGHT_T_CONNECTOR,
+        VERTICAL_LEFT_T_CONNECTOR,
     }
 
     private Type type;
@@ -36,6 +38,10 @@ public class WallTile extends BaseObject {
                 return Map.LEFT_UPPER_EDGE;
             case RIGHT_UPPER_EDGE:
                 return Map.RIGHT_UPPER_EDGE;
+            case VERTICAL_RIGHT_T_CONNECTOR:
+                return Map.VERTICAL_RIGHT_T_CONNECTOR;
+            case VERTICAL_LEFT_T_CONNECTOR:
+                return Map.VERTICAL_LEFT_T_CONNECTOR;
             default:
                 return 'E';
         }
