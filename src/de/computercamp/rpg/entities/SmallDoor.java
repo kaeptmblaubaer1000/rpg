@@ -2,8 +2,8 @@ package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Vector2D;
 
-public class DogDoor extends BaseObject {
-    public DogDoor(Vector2D position) {
+public class SmallDoor extends BaseObject {
+    public SmallDoor(Vector2D position) {
         super(position);
     }
 

@@ -3,7 +3,6 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.*;
-
 import java.util.*;
 
 public class MapBuilder {
@@ -150,7 +149,7 @@ public class MapBuilder {
 		objects.add(new WallTile(new Vector2D(44, 13), WallTile.Type.VERTICAL));
 		objects.add(new Door(new Vector2D(32, 8)));
 		objects.add(new Door(new Vector2D(6, 6)));
-		objects.add(new DogDoor(new Vector2D(26, 6)));
+		objects.add(new SmallDoor(new Vector2D(26, 6)));
 
 		map.addObject(player);
 		for (BaseObject object : objects) {
