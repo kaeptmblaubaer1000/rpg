@@ -27,28 +27,40 @@ public class ItemSpawner {
 
     public static Item getRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
         Random random = new Random();
-        int randomInt = random.nextInt(5);
+        int randomInt = random.nextInt(100);
         Vector2D randomPos = getRandomLocation(map, minPos, maxPos);
         Item item;
 
-        switch (randomInt) {
-            case 0:
-                item = new HealingPotion(randomPos);
-                break;
-            case 1:
-                item = new Sword(randomPos);
-                break;
-            case 2:
-                item = new Cucumber(randomPos);
-                break;
-            case 3:
-                item = new Key(randomPos);
-                break;
-            case 4:
-                item = new SuicideSword(randomPos);
-                break;
-            default:
-                item = null;
+        //switch (randomInt) {
+        //    case 0:
+        //        item = new HealingPotion(randomPos);
+        //        break;
+        //    case 1:
+        //        item = new Sword(randomPos);
+        //        break;
+        //    case 2:
+        //        item = new Cucumber(randomPos);
+        //        break;
+        //    case 3:
+        //        item = new Key(randomPos);
+        //        break;
+        //    case 4:
+        //        item = new SuicideSword(randomPos);
+        //        break;
+        //    default:
+        //        item = null;
+        //}
+
+        if (randomInt < 10) {
+            item = new Cucumber(randomPos);
+        } else if (randomInt < 20) {
+            item = new SuicideSword(randomPos);
+        } else if (randomInt < 40) {
+            item = new Key(randomPos);
+        } else if (randomInt < 70) {
+            item = new HealingPotion(randomPos);
+        } else { //Percentage between 70 and 100: 30%
+            item = new Sword(randomPos);
         }
 
         map.addObject(item);
