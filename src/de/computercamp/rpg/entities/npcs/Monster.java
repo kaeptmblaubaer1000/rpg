@@ -49,6 +49,11 @@ public class Monster extends NPC {
 
         rumlaufTimer.start();
     }
+    @Override
+    public void onHealthChanged() {
+    	if (health <= 0)
+    		monsterDespawn(this);
+    }
     protected void monsterDespawn(Monster monster) {
     	Thread thread = new Thread(new Runnable() {
     		 @Override

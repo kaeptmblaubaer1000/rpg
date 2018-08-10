@@ -118,7 +118,12 @@ public class NPC extends LivingBaseObject {
 		}
 		return false;
 	}
-
+	@Override
+	public void onHealthChanged() {
+		if (health <= 0) {
+			despawn(this);
+		}
+	}
 	protected void doNPCAction(Player player) {
 	}
 	public void despawn(NPC npc) {
