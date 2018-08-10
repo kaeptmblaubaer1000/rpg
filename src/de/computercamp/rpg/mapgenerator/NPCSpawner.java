@@ -14,15 +14,15 @@ import de.computercamp.rpg.entities.npcs.NPC;
 
 public class NPCSpawner {
 	public static void spawnRandomNPCs(Player player, Map map, Vector2D minPos, Vector2D maxPos) {
-		NPC welcomeNPC = new NPC(player, getRandomLocation(map, minPos, maxPos), 0, 0);
+		NPC welcomeNPC = new NPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcWelcome, 0);
 		welcomeNPC.startMoving(player);
-		NPC magician = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), 1, new HealingPotion(new Vector2D(0,0)), (long)-1);
+		NPC magician = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcMagician, new HealingPotion(new Vector2D(0,0)), (long)-1);
 		magician.startMoving(player);
-		NPC badmagician = new HealthChangingNPC(player, getRandomLocation(map, minPos, maxPos), 2, -6, 8, 20000);
+		NPC badmagician = new HealthChangingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcBadMagician, -6, 8, 20000);
 		badmagician.startMoving(player);
-		NPC weaponsmith = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), 3, new Sword(new Vector2D(0,0)), (long) -1);
+		NPC weaponsmith = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcWeaponsmith, new Sword(new Vector2D(0,0)), (long) -1);
 		weaponsmith.startMoving(player);
-		NPC cook = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), 4, new Cucumber(new Vector2D(0,0)), (long) -1);
+		NPC cook = new ItemGivingNPC(player, getRandomLocation(map, minPos, maxPos), NPC.MessageID.npcCook, new Cucumber(new Vector2D(0,0)), (long) -1);
 		cook.setRequiredItem(new Key(new Vector2D(0,0)));
 		cook.startMoving(player);
 		map.addObject(welcomeNPC);
