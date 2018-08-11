@@ -9,7 +9,6 @@ public class Monster extends NPC {
 
     public Monster(Player player, Vector2D position, MessageID message, long delay) {
         super(player, position, message, delay);
-        // TODO Auto-generated constructor stub
     }
 
     public void startFighting(Player player, Map map) {
