@@ -18,7 +18,8 @@ public class HealthChangingNPC extends NPC {
         int healthChange = (int) Math.round((Math.random() * (maxHealthChange - minHealthChange)) + minHealthChange);
         if (healthChange < 0) {
             player.decreaseHealth((-1) * healthChange);
-        } else {
+        }
+        else {
             player.increaseHealth(healthChange);
         }
     }

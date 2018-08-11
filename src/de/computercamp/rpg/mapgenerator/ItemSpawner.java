@@ -34,13 +34,17 @@ public class ItemSpawner {
 
             if (randomInt < 10) {
                 item = new Cucumber(randomPos);
-            } else if (randomInt < 15) {
+            }
+            else if (randomInt < 15) {
                 item = new SuicideSword(randomPos);
-            } else if (randomInt < 35) {
+            }
+            else if (randomInt < 35) {
                 item = new Key(randomPos);
-            } else if (randomInt < 70) {
+            }
+            else if (randomInt < 70) {
                 item = new HealingPotion(randomPos);
-            } else { //Percentage between 70 and 100: 30%
+            }
+            else { //Percentage between 70 and 100: 30%
                 item = new Sword(randomPos);
             }
             map.addObject(item);
@@ -53,7 +57,8 @@ public class ItemSpawner {
             int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);
             int posY = (int) Math.round((Math.random() * (maxPos.y - minPos.y)) + minPos.y);
             randloc = new Vector2D(posX, posY);
-        } while (map.getObjectByPosition(randloc) != null);
+        }
+        while (map.getObjectByPosition(randloc) != null);
         return randloc;
     }
 }

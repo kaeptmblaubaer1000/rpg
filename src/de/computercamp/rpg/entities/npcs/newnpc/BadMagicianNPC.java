@@ -31,7 +31,8 @@ public class BadMagicianNPC extends NPC {
             int change = (int) Math.round((Math.random() * (maxChange - minChange)) + minChange);
             if (change < 0) {
                 player.decreaseHealth((-1) * change);
-            } else {
+            }
+            else {
                 player.increaseHealth(change);
             }
             usable = false;
@@ -41,7 +42,8 @@ public class BadMagicianNPC extends NPC {
                     usable = true;
                 }
             }, reuseSeconds);
-        } else {
+        }
+        else {
             player.sendMessage(Messages.npcWaiting);
         }
     }

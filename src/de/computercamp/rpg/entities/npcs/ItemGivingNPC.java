@@ -18,7 +18,8 @@ public class ItemGivingNPC extends NPC {
         if (player.getInventory().size() >= Player.INVENTORY_SIZE) {
             toGive.setPosition(position);
             map.addObject(toGive);
-        } else
+        }
+        else
             player.collectItem(toGive);
     }
 

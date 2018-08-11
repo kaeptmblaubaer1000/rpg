@@ -19,7 +19,8 @@ public class WeaponSmithNPC extends NPC {
             player.sendMessage(Messages.npcWeaponsmith);
             player.collectItem(new Sword(null));
             used = true;
-        } else {
+        }
+        else {
             player.sendMessage(Messages.npcWaitingForever);
         }
     }

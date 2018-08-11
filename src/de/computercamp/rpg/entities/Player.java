@@ -4,7 +4,9 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Simple player class with position and up, down, right and left method
@@ -118,13 +120,17 @@ public class Player extends LivingBaseObject {
         if (map != null) {
             if (map.getObjectByPosition(position.withY(position.y + 1)) == null) {
                 item.setPosition(position.withY(position.y + 1));
-            } else if (map.getObjectByPosition(position.withY(position.y - 1)) == null) {
+            }
+            else if (map.getObjectByPosition(position.withY(position.y - 1)) == null) {
                 item.setPosition(position.withY(position.y - 1));
-            } else if (map.getObjectByPosition(position.withX(position.x + 1)) == null) {
+            }
+            else if (map.getObjectByPosition(position.withX(position.x + 1)) == null) {
                 item.setPosition(position.withX(position.x + 1));
-            } else if (map.getObjectByPosition(position.withX(position.x - 1)) == null) {
+            }
+            else if (map.getObjectByPosition(position.withX(position.x - 1)) == null) {
                 item.setPosition(position.withX(position.x - 1));
-            } else {
+            }
+            else {
                 return;
             }
             removeItem(item);
@@ -171,7 +177,8 @@ public class Player extends LivingBaseObject {
         if (health > 0) {
             if (messagesForPlayer.size() > 0)
                 toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size() - 1);
-        } else {
+        }
+        else {
             toReturn += "\n>> " + Messages.youDied;
         }
         return toReturn;

@@ -29,7 +29,8 @@ public class CookNPC extends NPC {
         if (player.getInventory().contains(requiredItem)) {
             player.removeItem(requiredItem);
             gotItem = true;
-        } else {
+        }
+        else {
             //TODO: MessageFormat
             player.sendMessage(Messages.itemRequired);
         }
@@ -43,7 +44,8 @@ public class CookNPC extends NPC {
                     usable = true;
                 }
             }, reuseSeconds);
-        } else {
+        }
+        else {
             player.sendMessage(Messages.npcWaiting);
         }
     }

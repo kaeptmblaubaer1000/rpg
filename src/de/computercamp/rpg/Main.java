@@ -30,9 +30,11 @@ public class Main {
                 "English");
         if (option == 0) {
             Messages.changeLanguage(Locale.GERMAN);
-        } else if (option == -1) {
+        }
+        else if (option == -1) {
             System.exit(0);
-        } else {
+        }
+        else {
             Messages.changeLanguage(Locale.ENGLISH);
         }
         createJFrame();
@@ -50,7 +52,8 @@ public class Main {
             font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
             leftTextArea.setFont(font);
-        } catch (FontFormatException | IOException e) {
+        }
+        catch (FontFormatException | IOException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
             JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);
@@ -208,7 +211,8 @@ public class Main {
         private void numberKeyPressed(int number) {
             if (qPressed) {
                 mapBuilder.getPlayer().dropItem(number);
-            } else {
+            }
+            else {
                 mapBuilder.getPlayer().useItem(number);
             }
         }

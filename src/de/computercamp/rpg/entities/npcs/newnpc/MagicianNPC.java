@@ -32,7 +32,8 @@ public class MagicianNPC extends NPC {
                     usable = true;
                 }
             }, reuseSeconds);
-        } else {
+        }
+        else {
             player.sendMessage(Messages.npcWaiting);
         }
     }
