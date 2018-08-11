@@ -33,4 +33,23 @@ public abstract class BaseObject {
         //return true;
         return (player.position.x >= 0 && player.position.y >= 0 && player.position.x < 60 && player.position.y < 16);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseObject that = (BaseObject) o;
+
+        if (getPosition() != null ? !getPosition().equals(that.getPosition()) : that.getPosition() != null)
+            return false;
+        return getMap() != null ? getMap().equals(that.getMap()) : that.getMap() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPosition() != null ? getPosition().hashCode() : 0;
+        result = 31 * result + (getMap() != null ? getMap().hashCode() : 0);
+        return result;
+    }
 }

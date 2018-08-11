@@ -27,7 +27,7 @@ public class Map {
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public synchronized boolean removeObject(BaseObject base) {
-        if (base.getMap() == this)
+        if (base != null && base.getMap().equals(this))
             base.setMap(null);
         return mapContents.removeIf((object) -> base == object);
     }
@@ -39,7 +39,7 @@ public class Map {
         }
     }
 
-    public BaseObject getObjectByPosition(Vector2D position) {
+    public synchronized BaseObject getObjectByPosition(Vector2D position) {
         for (BaseObject baseObject : mapContents) {
             if (baseObject.getPosition().equals(position) && !(baseObject instanceof Player)) {
                 return baseObject;
@@ -48,7 +48,7 @@ public class Map {
         return null;
     }
 
-    public List<BaseObject> getMapContents() {
+    public synchronized List<BaseObject> getMapContents() {
         return Collections.unmodifiableList(mapContents);
     }
 
@@ -102,5 +102,20 @@ public class Map {
 
     public int countObjectsOfType(Class<? extends BaseObject> type) {
         return (int) mapContents.stream().filter(type::isInstance).count();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Map map = (Map) o;
+
+        return getMapContents() != null ? getMapContents().equals(map.getMapContents()) : map.getMapContents() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getMapContents() != null ? getMapContents().hashCode() : 0;
     }
 }

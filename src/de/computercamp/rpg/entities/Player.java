@@ -92,6 +92,10 @@ public class Player extends LivingBaseObject {
         }
     }
 
+    public boolean hasAnyItemOfType(Class<? extends Item> type) {
+        return inventory.stream().anyMatch(item -> item.getClass().equals(type));
+    }
+
     public void collectItem(Item item) {
         if (map == null) {
             throw new NullPointerException("Player removed from map");
@@ -108,6 +112,22 @@ public class Player extends LivingBaseObject {
      */
     public boolean removeItem(Item item) {
         return inventory.remove(item);
+    }
+
+    /**
+     * @param type  the type of the item which will be removed
+     * @param count how many items will be removed
+     */
+    public void removeItemsOfType(Class<? extends Item> type, int count) {
+        int counter = 0;
+        for (Item item : inventory) {
+            if (item.getClass().equals(type)) {
+                inventory.remove(item);
+                if (++counter >= count) {
+                    return;
+                }
+            }
+        }
     }
 
     public void dropItem(int inventoryIndex) {
