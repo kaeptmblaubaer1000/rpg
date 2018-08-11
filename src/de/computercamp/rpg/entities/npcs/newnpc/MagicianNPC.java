@@ -5,6 +5,7 @@ import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.HealingPotion;
 import de.computercamp.rpg.resources.Messages;
 
+import java.text.MessageFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,6 +14,7 @@ public class MagicianNPC extends NPC {
     private boolean usable = true;
     private int reuseSeconds;
     private Timer timer;
+    private long timerStarted;
 
     public MagicianNPC(Vector2D position, int reuseSeconds) {
         super(position);
@@ -32,9 +34,13 @@ public class MagicianNPC extends NPC {
                     usable = true;
                 }
             }, reuseSeconds);
+            timerStarted = System.currentTimeMillis();
         }
         else {
-            player.sendMessage(Messages.npcWaiting);
+            MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
+            int timePassed = (int) (System.currentTimeMillis() - timerStarted);
+            String message = messageFormat.format(new Object[]{reuseSeconds - timePassed / 1000});
+            player.sendMessage(message);
         }
     }
 }

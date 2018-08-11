@@ -2,51 +2,57 @@ package de.computercamp.rpg.entities.npcs.newnpc;
 
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.items.Cucumber;
 import de.computercamp.rpg.entities.items.Item;
-import de.computercamp.rpg.entities.items.Key;
 import de.computercamp.rpg.resources.Messages;
 
+import java.text.MessageFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class CookNPC extends NPC {
 
-    private boolean gotItem;
+    private Item requiredItem;
 
     private boolean usable = true;
     private int reuseSeconds;
     private Timer timer;
+    private long timerStarted;
 
-    public CookNPC(Vector2D position, int reuseSeconds, int minChange, int maxChange) {
+    public CookNPC(Vector2D position, int reuseSeconds, Item requiredItem) {
         super(position);
         this.reuseSeconds = reuseSeconds;
+        this.requiredItem = requiredItem;
         timer = new Timer(true);
     }
 
     @Override
     protected void doAction(Player player) {
-        Item requiredItem = new Key(null);
-        if (player.getInventory().contains(requiredItem)) {
-            player.removeItem(requiredItem);
-            gotItem = true;
-        }
-        else {
-            //TODO: MessageFormat
-            player.sendMessage(Messages.itemRequired);
-        }
-
         if (usable) {
-
-            usable = false;
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    usable = true;
-                }
-            }, reuseSeconds);
+            if (player.getInventory().contains(requiredItem)) {
+                player.removeItem(requiredItem);
+                player.sendMessage(Messages.npcCook);
+                player.collectItem(new Cucumber(null));
+                usable = false;
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        usable = true;
+                    }
+                }, reuseSeconds);
+                timerStarted = System.currentTimeMillis();
+            }
+            else {
+                MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
+                messageFormat.format(new Object[]{requiredItem.getDisplayName()});
+                player.sendMessage(Messages.itemRequired);
+            }
         }
         else {
-            player.sendMessage(Messages.npcWaiting);
+            MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
+            int timePassed = (int) (System.currentTimeMillis() - timerStarted);
+            String message = messageFormat.format(new Object[]{reuseSeconds - timePassed / 1000});
+            player.sendMessage(message);
         }
     }
 }
