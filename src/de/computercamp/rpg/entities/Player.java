@@ -4,7 +4,9 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Simple player class with position and up, down, right and left method
