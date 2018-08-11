@@ -5,6 +5,8 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.*;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ItemSpawner {
 
@@ -24,6 +26,16 @@ public class ItemSpawner {
     //    map.addObject(item);
     //    return item;
     //}
+
+    public static void startSpawningItems(Map map, Vector2D minPos, Vector2D maxPos) {
+        Timer itemSpawnTimer = new Timer(true);
+        itemSpawnTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                ItemSpawner.spawnRandomItem(map, minPos, maxPos);
+            }
+        }, 0, 2000);
+    }
 
     public static void spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
         if (map.countObjectsOfType(Item.class) < 10) {

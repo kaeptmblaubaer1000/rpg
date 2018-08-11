@@ -4,7 +4,9 @@ import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MapBuilder {
 
@@ -162,15 +164,7 @@ public class MapBuilder {
         }
 
         NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2, 2), new Vector2D(58, 12));
-
-        Timer itemspawnTimer = new Timer(true);
-        itemspawnTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                ItemSpawner.spawnRandomItem(map, new Vector2D(2, 2), new Vector2D(58, 12));
-            }
-        }, 0, 60000);
-
+        ItemSpawner.startSpawningItems(map, new Vector2D(2, 2), new Vector2D(58, 12));
     }
 
     public Map getMap() {

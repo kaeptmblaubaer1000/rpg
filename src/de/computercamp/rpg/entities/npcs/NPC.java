@@ -156,9 +156,9 @@ public class NPC extends LivingBaseObject {
                 NPC me = npc;
 
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 }
-                catch (InterruptedException e) {
+                catch (InterruptedException ignored) {
                 }
                 if (Math.random() < 0.2) {
                     Monster monster = new Monster(player, position, null, 0);
