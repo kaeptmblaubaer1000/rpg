@@ -44,8 +44,8 @@ public class CookNPC extends NPC {
             }
             else {
                 MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
-                messageFormat.format(new Object[]{requiredItem.getDisplayName()});
-                player.sendMessage(Messages.itemRequired);
+                String message = messageFormat.format(new Object[]{requiredItem.getDisplayName()});
+                player.sendMessage(message);
             }
         }
         else {
