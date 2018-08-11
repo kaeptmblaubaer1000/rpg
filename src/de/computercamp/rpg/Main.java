@@ -5,7 +5,9 @@ import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -216,24 +218,5 @@ public class Main {
                 mapBuilder.getPlayer().useItem(number);
             }
         }
-    }
-
-    static class CloseHandler implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            jf.dispose();
-            System.exit(0);
-        }
-    }
-
-    static class SelectLanguageHandler implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource().equals(selectLanguageComboBox)) {
-                Messages.changeLanguage((Locale) selectLanguageComboBox.getSelectedItem());
-            }
-        }
-
     }
 }
