@@ -121,7 +121,7 @@ public class Main {
 
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
-        consoleWrite(mapBuilder.getPlayer().renderMessageHistory());
+        consoleWrite(mapBuilder.getPlayer().renderMessage());
         rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n" + mapBuilder.getPlayer().renderInventory());
         if (debugMode) {
             rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());

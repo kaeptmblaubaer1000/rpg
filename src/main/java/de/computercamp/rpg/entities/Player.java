@@ -14,7 +14,7 @@ public class Player extends LivingBaseObject {
     public static final int INVENTORY_SIZE = 10;
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
-    private int coins;
+    private int coins = 0;
 
     private String message;
     private Timer messageTimer = new Timer(true);
@@ -216,7 +216,7 @@ public class Player extends LivingBaseObject {
         return message;
     }
 
-    public String renderMessageHistory() {
+    public String renderMessage() {
         if (isDead()) {
             return "\n\u00bb " + Messages.youDied;
         }
