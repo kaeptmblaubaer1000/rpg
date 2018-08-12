@@ -19,6 +19,22 @@ public abstract class BaseObject {
         this.position = position;
     }
 
+    public void up() {
+        position.y--;
+    }
+
+    public void down() {
+        position.y--;
+    }
+
+    public void right() {
+        position.x++;
+    }
+
+    public void left() {
+        position.x--;
+    }
+
     public Map getMap() {
         return map;
     }
