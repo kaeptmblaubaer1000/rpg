@@ -16,7 +16,7 @@ public class Player extends LivingBaseObject {
     public static final int INVENTORY_SIZE = 10;
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
-    private List<String> messagesForPlayer = new ArrayList<>();
+    private List<String> messageHistory = new ArrayList<>();
 
     public Player(Vector2D position) {
         super(position);
@@ -190,18 +190,18 @@ public class Player extends LivingBaseObject {
     }
 
     public void sendMessage(String message) {
-        messagesForPlayer.add(message);
+        messageHistory.add(message);
     }
 
-    public List<String> getMessagesForPlayer() {
-        return messagesForPlayer;
+    public List<String> getMessageHistory() {
+        return Collections.unmodifiableList(messageHistory);
     }
 
-    public String renderMessagesForPlayer() {
+    public String renderMessageHistory() {
         String toReturn = "";
         if (health > 0) {
-            if (messagesForPlayer.size() > 0)
-                toReturn += "\n>> " + messagesForPlayer.get(messagesForPlayer.size() - 1);
+            if (messageHistory.size() > 0)
+                toReturn += "\n>> " + messageHistory.get(messageHistory.size() - 1);
         }
         else {
             toReturn += "\n>> " + Messages.youDied;
