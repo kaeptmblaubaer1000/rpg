@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MapBuilder {
 
-    private de.computercamp.rpg.Map map;
+    private Map map;
     private Player player;
     private List<BaseObject> objects = new ArrayList<>();
 
@@ -158,13 +158,11 @@ public class MapBuilder {
         for (BaseObject object : objects) {
             map.addObject(object);
         }
-        map.addObject(player);
-        for (BaseObject object : objects) {
-            map.addObject(object);
-        }
 
         NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2, 2), new Vector2D(58, 12));
         ItemSpawner.startSpawningItems(map, new Vector2D(2, 2), new Vector2D(58, 12));
+
+
     }
 
     public Map getMap() {
