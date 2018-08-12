@@ -15,8 +15,9 @@ public class Player extends LivingBaseObject {
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
 
-    private String message = Messages.npcWelcome;
+    private String message;
     private Timer messageTimer = new Timer(true);
+    private TimerTask messageTimerTask;
 
     public Player(Vector2D position) {
         super(position);
@@ -186,12 +187,16 @@ public class Player extends LivingBaseObject {
 
     public void sendMessage(String message) {
         this.message = message;
-        messageTimer.schedule(new TimerTask() {
+        if (messageTimerTask != null) {
+            messageTimerTask.cancel();
+        }
+        messageTimerTask = new TimerTask() {
             @Override
             public void run() {
                 Player.this.message = null;
             }
-        }, 10 * 1000);
+        };
+        messageTimer.schedule(messageTimerTask, 10 * 1000);
     }
 
     public String getMessage() {
