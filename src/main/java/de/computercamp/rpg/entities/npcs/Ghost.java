@@ -23,36 +23,36 @@ public class Ghost extends LivingBaseObject {
                     if (Math.abs(player.getPosition().x - position.x) > 1) {
                         if (player.getPosition().x < position.x) {
                             if (!(map.getObjectByPosition(new Vector2D(position.x - 1, position.y)) instanceof LivingBaseObject)) {
-                                setPosition(new Vector2D(position.x - 1, position.y));
+                                left();
                             }
                             else if (((LivingBaseObject) map.getObjectByPosition(new Vector2D(position.x - 1, position.y))).getHealth() <= 0) {
-                                setPosition(new Vector2D(position.x - 1, position.y));
+                                left();
                             }
                         }
                         else {
                             if (!(map.getObjectByPosition(new Vector2D(position.x + 1, position.y)) instanceof LivingBaseObject)) {
-                                setPosition(new Vector2D(position.x + 1, position.y));
+                                right();
                             }
                             else if (((LivingBaseObject) map.getObjectByPosition(new Vector2D(position.x + 1, position.y))).getHealth() <= 0) {
-                                setPosition(new Vector2D(position.x + 1, position.y));
+                                right();
                             }
                         }
                     }
                     else if (Math.abs(player.getPosition().y - position.y) > 0) {
                         if (player.getPosition().y < position.y) {
                             if (!(map.getObjectByPosition(new Vector2D(position.x, position.y - 1)) instanceof LivingBaseObject)) {
-                                setPosition(new Vector2D(position.x, position.y - 1));
+                                up();
                             }
                             else if (((LivingBaseObject) map.getObjectByPosition(new Vector2D(position.x, position.y - 1))).getHealth() <= 0) {
-                                setPosition(new Vector2D(position.x, position.y - 1));
+                                up();
                             }
                         }
                         else {
                             if (!(map.getObjectByPosition(new Vector2D(position.x, position.y + 1)) instanceof LivingBaseObject)) {
-                                setPosition(new Vector2D(position.x, position.y + 1));
+                                down();
                             }
                             else if (((LivingBaseObject) map.getObjectByPosition(new Vector2D(position.x, position.y + 1))).getHealth() <= 0) {
-                                setPosition(new Vector2D(position.x, position.y + 1));
+                                down();
                             }
                         }
                     }
@@ -69,6 +69,53 @@ public class Ghost extends LivingBaseObject {
             }
         });
         fightThread.start();
+
+        //Thread fightThread = new Thread(() -> {
+        //    while (true) {
+        //        if (health > 0) {
+        //            boolean move = true;
+        //
+        //            if (position.equals(player.getPosition())) {
+        //                move = false;
+        //            }
+        //
+        //            if (move) { //Move
+        //                if (player.getPosition().x < position.x) {
+        //                    left();
+        //                }
+        //                else if (player.getPosition().x > position.x) {
+        //                    right();
+        //                }
+        //                else if (player.getPosition().y < position.y) {
+        //                    up();
+        //                }
+        //                else if (player.getPosition().y > position.y) {
+        //                    down();
+        //                }
+        //            }
+        //            else { //Hit
+        //                if (getMap().getObjectByPosition(getPosition().withY(getPosition().y + 1)).equals(player)) {
+        //                    player.decreaseHealth(10);
+        //                }
+        //                else if (getMap().getObjectByPosition(getPosition().withY(getPosition().y - 1)).equals(player)) {
+        //                    player.decreaseHealth(10);
+        //                }
+        //                else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x + 1)).equals(player)) {
+        //                    player.decreaseHealth(10);
+        //                }
+        //                else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x - 1)).equals(player)) {
+        //                    player.decreaseHealth(10);
+        //                }
+        //            }
+        //
+        //            try {
+        //                Thread.sleep(500);
+        //            }
+        //            catch (InterruptedException ignored) {}
+        //        }
+        //    }
+        //});
+        //fightThread.run();
     }
 
     @Override
