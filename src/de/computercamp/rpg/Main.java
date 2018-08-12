@@ -22,7 +22,6 @@ public class Main {
     private static JFrame jf;
     private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
-    private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
     private static boolean debugMode = false;
 
