@@ -34,7 +34,7 @@ public class ItemSpawner {
             public void run() {
                 ItemSpawner.spawnRandomItem(map, minPos, maxPos);
             }
-        }, 0, 2000);
+        }, 0, 60 * 1000);
     }
 
     public static void spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {

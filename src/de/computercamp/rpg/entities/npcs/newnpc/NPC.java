@@ -1,6 +1,7 @@
 package de.computercamp.rpg.entities.npcs.newnpc;
 
 import de.computercamp.rpg.Vector2D;
+import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 
@@ -81,10 +82,18 @@ public abstract class NPC extends LivingBaseObject {
             despawnTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Ghost ghost = new Ghost(position);
-                    map.addObject(ghost);
-                    Player player = (Player) map.getMapContents().stream().filter(baseObject -> baseObject instanceof Player).toArray()[0];
-                    ghost.startFighting(player, map);
+                    if (Math.random() < 0.2) {
+                        Ghost ghost = new Ghost(position);
+                        map.addObject(ghost);
+                        Player player = null;
+                        for (BaseObject object : map.getMapContents()) {
+                            if (object instanceof Player) {
+                                player = (Player) object;
+                                break;
+                            }
+                        }
+                        ghost.startFighting(player, map);
+                    }
                     map.removeObject(NPC.this);
                 }
             }, 5000);
