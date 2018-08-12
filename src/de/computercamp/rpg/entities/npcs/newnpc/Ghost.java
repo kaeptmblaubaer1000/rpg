@@ -57,7 +57,7 @@ public class Ghost extends LivingBaseObject {
                         }
                     }
                     else {
-                        player.decreaseHealth(1);
+                        player.decreaseHealth(5);
                     }
 
                     try {
