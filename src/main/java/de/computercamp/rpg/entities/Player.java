@@ -200,14 +200,14 @@ public class Player extends LivingBaseObject {
 
     public String renderMessageHistory() {
         if (isDead()) {
-            return "\n» " + Messages.youDied;
+            return "\n\u00bb " + Messages.youDied;
         }
 
         if (message == null) {
-            return "\n» ";
+            return "\n\u00bb ";
         }
         else {
-            return "\n» " + message;
+            return "\n\u00bb " + message;
         }
     }
 }
