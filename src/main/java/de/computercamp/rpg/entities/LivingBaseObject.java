@@ -19,7 +19,7 @@ public abstract class LivingBaseObject extends BaseObject {
             public void run() {
                 if (health < MAX_HEALTH && health > 0) {
                     health++;
-                    onHealthChanged();
+                    onHealthChange();
                 }
             }
         }, 0, 3000);
@@ -34,7 +34,7 @@ public abstract class LivingBaseObject extends BaseObject {
             this.health = finalHealth;
         }
         if (finalHealth != health) {
-            onHealthChanged();
+            onHealthChange();
         }
     }
 
@@ -48,7 +48,7 @@ public abstract class LivingBaseObject extends BaseObject {
         }
 
         if (finalHealth != health) {
-            onHealthChanged();
+            onHealthChange();
         }
     }
 
@@ -57,7 +57,7 @@ public abstract class LivingBaseObject extends BaseObject {
      */
     public void heal() {
         if (health != MAX_HEALTH) {
-            onHealthChanged();
+            onHealthChange();
         }
         health = MAX_HEALTH;
     }
@@ -73,7 +73,7 @@ public abstract class LivingBaseObject extends BaseObject {
         return health;
     }
 
-    public void onHealthChanged() {
+    public void onHealthChange() {
     }
 
     public boolean isDead() {
