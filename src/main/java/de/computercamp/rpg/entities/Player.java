@@ -4,9 +4,7 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Simple player class with position and up, down, right and left method
@@ -16,7 +14,9 @@ public class Player extends LivingBaseObject {
     public static final int INVENTORY_SIZE = 10;
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
-    private List<String> messageHistory = new ArrayList<>();
+
+    private String message = Messages.npcWelcome;
+    private Timer messageTimer = new Timer(true);
 
     public Player(Vector2D position) {
         super(position);
@@ -185,22 +185,29 @@ public class Player extends LivingBaseObject {
     }
 
     public void sendMessage(String message) {
-        messageHistory.add(message);
+        this.message = message;
+        messageTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Player.this.message = null;
+            }
+        }, 10 * 1000);
     }
 
-    public List<String> getMessageHistory() {
-        return Collections.unmodifiableList(messageHistory);
+    public String getMessage() {
+        return message;
     }
 
     public String renderMessageHistory() {
-        String toReturn = "";
-        if (health > 0) {
-            if (messageHistory.size() > 0)
-                toReturn += "\n>> " + messageHistory.get(messageHistory.size() - 1);
+        if (isDead()) {
+            return "\n» " + Messages.youDied;
+        }
+
+        if (message == null) {
+            return "\n» ";
         }
         else {
-            toReturn += "\n>> " + Messages.youDied;
+            return "\n» " + message;
         }
-        return toReturn;
     }
 }
