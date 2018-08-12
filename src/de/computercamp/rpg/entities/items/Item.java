@@ -24,6 +24,10 @@ public abstract class Item extends BaseObject {
 
     public abstract String getDisplayName();
 
+    public boolean isSameType(Item item) {
+        return item.getClass().getName().equals(getClass().getName());
+    }
+
     @Override
     public char render() {
         return symbol;
@@ -35,5 +39,23 @@ public abstract class Item extends BaseObject {
             player.collectItem(this);
         }
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Item item = (Item) o;
+
+        return getSymbol() == item.getSymbol();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (int) getSymbol();
+        return result;
     }
 }

@@ -33,7 +33,9 @@ public abstract class LivingBaseObject extends BaseObject {
         else {
             this.health = finalHealth;
         }
-        onHealthChanged();
+        if (finalHealth != health) {
+            onHealthChanged();
+        }
     }
 
     public void decreaseHealth(int health) {
@@ -44,15 +46,20 @@ public abstract class LivingBaseObject extends BaseObject {
         else {
             this.health = finalHealth;
         }
-        onHealthChanged();
+
+        if (finalHealth != health) {
+            onHealthChanged();
+        }
     }
 
     /**
      * Sets the health to MAX_HEALTH
      */
     public void heal() {
+        if (health != MAX_HEALTH) {
+            onHealthChanged();
+        }
         health = MAX_HEALTH;
-        onHealthChanged();
     }
 
     /**

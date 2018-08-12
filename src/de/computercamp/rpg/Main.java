@@ -22,12 +22,11 @@ public class Main {
     private static JFrame jf;
     private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
-    private static JComboBox<Locale> selectLanguageComboBox;
     private static MapBuilder mapBuilder = new MapBuilder();
     private static boolean debugMode = false;
 
     public static void main(String[] args) {
-        int option = JOptionPane.showOptionDialog(null, "Which language do you want?", "Select language",
+        int option = JOptionPane.showOptionDialog(null, "Choose your language?", "Select language",
                 JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
                 "English");
         if (option == 0) {
