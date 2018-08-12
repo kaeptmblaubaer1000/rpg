@@ -1,5 +1,5 @@
 *.iml
-.idea/
+.idea/*
 .project
 .classpath
 *.class
@@ -10,3 +10,4 @@
 .gradle/
 !/gradle/wrapper/gradle-wrapper.jar
 /build/
+!.idea/codeStyles/
