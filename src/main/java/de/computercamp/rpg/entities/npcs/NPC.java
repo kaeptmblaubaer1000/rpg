@@ -21,7 +21,7 @@ public abstract class NPC extends LivingBaseObject {
         if (isDead()) {
             return 'X';
         }
-        return '\uA66A';
+        return '\uA66B';
     }
 
     protected abstract void doAction(Player player);

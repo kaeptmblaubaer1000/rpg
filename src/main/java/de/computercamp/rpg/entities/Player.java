@@ -14,6 +14,7 @@ public class Player extends LivingBaseObject {
     public static final int INVENTORY_SIZE = 10;
 
     private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
+    private int coins;
 
     private String message;
     private Timer messageTimer = new Timer(true);
@@ -28,7 +29,7 @@ public class Player extends LivingBaseObject {
         if (health <= 0) {
             return 'X';
         }
-        return '\uA65A';
+        return '\uA66A';
     }
 
     /**
@@ -183,6 +184,18 @@ public class Player extends LivingBaseObject {
         if (inventory.size() > inventoryIndex) {
             useItem(inventory.get(inventoryIndex));
         }
+    }
+
+    public void addCoins(int coins) {
+        this.coins = this.coins + coins;
+    }
+
+    public void removeCoins(int coins) {
+        this.coins = this.coins - coins;
+    }
+
+    public String renderCoins() {
+        return Messages.coins + ": " + coins;
     }
 
     public void sendMessage(String message) {
