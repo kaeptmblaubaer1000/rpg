@@ -13,3 +13,13 @@ notifications:
    on_success: change  # options: [always|never|change] default: always
    on_failure: always  # options: [always|never|change] default: always
    on_start: never     # options: [always|never|change] default: always
+
+
+deploy:
+  provider: releases
+  api_key:
+    secure: ldqSfP33bGhGoPcQVlPDP6Ja+mLyr8kpozNL9KPz00A3SLl/tLtlfGtjs8diUD3qt3DnABpEiOSr4PgIFaNdrRzI5R1pvsvjpay2MdPxXTBcLrtTyM+TKpvBDSLognFPA1dL1sps4kZ4ohYFsWI9RsJrJjA5bLe5WF0c1FQ0hSJWX7mlSIviQkaZIM4WqmjfJfzzEESF/Oy2Q3WYAXCeIvxkJRvfQfEXqaVRwnheEnY85K5Scl4PDMMZpnI85q+QFqStUsRDnzCMGh+2YvOH5zIoXW4yP9KXtfLI3/sAc4BXha3sAMs/UmARY2WNX8VRtydsO5YZ84Qgtqn4Pe+GZF9BC6u41OsYo4XJAvxy2HQEI6Axb5QNnwhc3a7fkDb8ASQYyvfNYLaojTAn14FnPPFmCgYLan0wbUPRYCr7nlJsV60jB7x4EaPANIKNzXNHgy/RNYQ2Jtql2SUxhbDxwdosoofeF/6qTmNwQS2Dp/pXp/v2DT2DvBIA0dfDW0P2RF36ii+WlEMlOfaCgeYd6rscGdDWNY4Lgj9jmHx+maupArO9GjUbMNWFDoSqemKDsl9dNvj17cdBTREemMiQ9MdGYupm+x4iuOb+IsYuWzVo9eIBFfxV4YoPfM/eTzKMSJUxQ3DPuJZUY/my8cbAQtYqATlDCNP4Ke71ICrsw1A=
+  file: build/distributions/*
+  on:
+    repo: kaeptmblaubaer1000/rpg
+    tags: true
