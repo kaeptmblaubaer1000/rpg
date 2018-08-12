@@ -27,7 +27,7 @@ public class Map {
     private List<BaseObject> mapContents = new ArrayList<>();
 
     public synchronized boolean removeObject(BaseObject base) {
-        if (base != null && base.getMap().equals(this))
+        if (base.getMap() != null && base.getMap().equals(this))
             base.setMap(null);
         return mapContents.removeIf((object) -> base == object);
     }
