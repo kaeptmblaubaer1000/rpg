@@ -166,9 +166,9 @@ public class MapBuilder {
         NPCSpawner.spawnRandomNPCs(player, map, minPos, maxPos);
         ItemSpawner.startSpawningItems(map, minPos, maxPos);
 
-        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
-        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
-        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
+        for (int i = 0; i < 5; i++) {
+            map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
+        }
     }
 
     public Map getMap() {
