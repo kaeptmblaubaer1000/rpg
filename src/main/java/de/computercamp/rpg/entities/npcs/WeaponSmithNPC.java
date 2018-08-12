@@ -1,4 +1,4 @@
-package de.computercamp.rpg.entities.npcs.newnpc;
+package de.computercamp.rpg.entities.npcs;
 
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;

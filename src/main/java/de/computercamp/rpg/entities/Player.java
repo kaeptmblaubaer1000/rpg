@@ -44,11 +44,6 @@ public class Player extends LivingBaseObject {
         }
     }
 
-    @Override
-    public boolean onPlayerMove(Player player) {
-        return player.equals(this);
-    }
-
     /**
      * Moves this player upwards.
      */
