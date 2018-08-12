@@ -27,7 +27,7 @@ public class Main {
     private static boolean debugMode = false;
 
     public static void main(String[] args) {
-        int option = JOptionPane.showOptionDialog(null, "Which language do you want?", "Select language",
+        int option = JOptionPane.showOptionDialog(null, "Choose your language?", "Select language",
                 JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
                 "English");
         if (option == 0) {
