@@ -12,7 +12,7 @@ public class Messages {
     public static String npcCook;
     public static String closeProgram;
     public static String healing_potion;
-    public static String itemRequired;
+    public static String coinsRequired;
     public static String inventory;
     public static String key;
     public static String sword;
@@ -21,6 +21,8 @@ public class Messages {
     public static String cucumber;
     public static String suicideSword;
     public static String youDied;
+    public static String coins;
+    public static String coin;
     private static ResourceBundle bundle;
 
     static {
@@ -40,7 +42,7 @@ public class Messages {
         npcCook = bundle.getString("npcCook");
         closeProgram = bundle.getString("closeProgram");
         healing_potion = bundle.getString("healing_potion");
-        itemRequired = bundle.getString("itemRequired");
+        coinsRequired = bundle.getString("coinsRequired");
         inventory = bundle.getString("inventory");
         key = bundle.getString("key");
         sword = bundle.getString("sword");
@@ -49,6 +51,8 @@ public class Messages {
         cucumber = bundle.getString("cucumber");
         suicideSword = bundle.getString("suicideSword");
         youDied = bundle.getString("youDied");
+        coins = bundle.getString("coins");
+        coin = bundle.getString("coin");
     }
 
     public static void changeLanguage(Locale locale) {

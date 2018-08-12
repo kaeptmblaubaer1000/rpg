@@ -122,7 +122,10 @@ public class Main {
     private static void renderGame() {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderMessage());
-        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n" + mapBuilder.getPlayer().renderInventory());
+        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n\n" +
+                mapBuilder.getPlayer().renderCoins() + "\n\n" +
+                mapBuilder.getPlayer().renderInventory()
+        );
         if (debugMode) {
             rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());
         }

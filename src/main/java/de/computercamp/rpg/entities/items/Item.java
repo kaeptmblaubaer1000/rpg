@@ -7,16 +7,25 @@ import de.computercamp.rpg.entities.Player;
 public abstract class Item extends BaseObject {
 
     protected char symbol;
+    private boolean collectible;
 
     public Item(Vector2D position) {
         super(position);
+        collectible = true;
+    }
+
+    public Item(Vector2D position, boolean collectible) {
+        super(position);
+        this.collectible = collectible;
     }
 
     /**
      * @param player the player who uses the item
      * @return Returns if the item should remove from the inventory. True: the item will be removed
      */
-    public abstract boolean use(Player player);
+    public boolean use(Player player) {
+        return true;
+    }
 
     public char getSymbol() {
         return symbol;
@@ -24,8 +33,7 @@ public abstract class Item extends BaseObject {
 
     public abstract String getDisplayName();
 
-    public boolean isSameType(Item item) {
-        return item.getClass().getName().equals(getClass().getName());
+    public void onCollect(Player player) {
     }
 
     @Override
@@ -35,8 +43,11 @@ public abstract class Item extends BaseObject {
 
     @Override
     public boolean onPlayerMove(Player player) {
-        if ((player.getPosition().x == position.x) && (player.getPosition().y == position.y)) {
-            player.collectItem(this);
+        if (player.getPosition().equals(position)) {
+            if (collectible) {
+                player.collectItem(this);
+            }
+            onCollect(player);
         }
         return true;
     }

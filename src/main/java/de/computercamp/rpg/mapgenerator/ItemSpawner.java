@@ -63,7 +63,7 @@ public class ItemSpawner {
         }
     }
 
-    private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
+    public static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
         Vector2D randloc;
         do {
             int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);

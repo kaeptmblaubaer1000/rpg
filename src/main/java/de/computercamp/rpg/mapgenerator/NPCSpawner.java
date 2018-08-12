@@ -3,7 +3,6 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
-import de.computercamp.rpg.entities.items.Key;
 import de.computercamp.rpg.entities.npcs.*;
 
 public class NPCSpawner {
@@ -25,7 +24,7 @@ public class NPCSpawner {
         map.addObject(weaponSmithNPC);
         weaponSmithNPC.startMoving(player);
 
-        CookNPC cookNPC = new CookNPC(getRandomLocation(map, minPos, maxPos), 20, new Key(null));
+        CookNPC cookNPC = new CookNPC(getRandomLocation(map, minPos, maxPos), 20, 3);
         map.addObject(cookNPC);
         cookNPC.startMoving(player);
     }

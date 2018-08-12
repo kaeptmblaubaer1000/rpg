@@ -3,8 +3,6 @@ package de.computercamp.rpg.entities.npcs;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Cucumber;
-import de.computercamp.rpg.entities.items.Item;
-import de.computercamp.rpg.entities.items.Key;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
@@ -13,25 +11,25 @@ import java.util.TimerTask;
 
 public class CookNPC extends NPC {
 
-    private Item requiredItem;
+    private int requiredCoins;
 
     private boolean usable = true;
     private int reuseSeconds;
     private Timer timer;
     private long timerStarted;
 
-    public CookNPC(Vector2D position, int reuseSeconds, Item requiredItem) {
+    public CookNPC(Vector2D position, int reuseSeconds, int requiredCoins) {
         super(position);
         this.reuseSeconds = reuseSeconds;
-        this.requiredItem = requiredItem;
+        this.requiredCoins = requiredCoins;
         timer = new Timer(true);
     }
 
     @Override
     protected void doAction(Player player) {
         if (usable) {
-            if (player.hasAnyItemOfType(Key.class)) {
-                player.removeItemsOfType(Key.class, 1);
+            if (player.getCoins() >= requiredCoins) {
+                player.removeCoins(requiredCoins);
                 player.sendMessage(Messages.npcCook);
                 player.collectItem(new Cucumber(null));
                 usable = false;
@@ -44,8 +42,8 @@ public class CookNPC extends NPC {
                 timerStarted = System.currentTimeMillis();
             }
             else {
-                MessageFormat messageFormat = new MessageFormat(Messages.itemRequired, Messages.locale);
-                String message = messageFormat.format(new Object[]{requiredItem.getDisplayName()});
+                MessageFormat messageFormat = new MessageFormat(Messages.coinsRequired, Messages.locale);
+                String message = messageFormat.format(new Object[]{requiredCoins});
                 player.sendMessage(message);
             }
         }

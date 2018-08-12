@@ -3,6 +3,7 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.*;
+import de.computercamp.rpg.entities.items.Coin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -159,10 +160,15 @@ public class MapBuilder {
             map.addObject(object);
         }
 
-        NPCSpawner.spawnRandomNPCs(player, map, new Vector2D(2, 2), new Vector2D(58, 12));
-        ItemSpawner.startSpawningItems(map, new Vector2D(2, 2), new Vector2D(58, 12));
+        Vector2D minPos = new Vector2D(2, 2);
+        Vector2D maxPos = new Vector2D(58, 12);
 
+        NPCSpawner.spawnRandomNPCs(player, map, minPos, maxPos);
+        ItemSpawner.startSpawningItems(map, minPos, maxPos);
 
+        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
+        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
+        map.addObject(new Coin(ItemSpawner.getRandomLocation(map, minPos, maxPos)));
     }
 
     public Map getMap() {
