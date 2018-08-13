@@ -33,7 +33,7 @@ public class Player extends LivingBaseObject {
     }
 
     /**
-     * Just use this method to teleport the player
+     * <b><i>Only</i></b> use this method to teleport the player
      *
      * @param newPosition the new position to teleport to
      */
