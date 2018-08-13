@@ -53,7 +53,7 @@ public abstract class NPC extends LivingBaseObject {
                             (player.getPosition().x == position.x - 1 || player.getPosition().x == position.x + 1 || player.getPosition().x == position.x) &&
                                     (player.getPosition().y == position.y - 1 || player.getPosition().y == position.y + 1 || player.getPosition().y == position.y)
                     )) {
-                        if (map.getObjectByPosition(target) == null && !target.equals(player.getPosition()) &&
+                        if (map.getObjectByPosition(target, false) == null && !target.equals(player.getPosition()) &&
                                 (target.x > 0 && target.y > 0 && target.x < 59 && target.y < 15)) {
                             if (health > 0) {
                                 setPosition(target);
@@ -71,7 +71,7 @@ public abstract class NPC extends LivingBaseObject {
                 catch (InterruptedException ignored) {
                 }
             }
-        }, getClass().getName() + "MovingThread");
+        });
         movingThread.start();
     }
 
@@ -92,7 +92,7 @@ public abstract class NPC extends LivingBaseObject {
                                 break;
                             }
                         }
-                        ghost.startFighting(player, map);
+                        ghost.startFighting(player);
                     }
                     map.removeObject(NPC.this);
                 }

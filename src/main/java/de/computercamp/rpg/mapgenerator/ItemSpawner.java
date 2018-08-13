@@ -70,7 +70,7 @@ public class ItemSpawner {
             int posY = (int) Math.round((Math.random() * (maxPos.y - minPos.y)) + minPos.y);
             randloc = new Vector2D(posX, posY);
         }
-        while (map.getObjectByPosition(randloc) != null);
+        while (map.getObjectByPosition(randloc, false) != null);
         return randloc;
     }
 }
