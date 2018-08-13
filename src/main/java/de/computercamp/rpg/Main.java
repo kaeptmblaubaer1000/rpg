@@ -123,8 +123,8 @@ public class Main {
         consoleClearAndWrite(mapBuilder.getMap().render());
         consoleWrite(mapBuilder.getPlayer().renderMessage());
         rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n\n" +
-                mapBuilder.getPlayer().renderCoins() + "\n\n" +
-                mapBuilder.getPlayer().renderInventory()
+            mapBuilder.getPlayer().renderInventory() + "\n\n" +
+            mapBuilder.getPlayer().renderCoins()
         );
         if (debugMode) {
             rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());
