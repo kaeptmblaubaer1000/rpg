@@ -3,6 +3,7 @@ package de.computercamp.rpg.entities.npcs;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.items.Coin;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,7 +59,7 @@ public class Ghost extends LivingBaseObject {
 
     @Override
     public void onHealthChange() {
-        if (health <= 0 && !despawned) {
+        if (isDead() && !despawned) {
             Timer despawnTimer = new Timer(true);
             despawnTimer.schedule(new TimerTask() {
                 @Override
@@ -66,6 +67,7 @@ public class Ghost extends LivingBaseObject {
                     map.removeObject(Ghost.this);
                 }
             }, 5000);
+            map.addObject(new Coin(position));
             despawned = true;
         }
     }
