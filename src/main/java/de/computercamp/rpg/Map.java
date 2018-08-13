@@ -39,10 +39,18 @@ public class Map {
         }
     }
 
-    public synchronized BaseObject getObjectByPosition(Vector2D position) {
-        for (BaseObject baseObject : mapContents) {
-            if (baseObject.getPosition().equals(position) && !(baseObject instanceof Player)) {
-                return baseObject;
+    public synchronized BaseObject getObjectByPosition(Vector2D position, boolean includingPlayer) {
+        if (includingPlayer) {
+            for (BaseObject baseObject : mapContents) {
+                if (baseObject.getPosition().equals(position)) {
+                    return baseObject;
+                }
+            }
+        } else {
+            for (BaseObject baseObject : mapContents) {
+                if (baseObject.getPosition().equals(position) && !(baseObject instanceof Player)) {
+                    return baseObject;
+                }
             }
         }
         return null;
