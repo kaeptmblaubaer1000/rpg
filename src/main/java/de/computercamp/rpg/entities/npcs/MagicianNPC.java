@@ -29,7 +29,7 @@ public class MagicianNPC extends NPC {
     @Override
     public void onHealthChange() {
         super.onHealthChange();
-        if (isDead()) {
+        if (isDead() && usable) {
             item.setPosition(position);
             map.addObject(item);
         }

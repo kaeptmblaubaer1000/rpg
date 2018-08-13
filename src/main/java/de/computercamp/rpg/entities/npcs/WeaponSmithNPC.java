@@ -9,7 +9,7 @@ import de.computercamp.rpg.resources.Messages;
 public class WeaponSmithNPC extends NPC {
 
     private Item item;
-    private boolean used = false;
+    private boolean usable = true;
 
     public WeaponSmithNPC(Vector2D position) {
         super(position);
@@ -19,7 +19,7 @@ public class WeaponSmithNPC extends NPC {
     @Override
     public void onHealthChange() {
         super.onHealthChange();
-        if (isDead()) {
+        if (isDead() && usable) {
             item.setPosition(position);
             map.addObject(item);
         }
@@ -27,10 +27,10 @@ public class WeaponSmithNPC extends NPC {
 
     @Override
     protected void doAction(Player player) {
-        if (!used) {
+        if (usable) {
             player.sendMessage(Messages.npcWeaponsmith);
             player.collectItem(item);
-            used = true;
+            usable = false;
         } else {
             player.sendMessage(Messages.npcWaitingForever);
         }
