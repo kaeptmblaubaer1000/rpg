@@ -45,7 +45,7 @@ public class Main {
     private static void createJFrame() {
         KeyListener keyListener = new KeyHandler();
         jf = new JFrame("");
-        jf.setBackground(Color.black);
+        jf.setBackground(Color.BLACK);
         jf.setCursor(jf.getToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(), null));
         leftTextArea = new JTextArea();
         Font font;
@@ -62,8 +62,8 @@ public class Main {
             throw new Error();
         }
         leftTextArea.addKeyListener(keyListener);
-        leftTextArea.setBackground(Color.black);
-        leftTextArea.setForeground(Color.white);
+        leftTextArea.setBackground(Color.DARK_GRAY);
+        leftTextArea.setForeground(Color.WHITE);
         leftTextArea.setEditable(false);
         leftTextArea.setAutoscrolls(false);
         leftTextArea.setFocusable(true);
@@ -74,8 +74,9 @@ public class Main {
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         leftTextArea.setBounds(0, 0, leftTextAreaWidth, screenHeight);
         rightTextArea = new JTextArea();
-        rightTextArea.setBackground(Color.black);
-        rightTextArea.setForeground(Color.white);
+        rightTextArea.setBackground(Color.DARK_GRAY);
+        //rightTextArea.setForeground(new Color(213, 213, 213));
+        rightTextArea.setForeground(Color.WHITE);
         rightTextArea.setEditable(false);
         rightTextArea.setAutoscrolls(false);
         rightTextArea.setFocusable(true);
@@ -87,7 +88,7 @@ public class Main {
         panel.setOpaque(true);
         panel.add(leftTextArea);
         panel.add(rightTextArea);
-        panel.setBackground(Color.black);
+        panel.setBackground(Color.BLACK);
         jf.getContentPane().add(BorderLayout.CENTER, panel);
         jf.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, screenHeight);
         jf.setUndecorated(true);
