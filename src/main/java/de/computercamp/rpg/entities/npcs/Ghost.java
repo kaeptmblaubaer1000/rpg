@@ -5,11 +5,13 @@ import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Coin;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Ghost extends LivingBaseObject {
 
+    private Random random = new Random();
     private boolean despawned = false;
 
     public Ghost(Vector2D position) {
@@ -42,7 +44,7 @@ public class Ghost extends LivingBaseObject {
                             right();
                         }
                     } else { //Hit
-                        player.decreaseHealth(10);
+                        player.decreaseHealth(random.nextInt(5) + 5);
                     }
 
                     try {
