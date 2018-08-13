@@ -7,6 +7,13 @@ class Reader(private val source: ByteSource) : ByteSource {
     override fun readByte(): Short = source.readByte()
 
     fun readBigInt(): Int {
-        return 0
+        val length = readByte()
+        var value: Int = 0
+
+        for(_ in 0..length) {
+            value = value shl 8
+            value = value or readByte().toInt()
+        }
+        return value
     }
 }
