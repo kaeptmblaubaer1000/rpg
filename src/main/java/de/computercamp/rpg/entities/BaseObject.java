@@ -24,15 +24,15 @@ public abstract class BaseObject {
     }
 
     public void down() {
-        position.y--;
-    }
-
-    public void right() {
-        position.x++;
+        position.y++;
     }
 
     public void left() {
         position.x--;
+    }
+
+    public void right() {
+        position.x++;
     }
 
     public Map getMap() {
