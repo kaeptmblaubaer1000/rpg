@@ -168,6 +168,7 @@ public class Player extends LivingBaseObject {
             Item item = inventory.get(i);
             string.append(i).append(". ").append(item.getSymbol()).append(" (").append(item.getDisplayName()).append(")\n");
         }
+        string.deleteCharAt(string.length() - 1);
         return string.toString();
     }
 
