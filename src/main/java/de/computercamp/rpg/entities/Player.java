@@ -154,6 +154,7 @@ public class Player extends LivingBaseObject {
             }
             removeItem(item);
             map.addObject(item);
+            item.onDrop(this);
             System.gc();
         }
     }

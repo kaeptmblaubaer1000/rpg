@@ -36,6 +36,9 @@ public abstract class Item extends BaseObject {
     public void onCollect(Player player) {
     }
 
+    public void onDrop(Player player) {
+    }
+
     @Override
     public char render() {
         return symbol;
