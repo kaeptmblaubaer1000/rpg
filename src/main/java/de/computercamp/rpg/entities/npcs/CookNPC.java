@@ -30,7 +30,8 @@ public class CookNPC extends NPC {
         if (usable) {
             if (player.getCoins() >= requiredCoins) {
                 player.removeCoins(requiredCoins);
-                player.sendMessage(Messages.npcCook);
+                MessageFormat messageFormat = new MessageFormat(Messages.npcCook, Messages.locale);
+                player.sendMessage(messageFormat.format(new Object[]{requiredCoins}));
                 player.collectItem(new Cucumber(null));
                 usable = false;
                 timer.schedule(new TimerTask() {
