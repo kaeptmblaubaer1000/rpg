@@ -140,12 +140,12 @@ public class Player extends LivingBaseObject {
 
     public void dropItem(Item item) {
         if (map != null) {
-            if (map.getObjectByPosition(position.withY(position.y + 1), false) == null) {
-                item.setPosition(position.withY(position.y + 1));
-            } else if (map.getObjectByPosition(position.withY(position.y - 1), false) == null) {
+            if (map.getObjectByPosition(position.withY(position.y - 1), false) == null) {
                 item.setPosition(position.withY(position.y - 1));
             } else if (map.getObjectByPosition(position.withX(position.x + 1), false) == null) {
                 item.setPosition(position.withX(position.x + 1));
+            } else if (map.getObjectByPosition(position.withY(position.y + 1), false) == null) {
+                item.setPosition(position.withY(position.y + 1));
             } else if (map.getObjectByPosition(position.withX(position.x - 1), false) == null) {
                 item.setPosition(position.withX(position.x - 1));
             }
