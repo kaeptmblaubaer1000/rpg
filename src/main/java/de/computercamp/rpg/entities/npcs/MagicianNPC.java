@@ -3,6 +3,7 @@ package de.computercamp.rpg.entities.npcs;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.HealingPotion;
+import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
 
 import java.text.MessageFormat;
@@ -12,21 +13,33 @@ import java.util.TimerTask;
 public class MagicianNPC extends NPC {
 
     private boolean usable = true;
+    private Item item;
+
     private int reuseSeconds;
     private Timer timer;
     private long timerStarted;
 
     public MagicianNPC(Vector2D position, int reuseSeconds) {
         super(position);
+        item = new HealingPotion(null);
         this.reuseSeconds = reuseSeconds;
         timer = new Timer(true);
+    }
+
+    @Override
+    public void onHealthChange() {
+        super.onHealthChange();
+        if (isDead()) {
+            item.setPosition(position);
+            map.addObject(item);
+        }
     }
 
     @Override
     protected void doAction(Player player) {
         if (usable) {
             player.sendMessage(Messages.npcMagician);
-            player.collectItem(new HealingPotion(null));
+            player.collectItem(item);
             usable = false;
             timer.schedule(new TimerTask() {
                 @Override
@@ -35,8 +48,7 @@ public class MagicianNPC extends NPC {
                 }
             }, reuseSeconds * 1000);
             timerStarted = System.currentTimeMillis();
-        }
-        else {
+        } else {
             MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
             int timePassed = (int) (System.currentTimeMillis() - timerStarted);
             String message = messageFormat.format(new Object[]{reuseSeconds - timePassed / 1000});

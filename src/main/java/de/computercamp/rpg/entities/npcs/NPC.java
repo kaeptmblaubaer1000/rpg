@@ -77,7 +77,7 @@ public abstract class NPC extends LivingBaseObject {
 
     @Override
     public void onHealthChange() {
-        if (health <= 0 && !despawned) {
+        if (isDead() && !despawned) {
             Timer despawnTimer = new Timer(true);
             despawnTimer.schedule(new TimerTask() {
                 @Override
