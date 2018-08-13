@@ -24,7 +24,7 @@ public class NPCSpawner {
         map.addObject(weaponSmithNPC);
         weaponSmithNPC.startMoving(player);
 
-        CookNPC cookNPC = new CookNPC(getRandomLocation(map, minPos, maxPos), 20, 3);
+        CookNPC cookNPC = new CookNPC(getRandomLocation(map, minPos, maxPos), 20, 5);
         map.addObject(cookNPC);
         cookNPC.startMoving(player);
     }
