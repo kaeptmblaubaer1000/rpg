@@ -51,14 +51,6 @@ public abstract class BaseObject {
     }
 
     @Override
-    public String toString() {
-        return "BaseObject{" +
-            "position=" + position +
-            ", map=" + map +
-            '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
