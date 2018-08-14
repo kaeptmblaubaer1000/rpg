@@ -5,7 +5,7 @@ class Reader(private val source: ByteSource) : ByteSource by source {
         val length = readByte()
         var value: Int = 0
 
-        for(_ignored in 0..length) {
+        for (_ignored in 0..length) {
             value = value shl 8
             value = value or readByte().toInt()
         }
