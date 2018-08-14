@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     application
     java
@@ -25,4 +27,11 @@ repositories {
 
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+}
+
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.run {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
