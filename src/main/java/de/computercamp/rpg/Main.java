@@ -27,15 +27,13 @@ public class Main {
 
     public static void main(String[] args) {
         int option = JOptionPane.showOptionDialog(null, "Choose your language?", "Select language",
-                JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
-                "English");
+            JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
+            "English");
         if (option == 0) {
             Messages.changeLanguage(Locale.GERMAN);
-        }
-        else if (option == -1) {
+        } else if (option == -1) {
             System.exit(0);
-        }
-        else {
+        } else {
             Messages.changeLanguage(Locale.ENGLISH);
         }
         createJFrame();
@@ -53,8 +51,7 @@ public class Main {
             font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
             font = font.deriveFont(40f);
             leftTextArea.setFont(font);
-        }
-        catch (FontFormatException | IOException e) {
+        } catch (FontFormatException | IOException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
             JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);
@@ -138,26 +135,26 @@ public class Main {
         @Override
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_Q:
-                    qPressed = true;
-                    break;
+            case KeyEvent.VK_Q:
+                qPressed = true;
+                break;
 
-                case KeyEvent.VK_UP:
-                case KeyEvent.VK_W:
-                    mapBuilder.getPlayer().up();
-                    break;
-                case KeyEvent.VK_LEFT:
-                case KeyEvent.VK_A:
-                    mapBuilder.getPlayer().left();
-                    break;
-                case KeyEvent.VK_DOWN:
-                case KeyEvent.VK_S:
-                    mapBuilder.getPlayer().down();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                case KeyEvent.VK_D:
-                    mapBuilder.getPlayer().right();
-                    break;
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+                mapBuilder.getPlayer().up();
+                break;
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
+                mapBuilder.getPlayer().left();
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
+                mapBuilder.getPlayer().down();
+                break;
+            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
+                mapBuilder.getPlayer().right();
+                break;
             }
             synchronized (renderLock) {
                 renderGame();
@@ -167,46 +164,46 @@ public class Main {
         @Override
         public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_ESCAPE:
-                    jf.dispose();
-                    System.exit(0);
-                    break;
+            case KeyEvent.VK_ESCAPE:
+                jf.dispose();
+                System.exit(0);
+                break;
 
-                case KeyEvent.VK_0:
-                    numberKeyPressed(0);
-                    break;
-                case KeyEvent.VK_1:
-                    numberKeyPressed(1);
-                    break;
-                case KeyEvent.VK_2:
-                    numberKeyPressed(2);
-                    break;
-                case KeyEvent.VK_3:
-                    numberKeyPressed(3);
-                    break;
-                case KeyEvent.VK_4:
-                    numberKeyPressed(4);
-                    break;
-                case KeyEvent.VK_5:
-                    numberKeyPressed(5);
-                    break;
-                case KeyEvent.VK_6:
-                    numberKeyPressed(6);
-                    break;
-                case KeyEvent.VK_7:
-                    numberKeyPressed(7);
-                    break;
-                case KeyEvent.VK_8:
-                    numberKeyPressed(8);
-                    break;
-                case KeyEvent.VK_9:
-                    numberKeyPressed(9);
-                    break;
-                case KeyEvent.VK_Q:
-                    qPressed = false;
-                    break;
-                case KeyEvent.VK_F3:
-                    debugMode = !debugMode;
+            case KeyEvent.VK_0:
+                numberKeyPressed(0);
+                break;
+            case KeyEvent.VK_1:
+                numberKeyPressed(1);
+                break;
+            case KeyEvent.VK_2:
+                numberKeyPressed(2);
+                break;
+            case KeyEvent.VK_3:
+                numberKeyPressed(3);
+                break;
+            case KeyEvent.VK_4:
+                numberKeyPressed(4);
+                break;
+            case KeyEvent.VK_5:
+                numberKeyPressed(5);
+                break;
+            case KeyEvent.VK_6:
+                numberKeyPressed(6);
+                break;
+            case KeyEvent.VK_7:
+                numberKeyPressed(7);
+                break;
+            case KeyEvent.VK_8:
+                numberKeyPressed(8);
+                break;
+            case KeyEvent.VK_9:
+                numberKeyPressed(9);
+                break;
+            case KeyEvent.VK_Q:
+                qPressed = false;
+                break;
+            case KeyEvent.VK_F3:
+                debugMode = !debugMode;
             }
             synchronized (renderLock) {
                 renderGame();
@@ -216,8 +213,7 @@ public class Main {
         private void numberKeyPressed(int number) {
             if (qPressed) {
                 mapBuilder.getPlayer().dropItem(number);
-            }
-            else {
+            } else {
                 mapBuilder.getPlayer().useItem(number);
             }
         }

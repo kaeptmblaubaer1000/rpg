@@ -41,14 +41,12 @@ public class CookNPC extends NPC {
                     }
                 }, reuseSeconds * 1000);
                 timerStarted = System.currentTimeMillis();
-            }
-            else {
+            } else {
                 MessageFormat messageFormat = new MessageFormat(Messages.coinsRequired, Messages.locale);
                 String message = messageFormat.format(new Object[]{requiredCoins});
                 player.sendMessage(message);
             }
-        }
-        else {
+        } else {
             MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
             int timePassed = (int) (System.currentTimeMillis() - timerStarted);
             String message = messageFormat.format(new Object[]{reuseSeconds - timePassed / 1000});

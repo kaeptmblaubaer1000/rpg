@@ -29,8 +29,7 @@ public abstract class LivingBaseObject extends BaseObject {
         int finalHealth = this.health + health;
         if (finalHealth > MAX_HEALTH) {
             this.health = MAX_HEALTH;
-        }
-        else {
+        } else {
             this.health = finalHealth;
         }
         if (finalHealth != health) {
@@ -42,8 +41,7 @@ public abstract class LivingBaseObject extends BaseObject {
         int finalHealth = this.health - health;
         if (finalHealth < 0) {
             this.health = 0;
-        }
-        else {
+        } else {
             this.health = finalHealth;
         }
 

@@ -148,8 +148,7 @@ public class Player extends LivingBaseObject {
                 item.setPosition(position.withY(position.y + 1));
             } else if (map.getObjectByPosition(position.withX(position.x - 1), false) == null) {
                 item.setPosition(position.withX(position.x - 1));
-            }
-            else {
+            } else {
                 return;
             }
             removeItem(item);
@@ -226,8 +225,7 @@ public class Player extends LivingBaseObject {
 
         if (message == null) {
             return "\n\u00bb ";
-        }
-        else {
+        } else {
             return "\n\u00bb " + message;
         }
     }

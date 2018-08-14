@@ -33,8 +33,7 @@ public class BadMagicianNPC extends NPC {
             int change = (int) Math.round((Math.random() * (maxChange - minChange)) + minChange);
             if (change < 0) {
                 player.decreaseHealth((-1) * change);
-            }
-            else {
+            } else {
                 player.increaseHealth(change);
             }
             usable = false;
@@ -45,8 +44,7 @@ public class BadMagicianNPC extends NPC {
                 }
             }, reuseSeconds * 1000);
             timerStarted = System.currentTimeMillis();
-        }
-        else {
+        } else {
             MessageFormat messageFormat = new MessageFormat(Messages.npcWaiting, Messages.locale);
             int timePassed = (int) (System.currentTimeMillis() - timerStarted);
             String message = messageFormat.format(new Object[]{reuseSeconds - timePassed / 1000});

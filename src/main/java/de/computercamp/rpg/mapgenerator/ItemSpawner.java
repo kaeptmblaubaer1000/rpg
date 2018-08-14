@@ -46,17 +46,13 @@ public class ItemSpawner {
 
             if (randomInt < 10) {
                 item = new Cucumber(randomPos);
-            }
-            else if (randomInt < 15) {
+            } else if (randomInt < 15) {
                 item = new SuicideSword(randomPos);
-            }
-            else if (randomInt < 35) {
+            } else if (randomInt < 35) {
                 item = new Key(randomPos);
-            }
-            else if (randomInt < 70) {
+            } else if (randomInt < 70) {
                 item = new HealingPotion(randomPos);
-            }
-            else { //Percentage between 70 and 100: 30%
+            } else { //Percentage between 70 and 100: 30%
                 item = new Sword(randomPos);
             }
             map.addObject(item);
