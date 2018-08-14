@@ -1,8 +1,6 @@
 package de.computercamp.rpg.serialization
 
-class Writer(private val sink: ByteSink) : ByteSink {
-    override fun writeByte(value: Short) = sink.writeByte(value)
-
+class Writer(private val sink: ByteSink) : ByteSink by sink {
     fun writeBigInt(value: Int) {
         var tempValue = value
         val bytes = mutableListOf<Short>()
