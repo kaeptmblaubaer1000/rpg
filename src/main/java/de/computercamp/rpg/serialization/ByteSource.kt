@@ -12,10 +12,9 @@ interface ByteSource {
 
     fun readBytes(amoumt: Int): ShortArray {
         val array = ShortArray(amoumt)
-        for(i in 0..amoumt) {
+        for (i in 0..amoumt) {
             val byte = readByte()
-            if(byte == (-1).toShort())
-            {
+            if (byte == (-1).toShort()) {
                 return Arrays.copyOf(array, i)
             }
             array[i] = byte
