@@ -3,7 +3,7 @@ package de.computercamp.rpg.serialization
 import java.util.*
 
 class ByteSinkSource : ByteSink, ByteSource {
-    val queue: Deque<Short> = LinkedList()
+    private val queue: Deque<Short> = LinkedList()
 
     override fun readByte(): Short {
         synchronized(queue) {
