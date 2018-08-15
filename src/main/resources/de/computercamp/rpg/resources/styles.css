@@ -1,0 +1,22 @@
+.text-flow {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, black, transparent, black;
+}
+
+.text-flow .content {
+    -fx-background-color: transparent, black, transparent, black;
+}
+
+.text-flow:focused .content {
+    -fx-background-color: transparent, black, transparent, black;
+}
+
+.text-flow:focused {
+    -fx-highlight-fill: #000000;
+}
+
+.text-flow .content {
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+    -fx-highlight-fill: #000000;
+}

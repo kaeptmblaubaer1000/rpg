@@ -51,7 +51,7 @@ compileKotlin.run {
 }
 
 configure<JavaFXGradlePluginExtension> {
-    mainClass = "de.computercamp.rpg.Main"
+    mainClass = "de.computercamp.rpg.JavaFXMain"
 
     vendor = "Kaeptm Blaubaer"
 }

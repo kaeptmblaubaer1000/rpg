@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/">
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <TextFlow
+        style="-fx-font-family: &quot;Noto Sans Mono&quot;, &quot;Noto Mono&quot;, &quot;Consolas&quot;, monospace; -fx-font-size: 40; -fx-border-style: none;">
+        <children>
+            <Text text="test" fill="white"/>
+        </children>
+    </TextFlow>
+</GridPane>

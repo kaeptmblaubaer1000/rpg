@@ -1,9 +1,10 @@
 package de.computercamp.rpg
 
 import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.input.KeyCombination
-import javafx.scene.layout.GridPane
 import javafx.scene.paint.Color
 import javafx.stage.Stage
 
@@ -29,13 +30,14 @@ class JavaFXMain : Application() {
      * primary stages and will not be embedded in the browser.
      */
     override fun start(primaryStage: Stage) {
-        val pane = GridPane()
-        this.standardScene = Scene(pane)
+        val standardParent = FXMLLoader.load<Parent>(JavaFXMain::class.java.classLoader.getResource("de/computercamp/rpg/resources/standardScene.fxml"))
+        this.standardScene = Scene(standardParent)
         this.stage = primaryStage
         primaryStage.scene = standardScene
         primaryStage.isFullScreen = true
         primaryStage.fullScreenExitKeyCombination = KeyCombination.NO_MATCH
         standardScene.fill = Color.BLACK
+        standardScene.stylesheets.add("de/computercamp/rpg/resources/styles.css")
         primaryStage.show()
     }
 
