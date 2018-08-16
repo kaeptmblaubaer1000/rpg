@@ -30,6 +30,7 @@ public class Sword extends Item {
         return false;
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return Messages.sword;

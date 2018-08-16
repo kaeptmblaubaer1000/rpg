@@ -25,6 +25,7 @@ public class Coin extends Item {
         getMap().removeObject(this);
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return Messages.coin;

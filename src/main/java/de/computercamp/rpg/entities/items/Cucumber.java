@@ -19,6 +19,7 @@ public class Cucumber extends Item {
         return true;
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return Messages.cucumber;

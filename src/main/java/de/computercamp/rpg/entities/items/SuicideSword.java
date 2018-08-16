@@ -19,6 +19,7 @@ public class SuicideSword extends Item {
         return false;
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return Messages.suicideSword;

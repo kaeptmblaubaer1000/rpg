@@ -33,6 +33,7 @@ public abstract class Item extends BaseObject {
         return symbol;
     }
 
+    @NotNull
     public abstract String getDisplayName();
 
     public void onCollect(@NotNull Player player) {
