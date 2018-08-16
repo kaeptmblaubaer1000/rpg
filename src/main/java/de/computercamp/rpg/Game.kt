@@ -23,8 +23,10 @@ class Game {
         }
 
     init {
+        val map = mapBuilder.getRoom(0)
+        player.map = map
         // This is done twice because non-nullable fields require initialization
         // and the initializer doesn't call the custom setter
-        currentRoom = mapBuilder.getRoom(0)
+        currentRoom = map
     }
 }

@@ -172,7 +172,7 @@ class MapBuilder(val game: Game) {
     @Throws(NoSuchRoomException::class)
     fun getRoom(index: Int): Map {
         synchronized(rooms) {
-            if (index < rooms.size) {
+            if (index >= rooms.size) {
                 throw NoSuchRoomException(index.toString())
             }
             return if (rooms[index] == null) {
