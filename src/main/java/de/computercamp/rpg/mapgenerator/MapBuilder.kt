@@ -17,9 +17,7 @@ class MapBuilder(val game: Game) {
 
     private val rooms: MutableList<Map?> = MutableList(COUNT_OF_ROOMS) { null }
 
-    val player = Player(game, Vector2D(1, 1))
-
-    fun generateRoom0(): Map {
+    private fun generateRoom0(): Map {
         val map = Map()
 
         map.addObject(WallTile(game, Vector2D(0, 0), WallTile.Type.LEFT_UPPER_EDGE))
@@ -158,12 +156,10 @@ class MapBuilder(val game: Game) {
         map.addObject(Door(game, Vector2D(6, 6)))
         map.addObject(SmallDoor(game, Vector2D(26, 6)))
 
-        map.addObject(player)
-
         val minPos = Vector2D(2, 2)
         val maxPos = Vector2D(58, 12)
 
-        NPCSpawner.spawnRandomNPCs(game, player, map, minPos, maxPos)
+        NPCSpawner.spawnRandomNPCs(game, game.player, map, minPos, maxPos)
         ItemSpawner.startSpawningItems(game, map, minPos, maxPos)
 
         for (i in 0..3) {
@@ -176,6 +172,9 @@ class MapBuilder(val game: Game) {
     @Throws(NoSuchRoomException::class)
     fun getRoom(index: Int): Map {
         synchronized(rooms) {
+            if (index < rooms.size) {
+                throw NoSuchRoomException(index.toString())
+            }
             return if (rooms[index] == null) {
                 val room = when (index) {
                     0 -> generateRoom0()
