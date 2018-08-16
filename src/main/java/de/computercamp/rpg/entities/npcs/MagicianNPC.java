@@ -5,6 +5,7 @@ import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.HealingPotion;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -36,7 +37,7 @@ public class MagicianNPC extends NPC {
     }
 
     @Override
-    protected void doAction(Player player) {
+    protected void doAction(@NotNull Player player) {
         if (usable) {
             player.sendMessage(Messages.npcMagician);
             player.collectItem(item);

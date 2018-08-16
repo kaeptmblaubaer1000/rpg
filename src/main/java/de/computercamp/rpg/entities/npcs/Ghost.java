@@ -4,6 +4,7 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Coin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Timer;
@@ -18,7 +19,7 @@ public class Ghost extends LivingBaseObject {
         super(position);
     }
 
-    public void startFighting(Player player) {
+    public void startFighting(@NotNull Player player) {
         Thread fightThread = new Thread(() -> {
             while (true) {
                 if (health > 0) {

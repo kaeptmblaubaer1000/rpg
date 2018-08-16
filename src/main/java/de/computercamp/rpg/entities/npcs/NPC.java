@@ -25,9 +25,9 @@ public abstract class NPC extends LivingBaseObject {
         return '\uA66B';
     }
 
-    protected abstract void doAction(Player player);
+    protected abstract void doAction(@NotNull Player player);
 
-    public void startMoving(Player player) {
+    public void startMoving(@NotNull Player player) {
         Thread movingThread = new Thread(() -> {
             int direction = (short) Math.round(Math.random() * 3);
             while (true) { // TODO: try to make this a Timer or something else
@@ -49,19 +49,17 @@ public abstract class NPC extends LivingBaseObject {
                     target = new Vector2D(0, 0);
                 }
 
-                if (getMap() != null) {
-                    if (!(
-                        (player.getPosition().x == getPosition().x - 1 || player.getPosition().x == getPosition().x + 1 || player.getPosition().x == getPosition().x) &&
-                            (player.getPosition().y == getPosition().y - 1 || player.getPosition().y == getPosition().y + 1 || player.getPosition().y == getPosition().y)
-                    )) {
-                        if (getMap().getObjectByPosition(target, false) == null && !target.equals(player.getPosition()) &&
-                            (target.x > 0 && target.y > 0 && target.x < 59 && target.y < 15)) {
-                            if (health > 0) {
-                                setPosition(target);
-                            }
-                        } else {
-                            direction = (int) Math.round(Math.random() * 3);
+                if (!(
+                    (player.getPosition().x == getPosition().x - 1 || player.getPosition().x == getPosition().x + 1 || player.getPosition().x == getPosition().x) &&
+                        (player.getPosition().y == getPosition().y - 1 || player.getPosition().y == getPosition().y + 1 || player.getPosition().y == getPosition().y)
+                )) {
+                    if (getMap().getObjectByPosition(target, false) == null && !target.equals(player.getPosition()) &&
+                        (target.x > 0 && target.y > 0 && target.x < 59 && target.y < 15)) {
+                        if (health > 0) {
+                            setPosition(target);
                         }
+                    } else {
+                        direction = (int) Math.round(Math.random() * 3);
                     }
                 }
 

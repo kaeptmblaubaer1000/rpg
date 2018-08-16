@@ -1,6 +1,7 @@
 package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Vector2D;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -10,8 +11,9 @@ public abstract class LivingBaseObject extends BaseObject {
     public static final int MAX_HEALTH = 20;
     protected int health = MAX_HEALTH;
 
-    public LivingBaseObject(Vector2D position) {
+    public LivingBaseObject(@NotNull Vector2D position) {
         super(position);
+        @NotNull
         Timer healthTimer = new Timer(true);
 
         healthTimer.scheduleAtFixedRate(new TimerTask() {

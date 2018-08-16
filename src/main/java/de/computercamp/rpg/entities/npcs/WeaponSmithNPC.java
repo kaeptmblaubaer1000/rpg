@@ -5,6 +5,7 @@ import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.entities.items.Sword;
 import de.computercamp.rpg.resources.Messages;
+import org.jetbrains.annotations.NotNull;
 
 public class WeaponSmithNPC extends NPC {
 
@@ -26,7 +27,7 @@ public class WeaponSmithNPC extends NPC {
     }
 
     @Override
-    protected void doAction(Player player) {
+    protected void doAction(@NotNull Player player) {
         if (usable) {
             player.sendMessage(Messages.npcWeaponsmith);
             player.collectItem(item);

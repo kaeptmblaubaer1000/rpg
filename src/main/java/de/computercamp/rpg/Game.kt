@@ -12,6 +12,7 @@ class Game {
             return game
         }
     }
+
     val mapBuilder = MapBuilder(this)
     var currentRoom = mapBuilder.getRoom(0)
     val player = mapBuilder.player

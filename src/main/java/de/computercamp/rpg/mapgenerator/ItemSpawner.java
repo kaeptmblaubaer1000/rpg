@@ -3,13 +3,13 @@ package de.computercamp.rpg.mapgenerator;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ItemSpawner {
-
     //public Item spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
     //    Item.Type type;
     //    double rand = Math.random();
@@ -28,6 +28,8 @@ public class ItemSpawner {
     //}
 
     public static void startSpawningItems(Map map, Vector2D minPos, Vector2D maxPos) {
+        //TODO: add Game reference
+        @NotNull
         Timer itemSpawnTimer = new Timer(true);
         itemSpawnTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -37,7 +39,7 @@ public class ItemSpawner {
         }, 0, 60 * 1000);
     }
 
-    public static void spawnRandomItem(Map map, Vector2D minPos, Vector2D maxPos) {
+    public static void spawnRandomItem(@NotNull Map map, Vector2D minPos, Vector2D maxPos) {
         if (map.countObjectsOfType(Item.class) < 10) {
             Random random = new Random();
             int randomInt = random.nextInt(100);
@@ -59,7 +61,7 @@ public class ItemSpawner {
         }
     }
 
-    public static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
+    public static Vector2D getRandomLocation(@NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
         Vector2D randloc;
         do {
             int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);

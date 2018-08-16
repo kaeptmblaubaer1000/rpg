@@ -1,6 +1,5 @@
 package de.computercamp.rpg;
 
-import de.computercamp.rpg.mapgenerator.MapBuilder;
 import de.computercamp.rpg.resources.Messages;
 
 import javax.swing.*;

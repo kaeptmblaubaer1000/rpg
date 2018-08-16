@@ -1,7 +1,10 @@
 package de.computercamp.rpg.serialization
 
+import de.computercamp.rpg.Game
+
 interface Deserializer {
     companion object {
+        @Throws(WrongMagicException::class, UnsupportedSaveGameVersion::class)
         fun getDeserializer(source: ByteSource): Deserializer {
             val reader = Reader(source)
             val testMagic = source.readBytes(MAGIC.size)
@@ -11,13 +14,14 @@ interface Deserializer {
                     1 -> return V1Deserializer
                     else -> throw UnsupportedSaveGameVersion(version.toString())
                 }
-            }
-            else {
+            } else {
                 throw WrongMagicException(testMagic.toList().map { it.toByte() }.toByteArray().toString(Charsets.ISO_8859_1))
                 // I've used ISO-8859-1 because it represents the whole range and doesn't make any decode errors.
             }
         }
     }
+
+    fun readSaveGame(source: ByteSource): Game
 
     @Suppress("UNUSED") // The additional constructors should be there once they are used.
     class WrongMagicException : Exception {
@@ -34,5 +38,4 @@ interface Deserializer {
         constructor(message: String, cause: Throwable) : super(message, cause)
         constructor(cause: Throwable) : super(cause)
     }
-
 }

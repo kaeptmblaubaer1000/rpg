@@ -5,9 +5,10 @@ import de.computercamp.rpg.Vector2D;
 import org.jetbrains.annotations.NotNull;
 
 public class WallTile extends BaseObject {
+    @NotNull
     private Type type;
 
-    public WallTile(Vector2D position, Type type) {
+    public WallTile(@NotNull Vector2D position, @NotNull Type type) {
         super(position);
         this.type = type;
     }

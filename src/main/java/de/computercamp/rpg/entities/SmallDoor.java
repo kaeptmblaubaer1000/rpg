@@ -1,9 +1,10 @@
 package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Vector2D;
+import org.jetbrains.annotations.NotNull;
 
 public class SmallDoor extends BaseObject {
-    public SmallDoor(Vector2D position) {
+    public SmallDoor(@NotNull Vector2D position) {
         super(position);
     }
 
@@ -12,7 +13,7 @@ public class SmallDoor extends BaseObject {
     }
 
     @Override
-    public boolean onPlayerMove(Player player) {
+    public boolean onPlayerMove(@NotNull Player player) {
         return true;
     }
 }

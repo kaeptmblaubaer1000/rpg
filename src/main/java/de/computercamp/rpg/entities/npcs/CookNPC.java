@@ -4,6 +4,7 @@ import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Cucumber;
 import de.computercamp.rpg.resources.Messages;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -26,10 +27,11 @@ public class CookNPC extends NPC {
     }
 
     @Override
-    protected void doAction(Player player) {
+    protected void doAction(@NotNull Player player) {
         if (usable) {
             if (player.getCoins() >= requiredCoins) {
                 player.removeCoins(requiredCoins);
+                @NotNull
                 MessageFormat messageFormat = new MessageFormat(Messages.npcCook, Messages.locale);
                 player.sendMessage(messageFormat.format(new Object[]{requiredCoins}));
                 player.collectItem(new Cucumber(null));
@@ -42,7 +44,9 @@ public class CookNPC extends NPC {
                 }, reuseSeconds * 1000);
                 timerStarted = System.currentTimeMillis();
             } else {
+                @NotNull
                 MessageFormat messageFormat = new MessageFormat(Messages.coinsRequired, Messages.locale);
+                @NotNull
                 String message = messageFormat.format(new Object[]{requiredCoins});
                 player.sendMessage(message);
             }

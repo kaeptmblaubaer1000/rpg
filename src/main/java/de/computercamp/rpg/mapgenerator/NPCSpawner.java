@@ -4,9 +4,9 @@ import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.npcs.*;
+import org.jetbrains.annotations.NotNull;
 
 public class NPCSpawner {
-
     public static void spawnRandomNPCs(Player player, Map map, Vector2D minPos, Vector2D maxPos) {
         WelcomeNPC welcomeNPC = new WelcomeNPC(getRandomLocation(map, minPos, maxPos));
         map.addObject(welcomeNPC);
@@ -29,7 +29,7 @@ public class NPCSpawner {
         cookNPC.startMoving(player);
     }
 
-    private static Vector2D getRandomLocation(Map map, Vector2D minPos, Vector2D maxPos) {
+    private static Vector2D getRandomLocation(@NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
         Vector2D randloc;
         do {
             int posX = (int) Math.round((Math.random() * (maxPos.x - minPos.x)) + minPos.x);

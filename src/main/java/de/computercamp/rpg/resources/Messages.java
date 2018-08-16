@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 public class Messages {
     public static Locale locale;
+
     public static String npcWelcome;
     public static String npcMagician;
     public static String npcBadMagician;
@@ -23,6 +24,7 @@ public class Messages {
     public static String youDied;
     public static String coins;
     public static String coin;
+
     private static ResourceBundle bundle;
 
     static {
