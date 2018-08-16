@@ -29,7 +29,6 @@ public class ItemSpawner {
     //}
 
     public static void startSpawningItems(@NotNull Game game, @NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
-        //TODO: add Game reference
         @NotNull
         Timer itemSpawnTimer = new Timer(true);
         itemSpawnTimer.scheduleAtFixedRate(new TimerTask() {
