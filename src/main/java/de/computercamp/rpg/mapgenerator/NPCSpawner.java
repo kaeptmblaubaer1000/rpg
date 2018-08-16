@@ -1,5 +1,6 @@
 package de.computercamp.rpg.mapgenerator;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
@@ -7,24 +8,24 @@ import de.computercamp.rpg.entities.npcs.*;
 import org.jetbrains.annotations.NotNull;
 
 public class NPCSpawner {
-    public static void spawnRandomNPCs(Player player, Map map, Vector2D minPos, Vector2D maxPos) {
-        WelcomeNPC welcomeNPC = new WelcomeNPC(getRandomLocation(map, minPos, maxPos));
+    public static void spawnRandomNPCs(@NotNull Game game, @NotNull Player player, @NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
+        WelcomeNPC welcomeNPC = new WelcomeNPC(game, getRandomLocation(map, minPos, maxPos));
         map.addObject(welcomeNPC);
         welcomeNPC.startMoving(player);
 
-        MagicianNPC magicianNPC = new MagicianNPC(getRandomLocation(map, minPos, maxPos), 20);
+        MagicianNPC magicianNPC = new MagicianNPC(game, getRandomLocation(map, minPos, maxPos), 20);
         map.addObject(magicianNPC);
         magicianNPC.startMoving(player);
 
-        BadMagicianNPC badMagicianNPC = new BadMagicianNPC(getRandomLocation(map, minPos, maxPos), 20, -6, 8);
+        BadMagicianNPC badMagicianNPC = new BadMagicianNPC(game, getRandomLocation(map, minPos, maxPos), 20, -6, 8);
         map.addObject(badMagicianNPC);
         badMagicianNPC.startMoving(player);
 
-        WeaponSmithNPC weaponSmithNPC = new WeaponSmithNPC(getRandomLocation(map, minPos, maxPos));
+        WeaponSmithNPC weaponSmithNPC = new WeaponSmithNPC(game, getRandomLocation(map, minPos, maxPos));
         map.addObject(weaponSmithNPC);
         weaponSmithNPC.startMoving(player);
 
-        CookNPC cookNPC = new CookNPC(getRandomLocation(map, minPos, maxPos), 20, 5);
+        CookNPC cookNPC = new CookNPC(game, getRandomLocation(map, minPos, maxPos), 20, 5);
         map.addObject(cookNPC);
         cookNPC.startMoving(player);
     }

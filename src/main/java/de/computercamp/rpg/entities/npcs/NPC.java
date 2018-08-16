@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.LivingBaseObject;
@@ -13,8 +14,8 @@ public abstract class NPC extends LivingBaseObject {
 
     private boolean despawned = false;
 
-    public NPC(Vector2D position) {
-        super(position);
+    public NPC(@NotNull Game game, @NotNull Vector2D position) {
+        super(game, position);
     }
 
     @Override
@@ -80,7 +81,7 @@ public abstract class NPC extends LivingBaseObject {
                 @Override
                 public void run() {
                     if (Math.random() < 0.2) {
-                        Ghost ghost = new Ghost(getPosition());
+                        Ghost ghost = new Ghost(getGame(), getPosition());
                         getMap().addObject(ghost);
                         Player player = null;
                         for (BaseObject object : getMap().getMapContents()) {

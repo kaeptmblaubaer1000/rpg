@@ -1,21 +1,23 @@
 package de.computercamp.rpg.entities.items;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.Player;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class Item extends BaseObject {
 
     protected char symbol;
     private boolean collectible;
 
-    public Item(Vector2D position) {
-        super(position);
+    public Item(@NotNull Game game, @NotNull Vector2D position) {
+        this(game, position, true);
         collectible = true;
     }
 
-    public Item(Vector2D position, boolean collectible) {
-        super(position);
+    public Item(@NotNull Game game, @NotNull Vector2D position, boolean collectible) {
+        super(game, position);
         this.collectible = collectible;
     }
 
@@ -23,7 +25,7 @@ public abstract class Item extends BaseObject {
      * @param player the player who uses the item
      * @return Returns if the item should remove from the inventory. True: the item will be removed
      */
-    public boolean use(Player player) {
+    public boolean use(@NotNull Player player) {
         return true;
     }
 
@@ -33,10 +35,10 @@ public abstract class Item extends BaseObject {
 
     public abstract String getDisplayName();
 
-    public void onCollect(Player player) {
+    public void onCollect(@NotNull Player player) {
     }
 
-    public void onDrop(Player player) {
+    public void onDrop(@NotNull Player player) {
     }
 
     @Override
@@ -45,7 +47,7 @@ public abstract class Item extends BaseObject {
     }
 
     @Override
-    public boolean onPlayerMove(Player player) {
+    public boolean onPlayerMove(@NotNull Player player) {
         if (player.getPosition().equals(getPosition())) {
             if (collectible) {
                 player.collectItem(this);

@@ -1,10 +1,13 @@
 package de.computercamp.rpg.entities
 
+import de.computercamp.rpg.Game
 import de.computercamp.rpg.Map
 import de.computercamp.rpg.Vector2D
 import org.jetbrains.annotations.Contract
 
-abstract class BaseObject(position: Vector2D) {
+abstract class BaseObject(game: Game, position: Vector2D) {
+    val game = game
+        @Contract(pure = true) get
     open var position = position
         @Contract(pure = true) get
     lateinit var map: Map
@@ -40,12 +43,12 @@ abstract class BaseObject(position: Vector2D) {
 
         if (position != that.position)
             return false
-        return if (map != null) map == that.map else that.map == null
+        return map == that.map
     }
 
     override fun hashCode(): Int {
         var result = position.hashCode()
-        result = 31 * result + if (map != null) map!!.hashCode() else 0
+        result = 31 * result + map.hashCode()
         return result
     }
 }

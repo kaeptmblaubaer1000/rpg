@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Cucumber;
@@ -19,8 +20,8 @@ public class CookNPC extends NPC {
     private Timer timer;
     private long timerStarted;
 
-    public CookNPC(Vector2D position, int reuseSeconds, int requiredCoins) {
-        super(position);
+    public CookNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds, int requiredCoins) {
+        super(game, position);
         this.reuseSeconds = reuseSeconds;
         this.requiredCoins = requiredCoins;
         timer = new Timer(true);
@@ -34,7 +35,7 @@ public class CookNPC extends NPC {
                 @NotNull
                 MessageFormat messageFormat = new MessageFormat(Messages.npcCook, Messages.locale);
                 player.sendMessage(messageFormat.format(new Object[]{requiredCoins}));
-                player.collectItem(new Cucumber(null));
+                player.collectItem(new Cucumber(getGame(), new Vector2D()));
                 usable = false;
                 timer.schedule(new TimerTask() {
                     @Override

@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.HealingPotion;
@@ -20,9 +21,9 @@ public class MagicianNPC extends NPC {
     private Timer timer;
     private long timerStarted;
 
-    public MagicianNPC(Vector2D position, int reuseSeconds) {
-        super(position);
-        item = new HealingPotion(null);
+    public MagicianNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds) {
+        super(game, position);
+        item = new HealingPotion(game, new Vector2D(1, 1));
         this.reuseSeconds = reuseSeconds;
         timer = new Timer(true);
     }

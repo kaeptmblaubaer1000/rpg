@@ -3,8 +3,6 @@ package de.computercamp.rpg
 import de.computercamp.rpg.mapgenerator.MapBuilder
 
 class Game {
-    // TODO: Add a game field to BaseObject
-
     companion object {
         fun create(): Game {
             val game = Game()

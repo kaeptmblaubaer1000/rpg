@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
@@ -15,8 +16,8 @@ public class Ghost extends LivingBaseObject {
     private Random random = new Random();
     private boolean despawned = false;
 
-    public Ghost(Vector2D position) {
-        super(position);
+    public Ghost(@NotNull Game game, @NotNull Vector2D position) {
+        super(game, position);
     }
 
     public void startFighting(@NotNull Player player) {
@@ -70,7 +71,7 @@ public class Ghost extends LivingBaseObject {
                     getMap().removeObject(Ghost.this);
                 }
             }, 5000);
-            getMap().addObject(new Coin(getPosition()));
+            getMap().addObject(new Coin(getGame(), getPosition()));
             despawned = true;
         }
     }

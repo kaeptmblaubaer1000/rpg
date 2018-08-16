@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import org.jetbrains.annotations.NotNull;
@@ -8,8 +9,8 @@ public class WallTile extends BaseObject {
     @NotNull
     private Type type;
 
-    public WallTile(@NotNull Vector2D position, @NotNull Type type) {
-        super(position);
+    public WallTile(@NotNull Game game, @NotNull Vector2D position, @NotNull Type type) {
+        super(game, position);
         this.type = type;
     }
 

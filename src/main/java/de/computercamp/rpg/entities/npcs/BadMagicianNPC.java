@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.resources.Messages;
@@ -19,8 +20,8 @@ public class BadMagicianNPC extends NPC {
     private Timer timer;
     private long timerStarted;
 
-    public BadMagicianNPC(@NotNull Vector2D position, int reuseSeconds, int minChange, int maxChange) {
-        super(position);
+    public BadMagicianNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds, int minChange, int maxChange) {
+        super(game, position);
         this.minChange = minChange;
         this.maxChange = maxChange;
         this.reuseSeconds = reuseSeconds;

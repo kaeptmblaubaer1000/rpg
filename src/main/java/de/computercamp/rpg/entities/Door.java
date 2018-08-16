@@ -1,11 +1,12 @@
 package de.computercamp.rpg.entities;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import org.jetbrains.annotations.NotNull;
 
 public class Door extends BaseObject {
-    public Door(@NotNull Vector2D position) {
-        super(position);
+    public Door(@NotNull Game game, @NotNull Vector2D position) {
+        super(game, position);
     }
 
     public char render() {

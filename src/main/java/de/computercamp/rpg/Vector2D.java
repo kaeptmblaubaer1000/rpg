@@ -9,13 +9,19 @@ public final class Vector2D {
     public int y;
 
     public Vector2D(@NotNull Vector2D clone) {
-        this.x = clone.x;
-        this.y = clone.y;
+        this(clone.x, clone.y);
     }
 
     public Vector2D(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * Creates a {@link Vector2D} with {@link Vector2D#x} and {@link Vector2D#y} set to {@literal 0}.
+     */
+    public Vector2D() {
+        this(0, 0);
     }
 
     @NotNull

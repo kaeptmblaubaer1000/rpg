@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities.npcs;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.Player;
 import de.computercamp.rpg.entities.items.Item;
@@ -12,9 +13,9 @@ public class WeaponSmithNPC extends NPC {
     private Item item;
     private boolean usable = true;
 
-    public WeaponSmithNPC(Vector2D position) {
-        super(position);
-        item = new Sword(null);
+    public WeaponSmithNPC(@NotNull Game game, @NotNull Vector2D position) {
+        super(game, position);
+        item = new Sword(game, new Vector2D(0, 0));
     }
 
     @Override

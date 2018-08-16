@@ -1,5 +1,6 @@
 package de.computercamp.rpg.entities;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Vector2D;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,8 +12,8 @@ public abstract class LivingBaseObject extends BaseObject {
     public static final int MAX_HEALTH = 20;
     protected int health = MAX_HEALTH;
 
-    public LivingBaseObject(@NotNull Vector2D position) {
-        super(position);
+    public LivingBaseObject(@NotNull Game game, @NotNull Vector2D position) {
+        super(game, position);
         @NotNull
         Timer healthTimer = new Timer(true);
 

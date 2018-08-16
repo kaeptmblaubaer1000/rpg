@@ -1,5 +1,6 @@
 package de.computercamp.rpg.mapgenerator;
 
+import de.computercamp.rpg.Game;
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.*;
@@ -27,19 +28,19 @@ public class ItemSpawner {
     //    return item;
     //}
 
-    public static void startSpawningItems(Map map, Vector2D minPos, Vector2D maxPos) {
+    public static void startSpawningItems(@NotNull Game game, @NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
         //TODO: add Game reference
         @NotNull
         Timer itemSpawnTimer = new Timer(true);
         itemSpawnTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                ItemSpawner.spawnRandomItem(map, minPos, maxPos);
+                ItemSpawner.spawnRandomItem(game, map, minPos, maxPos);
             }
         }, 0, 60 * 1000);
     }
 
-    public static void spawnRandomItem(@NotNull Map map, Vector2D minPos, Vector2D maxPos) {
+    public static void spawnRandomItem(@NotNull Game game, @NotNull Map map, @NotNull Vector2D minPos, @NotNull Vector2D maxPos) {
         if (map.countObjectsOfType(Item.class) < 10) {
             Random random = new Random();
             int randomInt = random.nextInt(100);
@@ -47,15 +48,15 @@ public class ItemSpawner {
             Item item;
 
             if (randomInt < 10) {
-                item = new Cucumber(randomPos);
+                item = new Cucumber(game, randomPos);
             } else if (randomInt < 15) {
-                item = new SuicideSword(randomPos);
+                item = new SuicideSword(game, randomPos);
             } else if (randomInt < 35) {
-                item = new Key(randomPos);
+                item = new Key(game, randomPos);
             } else if (randomInt < 70) {
-                item = new HealingPotion(randomPos);
+                item = new HealingPotion(game, randomPos);
             } else { //Percentage between 70 and 100: 30%
-                item = new Sword(randomPos);
+                item = new Sword(game, randomPos);
             }
             map.addObject(item);
         }
