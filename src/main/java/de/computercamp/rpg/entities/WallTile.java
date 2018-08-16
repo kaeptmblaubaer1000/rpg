@@ -2,6 +2,7 @@ package de.computercamp.rpg.entities;
 
 import de.computercamp.rpg.Map;
 import de.computercamp.rpg.Vector2D;
+import org.jetbrains.annotations.NotNull;
 
 public class WallTile extends BaseObject {
     private Type type;
@@ -39,8 +40,8 @@ public class WallTile extends BaseObject {
     }
 
     @Override
-    public boolean onPlayerMove(Player player) {
-        return !player.position.equals(position);
+    public boolean onPlayerMove(@NotNull Player player) {
+        return !player.getPosition().equals(getPosition());
     }
 
     public enum Type {

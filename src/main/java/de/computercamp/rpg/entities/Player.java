@@ -3,6 +3,7 @@ package de.computercamp.rpg.entities;
 import de.computercamp.rpg.Vector2D;
 import de.computercamp.rpg.entities.items.Item;
 import de.computercamp.rpg.resources.Messages;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -38,11 +39,11 @@ public class Player extends LivingBaseObject {
      * @param newPosition the new position to teleport to
      */
     @Override
-    public void setPosition(Vector2D newPosition) {
-        Vector2D oldPosition = position;
+    public void setPosition(@NotNull Vector2D newPosition) {
+        Vector2D oldPosition = getPosition();
         super.setPosition(newPosition);
-        if (!map.onPlayerMove(this)) {
-            position = oldPosition;
+        if (!getMap().onPlayerMove(this)) {
+            setPosition(oldPosition);
         }
     }
 
@@ -51,9 +52,9 @@ public class Player extends LivingBaseObject {
      */
     public void up() {
         if (health > 0) {
-            position.y--;
-            if (position.y < 0 || !map.onPlayerMove(this)) {
-                position.y++;
+            getPosition().y--;
+            if (getPosition().y < 0 || !getMap().onPlayerMove(this)) {
+                getPosition().y++;
             }
         }
     }
@@ -63,9 +64,9 @@ public class Player extends LivingBaseObject {
      */
     public void down() {
         if (health > 0) {
-            position.y++;
-            if (!map.onPlayerMove(this)) {
-                position.y--;
+            getPosition().y++;
+            if (!getMap().onPlayerMove(this)) {
+                getPosition().y--;
             }
         }
     }
@@ -75,9 +76,9 @@ public class Player extends LivingBaseObject {
      */
     public void right() {
         if (health > 0) {
-            position.x++;
-            if (!map.onPlayerMove(this)) {
-                position.x--;
+            getPosition().x++;
+            if (!getMap().onPlayerMove(this)) {
+                getPosition().x--;
             }
         }
     }
@@ -87,9 +88,9 @@ public class Player extends LivingBaseObject {
      */
     public void left() {
         if (health > 0) {
-            position.x--;
-            if (position.x < 0 || !map.onPlayerMove(this)) {
-                position.x++;
+            getPosition().x--;
+            if (getPosition().x < 0 || !getMap().onPlayerMove(this)) {
+                getPosition().x++;
             }
         }
     }
@@ -99,11 +100,11 @@ public class Player extends LivingBaseObject {
     }
 
     public void collectItem(Item item) {
-        if (map == null) {
+        if (getMap() == null) {
             throw new NullPointerException("Player removed from map");
         }
         if (inventory.size() < INVENTORY_SIZE) {
-            map.removeObject(item);
+            getMap().removeObject(item);
             inventory.add(item);
         }
     }
@@ -139,20 +140,20 @@ public class Player extends LivingBaseObject {
     }
 
     public void dropItem(Item item) {
-        if (map != null) {
-            if (map.getObjectByPosition(position.withY(position.y - 1), false) == null) {
-                item.setPosition(position.withY(position.y - 1));
-            } else if (map.getObjectByPosition(position.withX(position.x + 1), false) == null) {
-                item.setPosition(position.withX(position.x + 1));
-            } else if (map.getObjectByPosition(position.withY(position.y + 1), false) == null) {
-                item.setPosition(position.withY(position.y + 1));
-            } else if (map.getObjectByPosition(position.withX(position.x - 1), false) == null) {
-                item.setPosition(position.withX(position.x - 1));
+        if (getMap() != null) {
+            if (getMap().getObjectByPosition(getPosition().withY(getPosition().y - 1), false) == null) {
+                item.setPosition(getPosition().withY(getPosition().y - 1));
+            } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x + 1), false) == null) {
+                item.setPosition(getPosition().withX(getPosition().x + 1));
+            } else if (getMap().getObjectByPosition(getPosition().withY(getPosition().y + 1), false) == null) {
+                item.setPosition(getPosition().withY(getPosition().y + 1));
+            } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x - 1), false) == null) {
+                item.setPosition(getPosition().withX(getPosition().x - 1));
             } else {
                 return;
             }
             removeItem(item);
-            map.addObject(item);
+            getMap().addObject(item);
             item.onDrop(this);
             System.gc();
         }

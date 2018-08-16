@@ -46,7 +46,7 @@ public abstract class Item extends BaseObject {
 
     @Override
     public boolean onPlayerMove(Player player) {
-        if (player.getPosition().equals(position)) {
+        if (player.getPosition().equals(getPosition())) {
             if (collectible) {
                 player.collectItem(this);
             }

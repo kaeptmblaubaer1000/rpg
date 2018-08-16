@@ -25,22 +25,22 @@ public class Ghost extends LivingBaseObject {
                     boolean move = true;
 
                     if (
-                        player.equals(map.getObjectByPosition(position.withX(position.x + 1), true)) ||
-                            player.equals(map.getObjectByPosition(position.withX(position.x - 1), true)) ||
-                            player.equals(map.getObjectByPosition(position.withY(position.y + 1), true)) ||
-                            player.equals(map.getObjectByPosition(position.withY(position.y - 1), true))
+                        player.equals(getMap().getObjectByPosition(getPosition().withX(getPosition().x + 1), true)) ||
+                            player.equals(getMap().getObjectByPosition(getPosition().withX(getPosition().x - 1), true)) ||
+                            player.equals(getMap().getObjectByPosition(getPosition().withY(getPosition().y + 1), true)) ||
+                            player.equals(getMap().getObjectByPosition(getPosition().withY(getPosition().y - 1), true))
                     ) {
                         move = false;
                     }
 
                     if (move) { //Move
-                        if (position.y > player.getPosition().y) {
+                        if (getPosition().y > player.getPosition().y) {
                             up();
-                        } else if (position.y < player.getPosition().y) {
+                        } else if (getPosition().y < player.getPosition().y) {
                             down();
-                        } else if (position.x > player.getPosition().x) {
+                        } else if (getPosition().x > player.getPosition().x) {
                             left();
-                        } else if (position.x < player.getPosition().x) {
+                        } else if (getPosition().x < player.getPosition().x) {
                             right();
                         }
                     } else { //Hit
@@ -66,10 +66,10 @@ public class Ghost extends LivingBaseObject {
             despawnTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    map.removeObject(Ghost.this);
+                    getMap().removeObject(Ghost.this);
                 }
             }, 5000);
-            map.addObject(new Coin(position));
+            getMap().addObject(new Coin(getPosition()));
             despawned = true;
         }
     }

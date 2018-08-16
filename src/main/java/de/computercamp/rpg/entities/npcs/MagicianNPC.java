@@ -30,8 +30,8 @@ public class MagicianNPC extends NPC {
     public void onHealthChange() {
         super.onHealthChange();
         if (isDead() && usable) {
-            item.setPosition(position);
-            map.addObject(item);
+            item.setPosition(getPosition());
+            getMap().addObject(item);
         }
     }
 

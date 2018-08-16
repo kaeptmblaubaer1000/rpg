@@ -20,7 +20,7 @@ public class Coin extends Item {
     @Override
     public void onCollect(Player player) {
         player.addCoins(worth);
-        map.removeObject(this);
+        getMap().removeObject(this);
     }
 
     @Override
