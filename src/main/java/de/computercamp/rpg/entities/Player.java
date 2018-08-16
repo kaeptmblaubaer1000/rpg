@@ -96,7 +96,7 @@ public class Player extends LivingBaseObject {
     }
 
     public boolean hasAnyItemOfType(Class<? extends Item> type) {
-        return inventory.stream().anyMatch(item -> item.getClass().equals(type));
+        return inventory.stream().anyMatch(type::isInstance);
     }
 
     public void collectItem(Item item) {
