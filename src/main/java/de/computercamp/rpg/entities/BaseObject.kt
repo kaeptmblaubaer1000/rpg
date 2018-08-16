@@ -2,9 +2,13 @@ package de.computercamp.rpg.entities
 
 import de.computercamp.rpg.Map
 import de.computercamp.rpg.Vector2D
+import org.jetbrains.annotations.Contract
 
-abstract class BaseObject(open var position: Vector2D) {
-    var map: Map? = null
+abstract class BaseObject(position: Vector2D) {
+    open var position = position
+        @Contract(pure = true) get
+    lateinit var map: Map
+        @Contract(pure = true) get
 
     open fun up() {
         position.y--

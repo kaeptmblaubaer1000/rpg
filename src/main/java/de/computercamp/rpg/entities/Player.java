@@ -100,9 +100,6 @@ public class Player extends LivingBaseObject {
     }
 
     public void collectItem(Item item) {
-        if (getMap() == null) {
-            throw new NullPointerException("Player removed from map");
-        }
         if (inventory.size() < INVENTORY_SIZE) {
             getMap().removeObject(item);
             inventory.add(item);
@@ -140,23 +137,21 @@ public class Player extends LivingBaseObject {
     }
 
     public void dropItem(Item item) {
-        if (getMap() != null) {
-            if (getMap().getObjectByPosition(getPosition().withY(getPosition().y - 1), false) == null) {
-                item.setPosition(getPosition().withY(getPosition().y - 1));
-            } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x + 1), false) == null) {
-                item.setPosition(getPosition().withX(getPosition().x + 1));
-            } else if (getMap().getObjectByPosition(getPosition().withY(getPosition().y + 1), false) == null) {
-                item.setPosition(getPosition().withY(getPosition().y + 1));
-            } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x - 1), false) == null) {
-                item.setPosition(getPosition().withX(getPosition().x - 1));
-            } else {
-                return;
-            }
-            removeItem(item);
-            getMap().addObject(item);
-            item.onDrop(this);
-            System.gc();
+        if (getMap().getObjectByPosition(getPosition().withY(getPosition().y - 1), false) == null) {
+            item.setPosition(getPosition().withY(getPosition().y - 1));
+        } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x + 1), false) == null) {
+            item.setPosition(getPosition().withX(getPosition().x + 1));
+        } else if (getMap().getObjectByPosition(getPosition().withY(getPosition().y + 1), false) == null) {
+            item.setPosition(getPosition().withY(getPosition().y + 1));
+        } else if (getMap().getObjectByPosition(getPosition().withX(getPosition().x - 1), false) == null) {
+            item.setPosition(getPosition().withX(getPosition().x - 1));
+        } else {
+            return;
         }
+        removeItem(item);
+        getMap().addObject(item);
+        item.onDrop(this);
+        System.gc();
     }
 
     public List<Item> getInventory() {

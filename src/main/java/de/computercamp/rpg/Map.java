@@ -26,9 +26,14 @@ public class Map {
 
     private List<BaseObject> mapContents = new ArrayList<>();
 
+    /**
+     * If you use this method, either move the object to a different {@link Map} or see it as destroyed because the {@link BaseObject} will still think it's in this {@link Map}.
+     * If you just move it into the {@link Player}'s {@link Player#inventory}, that's ok.
+     *
+     * @param base the object to remove
+     * @return same as {@link List#remove(Object)}
+     */
     public synchronized boolean removeObject(BaseObject base) {
-        if (base.getMap() != null && base.getMap().equals(this))
-            base.setMap(null);
         return mapContents.removeIf((object) -> base == object);
     }
 
