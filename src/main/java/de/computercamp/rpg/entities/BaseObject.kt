@@ -31,9 +31,7 @@ abstract class BaseObject(game: Game, position: Vector2D) {
 
     abstract fun render(): Char
 
-    open fun onPlayerMove(player: Player): Boolean {
-        return player.position.x >= 0 && player.position.y >= 0 && player.position.x < 60 && player.position.y < 16 // TODO: move this away from onPlayerMove, maybe into Map.onPlayerMove
-    }
+    open fun onPlayerMove(player: Player): Boolean = true
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

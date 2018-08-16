@@ -66,6 +66,9 @@ public class Map {
     }
 
     public boolean onPlayerMove(Player player) {
+        if(!((player.getPosition().x >= 0) && (player.getPosition().y >= 0) && (player.getPosition().x < 60) && (player.getPosition().y < 16))) {
+            return false;
+        }
         for (BaseObject object : new ArrayList<>(mapContents)) {
             if (!object.onPlayerMove(player)) {
                 return false;
