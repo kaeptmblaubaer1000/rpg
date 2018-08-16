@@ -118,7 +118,11 @@ public class Main {
     }
 
     private static void renderGame() {
-        consoleClearAndWrite(mapBuilder.getMap().render());
+        try {
+            consoleClearAndWrite(mapBuilder.getRoom(0).render());
+        } catch (MapBuilder.NoSuchRoomException e) {
+            e.printStackTrace(); //TODO: Add Game class to avoid
+        }
         consoleWrite(mapBuilder.getPlayer().renderMessage());
         rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n\n" +
             mapBuilder.getPlayer().renderInventory() + "\n\n" +
