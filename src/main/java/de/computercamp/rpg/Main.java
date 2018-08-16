@@ -22,7 +22,7 @@ public class Main {
     private static JFrame jf;
     private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
-    private static MapBuilder mapBuilder = new MapBuilder();
+    private static Game game = Game.Companion.create(); // The ".Companion" part will disappear in a Kotlin Main.
     private static boolean debugMode = false;
 
     public static void main(String[] args) {
@@ -118,18 +118,14 @@ public class Main {
     }
 
     private static void renderGame() {
-        try {
-            consoleClearAndWrite(mapBuilder.getRoom(0).render());
-        } catch (MapBuilder.NoSuchRoomException e) {
-            e.printStackTrace(); //TODO: Add Game class to avoid
-        }
-        consoleWrite(mapBuilder.getPlayer().renderMessage());
-        rightTextArea.setText(mapBuilder.getPlayer().renderHealth() + "\n\n" +
-            mapBuilder.getPlayer().renderInventory() + "\n\n" +
-            mapBuilder.getPlayer().renderCoins()
+        consoleClearAndWrite(game.getCurrentRoom().render());
+        consoleWrite(game.getPlayer().renderMessage());
+        rightTextArea.setText(game.getPlayer().renderHealth() + "\n\n" +
+            game.getPlayer().renderInventory() + "\n\n" +
+            game.getPlayer().renderCoins()
         );
         if (debugMode) {
-            rightTextArea.setText(rightTextArea.getText() + "\n\n" + mapBuilder.getPlayer().getPosition().toString());
+            rightTextArea.setText(rightTextArea.getText() + "\n\n" + game.getPlayer().getPosition().toString());
         }
     }
 
@@ -145,19 +141,19 @@ public class Main {
 
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                mapBuilder.getPlayer().up();
+                game.getPlayer().up();
                 break;
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                mapBuilder.getPlayer().left();
+                game.getPlayer().left();
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                mapBuilder.getPlayer().down();
+                game.getPlayer().down();
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                mapBuilder.getPlayer().right();
+                game.getPlayer().right();
                 break;
             }
             synchronized (renderLock) {
@@ -216,9 +212,9 @@ public class Main {
 
         private void numberKeyPressed(int number) {
             if (qPressed) {
-                mapBuilder.getPlayer().dropItem(number);
+                game.getPlayer().dropItem(number);
             } else {
-                mapBuilder.getPlayer().useItem(number);
+                game.getPlayer().useItem(number);
             }
         }
     }
