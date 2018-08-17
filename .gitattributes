@@ -12,3 +12,4 @@ gradlew eol=lf
 *.bat eol=crlf
 *.ttf filter=lfs diff=lfs merge=lfs -text
 *.yml eol=lf
+*.csv eol=lf
