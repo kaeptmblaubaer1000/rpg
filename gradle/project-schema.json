@@ -15,6 +15,11 @@
                 "type": "org.gradle.api.plugins.ApplicationPluginConvention",
                 "target": "org.gradle.api.Project",
                 "name": "application"
+            },
+            {
+                "type": "org.gradle.api.plugins.MavenPluginConvention",
+                "target": "org.gradle.api.Project",
+                "name": "maven"
             }
         ],
         "configurations": [
@@ -26,6 +31,10 @@
             "compileOnly",
             "default",
             "implementation",
+            "kapt",
+            "kaptTest",
+            "kotlinCompilerClasspath",
+            "kotlinCompilerPluginClasspath",
             "runtime",
             "runtimeClasspath",
             "runtimeElements",
@@ -43,6 +52,26 @@
             {
                 "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
                 "target": "org.gradle.api.Project",
+                "name": "ext"
+            },
+            {
+                "type": "org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension",
+                "target": "org.gradle.api.Project",
+                "name": "kotlin"
+            },
+            {
+                "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
+                "target": "org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension",
+                "name": "ext"
+            },
+            {
+                "type": "org.jetbrains.kotlin.gradle.dsl.ExperimentalExtension",
+                "target": "org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension",
+                "name": "experimental"
+            },
+            {
+                "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
+                "target": "org.jetbrains.kotlin.gradle.dsl.ExperimentalExtension",
                 "name": "ext"
             },
             {
@@ -73,6 +102,26 @@
             {
                 "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
                 "target": "org.gradle.api.distribution.DistributionContainer",
+                "name": "ext"
+            },
+            {
+                "type": "de.dynamicfiles.projects.gradle.plugins.javafx.JavaFXGradlePluginExtension",
+                "target": "org.gradle.api.Project",
+                "name": "jfx"
+            },
+            {
+                "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
+                "target": "de.dynamicfiles.projects.gradle.plugins.javafx.JavaFXGradlePluginExtension",
+                "name": "ext"
+            },
+            {
+                "type": "org.jetbrains.kotlin.gradle.scripting.ScriptingExtension",
+                "target": "org.gradle.api.Project",
+                "name": "kotlinScripting"
+            },
+            {
+                "type": "org.gradle.api.plugins.ExtraPropertiesExtension",
+                "target": "org.jetbrains.kotlin.gradle.scripting.ScriptingExtension",
                 "name": "ext"
             },
             {
