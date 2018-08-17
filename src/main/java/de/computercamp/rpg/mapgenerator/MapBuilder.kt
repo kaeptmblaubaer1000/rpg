@@ -3,9 +3,9 @@ package de.computercamp.rpg.mapgenerator
 import de.computercamp.rpg.Game
 import de.computercamp.rpg.Map
 import de.computercamp.rpg.Vector2D
-import de.computercamp.rpg.entities.Door
-import de.computercamp.rpg.entities.SmallDoor
 import de.computercamp.rpg.entities.WallTile
+import de.computercamp.rpg.entities.generated.walkthrough.Door
+import de.computercamp.rpg.entities.generated.walkthrough.SmallDoor
 import de.computercamp.rpg.entities.items.Coin
 
 class MapBuilder(val game: Game) {
