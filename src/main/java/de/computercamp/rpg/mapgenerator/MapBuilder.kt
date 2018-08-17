@@ -4,14 +4,13 @@ import de.computercamp.rpg.Game
 import de.computercamp.rpg.Map
 import de.computercamp.rpg.Vector2D
 import de.computercamp.rpg.entities.Door
-import de.computercamp.rpg.entities.Player
 import de.computercamp.rpg.entities.SmallDoor
 import de.computercamp.rpg.entities.WallTile
 import de.computercamp.rpg.entities.items.Coin
 
 class MapBuilder(val game: Game) {
     companion object {
-        val COUNT_OF_ROOMS: Int = 1
+        const val COUNT_OF_ROOMS: Int = 1
     }
 
 
