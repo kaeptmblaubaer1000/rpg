@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8")
+    implementation(kotlin("stdlib-jdk8"))
     implementation("org.openjfx:javafx-controls:11.0.2")
 }
 
