@@ -1,9 +1,7 @@
-import de.dynamicfiles.projects.gradle.plugins.javafx.JavaFXGradlePluginExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     dependencies {
-        classpath("de.dynamicfiles.projects.gradle.plugins:javafx-gradle-plugin:8.8.2")
     }
 
     repositories {
@@ -20,7 +18,6 @@ plugins {
     id("org.jetbrains.dokka") version "0.9.17"
 }
 
-apply(mapOf(Pair("plugin", "javafx-gradle-plugin")))
 
 application {
     mainClassName = "de.computercamp.rpg.Main"
@@ -35,12 +32,13 @@ jar.run {
 }
 
 repositories {
-    mavenCentral()
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(kotlin("stdlib-jdk8")
+    implementation("org.openjfx:javafx-controls:11.0.2")
 }
 
 val compileKotlin: KotlinCompile by tasks
@@ -48,10 +46,4 @@ compileKotlin.run {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
-
-configure<JavaFXGradlePluginExtension> {
-    mainClass = "de.computercamp.rpg.JavaFXMain"
-
-    vendor = "Kaeptm Blaubaer"
 }
