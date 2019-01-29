@@ -7,6 +7,7 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
@@ -16,6 +17,7 @@ plugins {
     maven
     id("org.jetbrains.kotlin.jvm") version "1.3.20"
     id("org.jetbrains.dokka") version "0.9.17"
+    id("org.openjfx.javafxplugin") version "0.0.7"
 }
 
 
@@ -38,16 +40,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    if (project.hasProperty("openjfxPlatform")) {
-        val openjfxPlatform: String by project
-        implementation("org.openjfx:javafx-controls:11.0.2:${openjfxPlatform}")
-        implementation("org.openjfx:javafx-graphics:11.0.2:${openjfxPlatform}")
-        implementation("org.openjfx:javafx-base:11.0.2:${openjfxPlatform}")
-        implementation("org.openjfx:javafx-fxml:11.0.2:${openjfxPlatform}")
-    } else {
-        implementation("org.openjfx:javafx-controls:11.0.2")
-        implementation("org.openjfx:javafx-fxml:11.0.2")
-    }
 }
 
 val compileKotlin: KotlinCompile by tasks
@@ -55,4 +47,9 @@ compileKotlin.run {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+javafx {
+    modules = mutableListOf("javafx.fxml", "javafx.controls")
+    version = "11.0.2"
 }
