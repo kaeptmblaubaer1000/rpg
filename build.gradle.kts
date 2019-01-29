@@ -5,7 +5,7 @@ buildscript {
     }
 
     repositories {
-        mavenLocal()
+        jcenter()
         mavenCentral()
     }
 }
@@ -14,7 +14,7 @@ plugins {
     application
     java
     maven
-    id("org.jetbrains.kotlin.jvm") version "1.2.60"
+    id("org.jetbrains.kotlin.jvm") version "1.3.20"
     id("org.jetbrains.dokka") version "0.9.17"
 }
 
