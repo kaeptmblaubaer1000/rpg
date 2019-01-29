@@ -17,7 +17,6 @@ plugins {
     maven
     id("org.jetbrains.kotlin.jvm") version "1.3.20"
     id("org.jetbrains.dokka") version "0.9.17"
-    id("org.openjfx.javafxplugin") version "0.0.7" apply false
 }
 
 
@@ -49,8 +48,8 @@ compileKotlin.run {
     }
 }
 
-if (JavaVersion.current().isJava11Compatible()) {
-    apply(from = "openjfx.gradle.kts")
+if(true) {//if (JavaVersion.current().isJava11Compatible()) {
+    apply(from = "openjfx.gradle")
 } else {
     dependencies {
         implementation("org.openjfx:javafx-controls:11.0.2:linux")

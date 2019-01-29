@@ -1,0 +1,5 @@
+// It looks like we can't use the javafx plugin using Kotlin DSL in a sub-script, thus using Groovy.
+javafx {
+    modules = ["javafx.fxml", "javafx.controls"]
+    version = "11.0.2"
+}
