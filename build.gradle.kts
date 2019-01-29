@@ -38,7 +38,16 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.openjfx:javafx-controls:11.0.2")
+    if (project.hasProperty("openjfxPlatform")) {
+        val openjfxPlatform: String by project
+        implementation("org.openjfx:javafx-controls:11.0.2:${openjfxPlatform}")
+        implementation("org.openjfx:javafx-graphics:11.0.2:${openjfxPlatform}")
+        implementation("org.openjfx:javafx-base:11.0.2:${openjfxPlatform}")
+        implementation("org.openjfx:javafx-fxml:11.0.2:${openjfxPlatform}")
+    } else {
+        implementation("org.openjfx:javafx-controls:11.0.2")
+        implementation("org.openjfx:javafx-fxml:11.0.2")
+    }
 }
 
 val compileKotlin: KotlinCompile by tasks
