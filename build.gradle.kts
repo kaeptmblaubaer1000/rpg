@@ -17,7 +17,7 @@ plugins {
     maven
     id("org.jetbrains.kotlin.jvm") version "1.3.20"
     id("org.jetbrains.dokka") version "0.9.17"
-    id("org.openjfx.javafxplugin") version "0.0.7"
+    id("org.openjfx.javafxplugin") version "0.0.7" apply false
 }
 
 
@@ -49,7 +49,15 @@ compileKotlin.run {
     }
 }
 
-javafx {
-    modules = mutableListOf("javafx.fxml", "javafx.controls")
-    version = "11.0.2"
+if (JavaVersion.current().isJava11Compatible()) {
+    apply(from = "openjfx.gradle.kts")
+} else {
+    dependencies {
+        implementation("org.openjfx:javafx-controls:11.0.2:linux")
+        implementation("org.openjfx:javafx-graphics:11.0.2:linux")
+        implementation("org.openjfx:javafx-graphics:11.0.2:mac")
+        implementation("org.openjfx:javafx-graphics:11.0.2:win")
+        implementation("org.openjfx:javafx-base:11.0.2:linux")
+        implementation("org.openjfx:javafx-fxml:11.0.2:linux")
+    }
 }
