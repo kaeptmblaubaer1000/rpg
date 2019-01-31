@@ -46,6 +46,7 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.run {
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs.plusElement("-Xuse-experimental=kotlin.contracts.ExperimentalContracts")
     }
 }
 
