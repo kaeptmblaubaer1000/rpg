@@ -15,4 +15,8 @@ data class RenderResult(val char1: Char, val char2: Char) {
             else -> throw UnsupportedOperationException("RenderResult only supports two characters, but ${len} were given!")
         }
     }) {}
+
+    val string: String = if(char2 == '\u0000') "$char1" else "$char1$char2"
+
+    override fun toString() = string
 }
