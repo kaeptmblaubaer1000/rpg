@@ -55,10 +55,14 @@ if (JavaVersion.current().isJava11Compatible()) {
 } else {
     dependencies {
         implementation("org.openjfx:javafx-controls:11.0.2:linux")
-        implementation("org.openjfx:javafx-graphics:11.0.2:linux")
-        implementation("org.openjfx:javafx-graphics:11.0.2:mac")
-        implementation("org.openjfx:javafx-graphics:11.0.2:win")
         implementation("org.openjfx:javafx-base:11.0.2:linux")
         implementation("org.openjfx:javafx-fxml:11.0.2:linux")
     }
+}
+
+dependencies {
+    implementation("org.openjfx:javafx-graphics:11.0.2:linux")
+    implementation("org.openjfx:javafx-graphics:11.0.2:mac")
+    implementation("org.openjfx:javafx-graphics:11.0.2:win")
+
 }
