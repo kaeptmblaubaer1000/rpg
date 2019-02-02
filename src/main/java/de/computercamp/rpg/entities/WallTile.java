@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class WallTile extends BaseObject {
     @NotNull
-    private Type type;
+    private final Type type;
 
     public WallTile(@NotNull Game game, @NotNull Vector2D position, @NotNull Type type) {
         super(game, position);

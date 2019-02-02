@@ -7,6 +7,7 @@ import de.computercamp.rpg.entities.LivingBaseObject;
 import de.computercamp.rpg.entities.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -90,7 +91,7 @@ public abstract class NPC extends LivingBaseObject {
                                 break;
                             }
                         }
-                        ghost.startFighting(player);
+                        ghost.startFighting(Objects.requireNonNull(player));
                     }
                     getMap().removeObject(NPC.this);
                 }

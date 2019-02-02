@@ -11,13 +11,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class BadMagicianNPC extends NPC {
-    private int minChange;
-    private int maxChange;
+    private final int minChange;
+    private final int maxChange;
 
     private boolean usable = true;
-    private int reuseSeconds;
+    private final int reuseSeconds;
     @NotNull
-    private Timer timer;
+    private final Timer timer;
     private long timerStarted;
 
     public BadMagicianNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds, int minChange, int maxChange) {

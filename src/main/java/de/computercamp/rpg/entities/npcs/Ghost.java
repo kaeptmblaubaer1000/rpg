@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class Ghost extends LivingBaseObject {
 
-    private Random random = new Random();
+    private final Random random = new Random();
     private boolean despawned = false;
 
     public Ghost(@NotNull Game game, @NotNull Vector2D position) {

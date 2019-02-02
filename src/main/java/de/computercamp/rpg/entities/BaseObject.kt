@@ -9,7 +9,7 @@ abstract class BaseObject(game: Game, position: Vector2D) {
     val game = game
         @Contract(pure = true) get
     open var position = position
-        @Contract(pure = true) get
+        @Contract(pure = true) get() = field
     lateinit var map: Map
         @Contract(pure = true) get
 

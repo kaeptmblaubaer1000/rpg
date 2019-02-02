@@ -1,13 +1,11 @@
 package de.computercamp.rpg.entities
 
-import de.computercamp.rpg.block
-
 /**
  * WARNING: Do not use multiple characters!
  * This is only for UTF-16 surrogates!
  */
-data class RenderResult private constructor (val char1: Char, val char2: Char) {
-    val string: String = if(char2 == '\u0000') "$char1" else "$char1$char2"
+data class RenderResult private constructor(val char1: Char, val char2: Char) {
+    val string: String = if (char2 == '\u0000') "$char1" else "$char1$char2"
 
     override fun toString() = string
 
@@ -30,10 +28,10 @@ data class RenderResult private constructor (val char1: Char, val char2: Char) {
         @JvmStatic //TODO: remove this
         fun from(str: String): RenderResult {
             val len = str.length
-            return from(str[0], when(len) {
+            return from(str[0], when (len) {
                 1 -> '\u0000'
                 2 -> str[1]
-                else -> throw UnsupportedOperationException("RenderResult only supports two characters, but ${len} were given!")
+                else -> throw UnsupportedOperationException("RenderResult only supports two characters, but $len were given!")
             })
         }
     }

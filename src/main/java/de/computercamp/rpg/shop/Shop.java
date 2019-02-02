@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Shop {
 
-    private Map<Item, Integer> offers = new HashMap<>();
+    private final Map<Item, Integer> offers = new HashMap<>();
 
     public void addOffer(Item item, int price) {
         offers.put(item, price);

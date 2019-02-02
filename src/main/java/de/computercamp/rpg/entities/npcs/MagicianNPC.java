@@ -15,10 +15,10 @@ import java.util.TimerTask;
 public class MagicianNPC extends NPC {
 
     private boolean usable = true;
-    private Item item;
+    private final Item item;
 
-    private int reuseSeconds;
-    private Timer timer;
+    private final int reuseSeconds;
+    private final Timer timer;
     private long timerStarted;
 
     public MagicianNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds) {

@@ -13,11 +13,11 @@ import java.util.TimerTask;
 
 public class CookNPC extends NPC {
 
-    private int requiredCoins;
+    private final int requiredCoins;
 
     private boolean usable = true;
-    private int reuseSeconds;
-    private Timer timer;
+    private final int reuseSeconds;
+    private final Timer timer;
     private long timerStarted;
 
     public CookNPC(@NotNull Game game, @NotNull Vector2D position, int reuseSeconds, int requiredCoins) {

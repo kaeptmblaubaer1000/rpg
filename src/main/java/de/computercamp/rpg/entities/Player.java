@@ -15,11 +15,11 @@ public class Player extends LivingBaseObject {
 
     public static final int INVENTORY_SIZE = 10;
 
-    private List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
+    private final List<Item> inventory = new ArrayList<>(INVENTORY_SIZE);
     private int coins = 0;
 
     private String message;
-    private Timer messageTimer = new Timer(true);
+    private final Timer messageTimer = new Timer(true);
     private TimerTask messageTimerTask;
 
     public Player(@NotNull Game game, @NotNull Vector2D position) {

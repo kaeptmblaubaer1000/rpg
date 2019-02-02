@@ -14,8 +14,6 @@
     </rowConstraints>
     <TextFlow
         style="-fx-font-family: &quot;Noto Sans Mono&quot;, &quot;Noto Mono&quot;, &quot;Consolas&quot;, monospace; -fx-font-size: 40; -fx-border-style: none;">
-        <children>
-            <Text text="test" fill="white"/>
-        </children>
+        <Text text="test" fill="white"/>
     </TextFlow>
 </GridPane>

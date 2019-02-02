@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class WeaponSmithNPC extends NPC {
 
-    private Item item;
+    private final Item item;
     private boolean usable = true;
 
     public WeaponSmithNPC(@NotNull Game game, @NotNull Vector2D position) {

@@ -30,7 +30,7 @@ version = rpgVersion
 
 val jar: Jar by tasks
 jar.run {
-    version = rpgVersion
+    archiveVersion.set(rpgVersion)
 }
 
 repositories {
@@ -50,7 +50,7 @@ compileKotlin.run {
     }
 }
 
-if (JavaVersion.current().isJava11Compatible()) {
+if (JavaVersion.current().isJava11Compatible) {
     apply(from = "openjfx.gradle")
 } else {
     dependencies {

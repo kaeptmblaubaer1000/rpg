@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,12 +22,12 @@ public class Main {
     private static JFrame jf;
     private static JTextArea leftTextArea;
     private static JTextArea rightTextArea;
-    private static Game game = Game.Companion.create(); // The ".Companion" part will disappear in a Kotlin Main.
+    private static final Game game = Game.Companion.create(); // The ".Companion" part will disappear in a Kotlin Main.
     private static boolean debugMode = false;
 
     public static void main(String[] args) {
         int option = JOptionPane.showOptionDialog(null, "Choose your language?", "Select language",
-            JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
+            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"German", "English"},
             "English");
         if (option == 0) {
             Messages.changeLanguage(Locale.GERMAN);
@@ -47,10 +48,10 @@ public class Main {
         leftTextArea = new JTextArea();
         Font font;
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(Main.class.getClassLoader().getResourceAsStream("de/computercamp/rpg/resources/fonts/NotoSansMono-Regular.ttf")));
             font = font.deriveFont(40f);
             leftTextArea.setFont(font);
-        } catch (FontFormatException | IOException e) {
+        } catch (FontFormatException | IOException | NullPointerException e) {
             StringWriter stringWriter = new StringWriter();
             e.printStackTrace(new PrintWriter(stringWriter));
             JOptionPane.showMessageDialog(jf, stringWriter.getBuffer(), "Error whilst reading font", JOptionPane.ERROR_MESSAGE);

@@ -24,11 +24,11 @@ public class Map {
     public static final char HORIZONTAL_UP_T_CONNECTOR = '\u2534';
 
 
-    private List<BaseObject> mapContents = new ArrayList<>();
+    private final List<BaseObject> mapContents = new ArrayList<>();
 
     /**
      * If you use this method, either move the object to a different {@link Map} or see it as destroyed because the {@link BaseObject} will still think it's in this {@link Map}.
-     * If you just move it into the {@link Player}'s {@link Player#inventory}, that's ok.
+     * If you just move it into the {@link Player}'s {@link Player#getInventory()}, that's ok.
      *
      * @param base the object to remove
      * @return same as {@link List#remove(Object)}
@@ -66,7 +66,7 @@ public class Map {
     }
 
     public boolean onPlayerMove(Player player) {
-        if(!((player.getPosition().x >= 0) && (player.getPosition().y >= 0) && (player.getPosition().x < 60) && (player.getPosition().y < 16))) {
+        if (!((player.getPosition().x >= 0) && (player.getPosition().y >= 0) && (player.getPosition().x < 60) && (player.getPosition().y < 16))) {
             return false;
         }
         for (BaseObject object : new ArrayList<>(mapContents)) {
