@@ -29,6 +29,8 @@ abstract class BaseObject(game: Game, position: Vector2D) {
         position.x++
     }
 
+    open fun render(): RenderResult = RenderResult.from(oldRender())
+
     abstract fun oldRender(): Char
 
     open fun onPlayerMove(player: Player): Boolean = true
