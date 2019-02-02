@@ -27,7 +27,7 @@ public class Player extends LivingBaseObject {
     }
 
     @Override
-    public char render() {
+    public char oldRender() {
         if (health <= 0) {
             return 'X';
         }

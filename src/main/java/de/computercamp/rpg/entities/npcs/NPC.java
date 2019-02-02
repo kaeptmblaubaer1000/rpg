@@ -20,7 +20,7 @@ public abstract class NPC extends LivingBaseObject {
     }
 
     @Override
-    public char render() {
+    public char oldRender() {
         if (isDead()) {
             return 'X';
         }

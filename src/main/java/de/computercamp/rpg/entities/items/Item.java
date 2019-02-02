@@ -43,7 +43,7 @@ public abstract class Item extends BaseObject {
     }
 
     @Override
-    public char render() {
+    public char oldRender() {
         return symbol;
     }
 

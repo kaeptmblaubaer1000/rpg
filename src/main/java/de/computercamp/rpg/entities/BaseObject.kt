@@ -29,7 +29,7 @@ abstract class BaseObject(game: Game, position: Vector2D) {
         position.x++
     }
 
-    abstract fun render(): Char
+    abstract fun oldRender(): Char
 
     open fun onPlayerMove(player: Player): Boolean = true
 

@@ -14,7 +14,7 @@ public class WallTile extends BaseObject {
         this.type = type;
     }
 
-    public char render() {
+    public char oldRender() {
         switch (type) {
         case VERTICAL:
             return Map.VERTICAL_LINE;

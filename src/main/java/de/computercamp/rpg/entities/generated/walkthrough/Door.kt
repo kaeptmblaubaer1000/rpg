@@ -8,7 +8,7 @@ import de.computercamp.rpg.entities.Player
 
 class Door(game: Game, position: Vector2D) : BaseObject(game, position) {
 
-    override fun render() = '\u258D'
+    override fun oldRender() = '\u258D'
 
     override fun onPlayerMove(player: Player) = true
 }

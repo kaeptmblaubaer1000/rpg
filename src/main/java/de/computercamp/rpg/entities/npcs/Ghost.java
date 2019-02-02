@@ -77,7 +77,7 @@ public class Ghost extends LivingBaseObject {
     }
 
     @Override
-    public char render() {
+    public char oldRender() {
         if (isDead()) {
             return 'X';
         }

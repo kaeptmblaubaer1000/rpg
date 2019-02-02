@@ -8,7 +8,7 @@ import de.computercamp.rpg.entities.Player
 
 class SmallDoor(game: Game, position: Vector2D) : BaseObject(game, position) {
 
-    override fun render() = '\u2594'
+    override fun oldRender() = '\u2594'
 
     override fun onPlayerMove(player: Player) = true
 }

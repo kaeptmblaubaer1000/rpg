@@ -34,7 +34,7 @@ public class Map {
      * @return same as {@link List#remove(Object)}
      */
     public synchronized boolean removeObject(BaseObject base) {
-        return mapContents.removeIf((object) -> base == object);
+        return mapContents.removeIf(object -> base == object);
     }
 
     public synchronized void addObject(BaseObject object) {
@@ -94,15 +94,15 @@ public class Map {
         }
 
         for (BaseObject object : mapContents) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
         }
 
-        for (BaseObject object : mapContents.stream().filter((object) -> object instanceof NPC).collect(Collectors.toList())) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        for (BaseObject object : mapContents.stream().filter(NPC.class::isInstance).collect(Collectors.toList())) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
         }
 
-        for (BaseObject object : mapContents.stream().filter((object) -> object instanceof Player).collect(Collectors.toList())) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.render());
+        for (BaseObject object : mapContents.stream().filter(Player.class::isInstance).collect(Collectors.toList())) {
+            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
         }
 
         for (StringBuilder builder : strings.subList(0, strings.size() - 1)) {
