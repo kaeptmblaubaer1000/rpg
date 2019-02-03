@@ -64,5 +64,13 @@ dependencies {
     implementation("org.openjfx:javafx-graphics:11.0.2:linux")
     implementation("org.openjfx:javafx-graphics:11.0.2:mac")
     implementation("org.openjfx:javafx-graphics:11.0.2:win")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+    testCompileOnly("junit:junit:4.12")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.1.0")
+    testImplementation(kotlin("test-junit5"))
+}
 
+tasks.test {
+    useJUnitPlatform()
 }
