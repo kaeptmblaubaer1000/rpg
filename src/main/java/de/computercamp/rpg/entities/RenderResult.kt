@@ -10,6 +10,9 @@ data class RenderResult private constructor(val char1: Char, val char2: Char) {
     override fun toString() = string
 
     companion object {
+        @JvmField
+        val NONE: RenderResult = from(' ')
+
         /**
          * This function is currently only a constructor call, but it will get a cache.
          *

@@ -2,6 +2,7 @@ package de.computercamp.rpg;
 
 import de.computercamp.rpg.entities.BaseObject;
 import de.computercamp.rpg.entities.Player;
+import de.computercamp.rpg.entities.RenderResult;
 import de.computercamp.rpg.entities.npcs.NPC;
 
 import java.util.ArrayList;
@@ -65,6 +66,10 @@ public class Map {
         return Collections.unmodifiableList(mapContents);
     }
 
+    /**
+     * @param player the player that moves
+     * @return if the move should be aborted
+     */
     public boolean onPlayerMove(Player player) {
         if (!((player.getPosition().x >= 0) && (player.getPosition().y >= 0) && (player.getPosition().x < 60) && (player.getPosition().y < 16))) {
             return false;
@@ -77,40 +82,49 @@ public class Map {
         return true;
     }
 
+    /**
+     * TODO: Use {@link Collectors#joining(CharSequence)} to make the result
+     * @return the rendered {@link Map}
+     */
     public synchronized String render() {
-        int maxX = 60;
-        int maxY = 16;
+        final int maxX = 60;
+        final int maxY = 16;
 
         StringBuilder whole = new StringBuilder();
-        List<StringBuilder> strings = new ArrayList<>(maxY);
+        List<List<RenderResult>> strings = new ArrayList<>(maxY);
 
         for (int y = 0; y < maxY; y++) {
-            StringBuilder row = new StringBuilder(maxX);
+            List<RenderResult> row = new ArrayList<>(maxX);
             for (int x = 0; x < maxX; x++) {
-                row.append(" ");
+                row.add(RenderResult.NONE);
             }
 
             strings.add(row);
         }
 
         for (BaseObject object : mapContents) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
+            strings.get(object.getPosition().y).set(object.getPosition().x, object.render());
         }
 
         for (BaseObject object : mapContents.stream().filter(NPC.class::isInstance).collect(Collectors.toList())) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
+            strings.get(object.getPosition().y).set(object.getPosition().x, object.render());
         }
 
         for (BaseObject object : mapContents.stream().filter(Player.class::isInstance).collect(Collectors.toList())) {
-            strings.get(object.getPosition().y).setCharAt(object.getPosition().x, object.oldRender());
+            strings.get(object.getPosition().y).set(object.getPosition().x, object.render());
         }
 
-        for (StringBuilder builder : strings.subList(0, strings.size() - 1)) {
-            whole.append(builder);
+        for (List<RenderResult> row : strings.subList(0, strings.size() - 1)) {
+            for (RenderResult renderResult : row) {
+                whole.append(renderResult);
+            }
             whole.append('\n');
         }
+
         if (strings.size() > 0) {
-            whole.append(strings.get(strings.size() - 1));
+            for (RenderResult renderResult : strings.get(strings.size() - 1)) {
+                whole.append(renderResult);
+            }
         }
 
         return whole.toString();
