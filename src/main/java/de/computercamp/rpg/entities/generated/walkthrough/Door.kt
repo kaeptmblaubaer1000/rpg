@@ -9,7 +9,7 @@ import de.computercamp.rpg.entities.RenderResult
 
 class Door(game: Game, position: Vector2D) : BaseObject(game, position) {
     companion object {
-        val rendered: RenderResult = RenderResult.Companion.from('\u258D')
+        val rendered: RenderResult = RenderResult.from('\u258D')
     }
 
     override fun render() = rendered
