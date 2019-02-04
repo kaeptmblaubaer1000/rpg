@@ -5,10 +5,14 @@ import de.computercamp.rpg.Game
 import de.computercamp.rpg.Vector2D
 import de.computercamp.rpg.entities.BaseObject
 import de.computercamp.rpg.entities.Player
+import de.computercamp.rpg.entities.RenderResult
 
 class Door(game: Game, position: Vector2D) : BaseObject(game, position) {
+    companion object {
+        val rendered: RenderResult = RenderResult.Companion.from('\u258D')
+    }
 
-    override fun oldRender() = '\u258D'
+    override fun render() = rendered
 
     override fun onPlayerMove(player: Player) = true
 }

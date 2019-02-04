@@ -31,7 +31,11 @@ abstract class BaseObject(game: Game, position: Vector2D) {
 
     open fun render(): RenderResult = RenderResult.from(oldRender())
 
-    abstract fun oldRender(): Char
+    /**
+     * @deprecated Implement {@link render} instead
+     */
+    @Deprecated("Implement render instead")
+    open fun oldRender(): Char = '\u0000'
 
     open fun onPlayerMove(player: Player): Boolean = true
 
