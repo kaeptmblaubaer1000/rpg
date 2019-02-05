@@ -25,7 +25,7 @@ deploy:
   provider: releases
   api_key:
     secure: OnMl7BuEie4gNwT/WFv+dMZbHGIp9n+YgosAqvHpmmp3wlPPuZB8w1y+6dNZmupCIAyBg3ufW7dXAUmndWUrXXbyCgYYa7kUsdoOhK0bEznYF9WZsW5QHONii8zhgIuOXr3vRvJfl2aY8nrqSkv0swfxp93vPvRv9uaiclkUDPR6Fqk30m0POCCk2qDsJCWVW/T/8sv7KoC3MJ6vdNFXittXoix6ujCeoC7Izp0PGveJbwS48rPvtKRDE1jxzy/s+ptdyFtAsOl9251cDvwKyjXsaRWS1t+wxG9cmjRjEHSTuPvcucfboul6RKcVSP0s+AjTd8/hQvxnYaACxyhbdNUXgQvqYwoRA0x/UokuMjS7GFHOFInION54t7ZosmUI9znEsZERik7AqC+S9qOvhfXBgbQAq+3v9PJ3O/SgTrJlRy61NsRrI2rtFrQvLaRjpMGoxg22dTH46XgNlyzEx+DbM0MVaO3QfJZetIE86c9DT2C0gpxEEic68YKlMALttQ+T1rvRb8CGJDjiPuIRsgvxZQwqCQw0F6KzTFc+gbmv4eARssVaiO0N/y/Rwy4khcapzruTBk51xp8ug8650juUACaKUpcSvGYyVMiorIiafk+ZM0Iwh0ziM3aWVT9puGIKx6UbwBX3bbJRKMwjyU7yeghuOJYcWZHexG0ZWnk=
-  file: build/distributions/*
+  file: rpg-core/build/distributions/*
   on:
     repo: kaeptmblaubaer1000/rpg
     tags: true
