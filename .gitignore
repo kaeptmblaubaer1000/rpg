@@ -11,3 +11,5 @@
 !/gradle/wrapper/gradle-wrapper.jar
 /build/
 !.idea/codeStyles/
+*.ipr
+*.iws
