@@ -19,7 +19,7 @@ plugins {
     id("org.jetbrains.dokka") version "0.9.17"
     id("org.openjfx.javafxplugin") version "0.0.7" apply false
 }
-apply<IdePlugin>()
+apply<CommonPlugin>()
 
 
 application {
