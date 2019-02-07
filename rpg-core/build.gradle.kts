@@ -18,10 +18,8 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.3.20"
     id("org.jetbrains.dokka") version "0.9.17"
     id("org.openjfx.javafxplugin") version "0.0.7" apply false
-    idea
-    id("org.jetbrains.gradle.plugin.idea-ext") version "0.5"
-    eclipse
 }
+apply<IdePlugin>()
 
 
 application {
